@@ -1,11 +1,11 @@
 import FormAddPost from "./FormAddPost.jsx";
 import Posts from "./Posts.jsx";
 
-function Main({ posts, onAddPost }) {
+function Main() {
   return (
     <main>
-      <FormAddPost onAddPost={onAddPost} />
-      <Posts posts={posts} />
+      <FormAddPost  />
+      <Posts />
     </main>
   );
 }

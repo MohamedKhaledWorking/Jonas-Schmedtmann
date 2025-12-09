@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { PostsContext } from "../Context/PostsContext.jsx";
 
-export default function Archive({ onAddPost, createRandomPost }) {
+export default function Archive() {
+  const { createRandomPost, handleAddPost } = useContext(PostsContext);
   const [posts] = useState(() =>
     Array.from({ length: 10 }, () => createRandomPost())
   );
@@ -21,7 +23,7 @@ export default function Archive({ onAddPost, createRandomPost }) {
               <p>
                 <strong>{post.title}:</strong> {post.body}
               </p>
-              <button onClick={() => onAddPost(post)}>Add as new post</button>
+              <button onClick={() => handleAddPost(post)}>Add as new post</button>
             </li>
           ))}
         </ul>

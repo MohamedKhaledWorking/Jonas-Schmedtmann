@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const PostsContext = createContext();
 
@@ -48,4 +48,11 @@ export default function PostsContextProvider({ children }) {
       {children}
     </PostsContext.Provider>
   );
+}
+
+export function usePosts() {
+  if (!PostsContext) {
+    throw new Error("usePosts must be used within a PostsContextProvider");
+  }
+  return useContext(PostsContext);
 }

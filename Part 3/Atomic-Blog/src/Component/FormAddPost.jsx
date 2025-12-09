@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { PostsContext } from "../Context/PostsContext.jsx";
+import { PostsContext, usePosts } from "../Context/PostsContext.jsx";
 
 export default function FormAddPost() {
-  const { handleAddPost } = useContext(PostsContext);
+  const { handleAddPost } = usePosts();
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");

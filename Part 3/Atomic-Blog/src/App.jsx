@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { faker } from "@faker-js/faker";
+import Footer from "./Component/Footer.jsx";
+import Header from "./Component/Header.jsx";
+import Main from "./Component/Main.jsx";
+import Archive from "./Component/Archive.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function createRandomPost() {
+  return {
+    title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
+    body: faker.hacker.phrase(),
+  };
 }
 
-export default App
+function App() {
+  const [posts, setPosts] = useState(() =>
+    Array.from({ length: 30 }, () => createRandomPost())
+  );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isFakeDark, setIsFakeDark] = useState(false);
+
+  const searchedPosts =
+    searchQuery.length > 0
+      ? posts.filter((post) =>
+          `${post.title} ${post.body}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+        )
+      : posts;
+
+  function handleAddPost(post) {
+    setPosts((posts) => [post, ...posts]);
+  }
+
+  function handleClearPosts() {
+    setPosts([]);
+  }
+
+  useEffect(
+    function () {
+      document.documentElement.classList.toggle("fake-dark-mode");
+    },
+    [isFakeDark]
+  );
+
+  return (
+    <section>
+      <button
+        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+        className="btn-fake-dark-mode"
+      >
+        {isFakeDark ? "☀️" : "🌙"}
+      </button>
+
+      <Header
+        posts={searchedPosts}
+        onClearPosts={handleClearPosts}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+      <Main posts={searchedPosts} onAddPost={handleAddPost} />
+      <Archive onAddPost={handleAddPost} createRandomPost={createRandomPost} />
+      <Footer />
+    </section>
+  );
+}
+export default App;

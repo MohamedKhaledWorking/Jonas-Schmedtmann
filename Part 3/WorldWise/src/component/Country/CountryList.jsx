@@ -3,8 +3,10 @@ import styles from "./CountryList.module.css";
 import Message from "../Message.jsx";
 import Spinner from "../Spinner.jsx";
 import CountryItem from "./CountryItem.jsx";
+import { useCities } from "../../../CitiesContext.jsx";
 
-export default function CountryList({ cities, isLoading }) {
+export default function CountryList() {
+  const { cities, isLoading } = useCities();
 
   const countries = cities.reduce((acc, city) => {
     if (!acc.map((el) => el.country).includes(city.country)) {

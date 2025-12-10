@@ -3,12 +3,16 @@ import styles from "./CityList.module.css";
 import CityItem from "./CityItem.jsx";
 import Spinner from "../Spinner.jsx";
 import Message from "../Message.jsx";
+import { useCities } from "../../../CitiesContext.jsx";
 
-export default function CityList({ cities, isLoading }) {
-  return cities?.length === 0 ? (
-    <Message message="Add your first city by clicking on a marker on the map" />
-  ) : isLoading ? (
+export default function CityList() {
+  const { cities, isLoading} = useCities();
+
+
+  return isLoading ? (
     <Spinner />
+  ) : cities?.length === 0 ? (
+    <Message message="Add your first city by clicking on a marker on the map" />
   ) : (
     <ul className={styles.cityList}>
       {cities?.map((city) => {

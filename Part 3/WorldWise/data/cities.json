@@ -1,3 +1,64 @@
 {
-  "cities": []
+  "cities": [
+    {
+      "id": "1765479554468",
+      "cityName": "Division No. 10, Subd. C",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2025-12-11T18:59:12.803Z",
+      "notes": "",
+      "position": {
+        "lat": "52.528190539665154",
+        "lng": "-61.61132812500001"
+      }
+    },
+    {
+      "id": "1765479557192",
+      "cityName": "Daneborg",
+      "country": "Greenland",
+      "emoji": "🇬🇱",
+      "date": "2025-12-11T18:59:16.300Z",
+      "notes": "",
+      "position": {
+        "lat": "71.60759838029645",
+        "lng": "-38.40820312500001"
+      }
+    },
+    {
+      "id": "1765479560715",
+      "cityName": "Qikiqtaaluk Region",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2025-12-11T18:59:18.984Z",
+      "notes": "",
+      "position": {
+        "lat": "68.62291255242123",
+        "lng": "-71.01562500000001"
+      }
+    },
+    {
+      "id": "1765479872321",
+      "cityName": "Region 1, Unorganized",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2025-12-11T19:04:27.366Z",
+      "notes": "testing\n",
+      "position": {
+        "lat": "71.1839599488448",
+        "lng": "-110.74218750000001"
+      }
+    },
+    {
+      "id": "1765480544106",
+      "cityName": "Assiut",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2025-12-11T19:14:35.938Z",
+      "notes": "my country",
+      "position": {
+        "lat": "27.17800210677604",
+        "lng": "31.180246779424895"
+      }
+    }
+  ]
 }

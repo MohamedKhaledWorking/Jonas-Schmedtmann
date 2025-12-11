@@ -6,13 +6,16 @@ import Message from "../Message.jsx";
 import { useCities } from "../../../CitiesContext.jsx";
 
 export default function CityList() {
-  const { cities, isLoading} = useCities();
-
+  const { cities, isLoading, error } = useCities();
 
   return isLoading ? (
     <Spinner />
   ) : cities?.length === 0 ? (
-    <Message message="Add your first city by clicking on a marker on the map" />
+    <Message
+      message={"Add your first city by clicking on a marker on the map"}
+    />
+  ) : error ? (
+    <Message message={error} />
   ) : (
     <ul className={styles.cityList}>
       {cities?.map((city) => {

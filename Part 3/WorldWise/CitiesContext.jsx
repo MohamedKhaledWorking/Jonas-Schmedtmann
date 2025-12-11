@@ -1,57 +1,96 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const CitiesContext = createContext();
 
+const initialState = {
+  cities: [],
+  isLoading: true,
+  currentCity: {},
+  error: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "cities/fetched":
+      return { ...state, cities: action.payload, isLoading: false, error: "" };
+  }
+  switch (action.type) {
+    case "city/fetched":
+      return {
+        ...state,
+        currentCity: action.payload,
+        isLoading: false,
+        error: "",
+      };
+  }
+  switch (action.type) {
+    case "city/added":
+      return {
+        currentCity: action.payload,
+        cities: [...state.cities, action.payload],
+        isLoading: false,
+        error: "",
+      };
+  }
+  switch (action.type) {
+    case "city/deleted":
+      return {
+        ...state,
+        cities: state?.cities?.filter((city) => city.id !== action.payload),
+        isLoading: false,
+        error: "",
+      };
+  }
+  switch (action.type) {
+    case "cities/error":
+      return { ...state, error: action.payload, isLoading: false };
+  }
+}
+
 export function CitiesContextProvider({ children }) {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentCity, setCurrentCity] = useState({});
   const navigate = useNavigate();
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   function getData() {
-    setIsLoading(true);
     axios
-      .get(`http://localhost:3001/cities`)
-      .then((res) => res.data)
-      .then((data) => setCities(data));
-    setIsLoading(false);
+      .get(`${import.meta.env.VITE_BASE_URL}/cities`)
+      .then((res) => dispatch({ type: "cities/fetched", payload: res.data }))
+      .catch((error) =>
+        dispatch({ type: "cities/error", payload: error?.response?.data })
+      );
   }
 
   function getCity(id) {
-    setIsLoading(true);
     axios
-      .get("http://localhost:3001/cities/" + id)
-      .then((res) => setCurrentCity(res.data));
-    setIsLoading(false);
+      .get(`${import.meta.env.VITE_BASE_URL}/cities/${id}`)
+      .then((res) => dispatch({ type: "city/fetched", payload: res.data }))
+      .catch((error) =>
+        dispatch({ type: "cities/error", payload: error?.response?.data })
+      );
   }
 
   function addNewCity(newCity) {
-    try {
-      setIsLoading(true);
-      axios
-        .post("http://localhost:3001/cities", newCity)
-        .then(() => setCities((cities) => [...cities, newCity]))
-        .then(() => navigate("/app/cities"))
-        .catch((err) => setError(err.message));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
+    axios
+      .post(`${import.meta.env.VITE_BASE_URL}/cities`, newCity)
+      .then(() => dispatch({ type: "city/added", payload: newCity }))
+      .then(() => navigate("/app/cities"))
+      .catch((error) =>
+        dispatch({ type: "cities/error", payload: error?.response?.data })
+      );
   }
 
   function deleteCity(id) {
-    try {
-      axios
-        .delete(`http://localhost:3001/cities/${id}`)
-        .then(() =>
-          setCities((cities) => cities.filter((city) => city.id !== id))
-        );
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .delete(`${import.meta.env.VITE_BASE_URL}/cities/${id}`)
+      .then(() => dispatch({ type: "city/deleted", payload: id }))
+      .catch((error) =>
+        dispatch({ type: "cities/error", payload: error?.response?.data })
+      );
   }
 
   useEffect(() => {
@@ -63,12 +102,11 @@ export function CitiesContextProvider({ children }) {
       value={{
         cities,
         isLoading,
-        setCities,
         currentCity,
-        setCurrentCity,
         getCity,
         addNewCity,
         deleteCity,
+        error,
       }}
     >
       {children}

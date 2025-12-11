@@ -29,6 +29,7 @@ function Form() {
   const { lat, lng } = useUrlPosition();
   const [error, setError] = useState("");
   const { addNewCity } = useCities();
+  
   function getCity(lat, lng) {
     axios
       .get(

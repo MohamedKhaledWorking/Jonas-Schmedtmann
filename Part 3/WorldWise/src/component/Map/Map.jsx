@@ -19,6 +19,7 @@ export default function Map() {
   const { lat, lng } = useUrlPosition();
   const [mapPosition, setMapPosition] = useState([51.505, -0.09]);
   const { isLoading, lat: geoLat, lng: geoLng, getPosition } = useGoeLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (lat && lng) {
@@ -32,9 +33,19 @@ export default function Map() {
     }
   }, [geoLat, geoLng]);
 
+  async function handlePosition() {
+    try {
+      const { lat, lng } = await getPosition();
+      setMapPosition([lat, lng]);
+      navigate(`form?lat=${lat}&lng=${lng}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div className={styles.mapContainer}>
-      <button className={`btn position`} onClick={getPosition}>
+      <button className={`btn position`} onClick={handlePosition}>
         {isLoading ? "getting your location ..." : "get current location"}
       </button>
 
@@ -86,33 +97,4 @@ function LocationMarker({ setMapPosition }) {
       setMapPosition([e.latlng.lat, e.latlng.lng]);
     },
   });
-}
-
-// npm i leaflet
-// npm i react-leaflet
-
-/* Taken from getting started guide at: https://leafletjs.com/examples/quick-start/ */
-// put this in index.css at the top
-// @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
-// @import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
-
-// import 'leaflet/dist/leaflet.css';
-
-{
-  /* <MapContainer
-  center={mapPosition}
-  zoom={13}
-  scrollWheelZoom={true}
-  style={{ height: "100%", width: "100%" }}
->
-  <TileLayer
-    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  />
-  <Marker position={mapPosition}>
-    <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-    </Popup>
-  </Marker>
-</MapContainer>; */
 }

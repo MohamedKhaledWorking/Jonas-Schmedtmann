@@ -7,11 +7,11 @@ import {
   Marker,
   Popup,
   useMap,
-  useMapEvent,
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useCities } from "../../../CitiesContext.jsx";
+import { useGoeLocation } from "../../../hooks/useLocation.jsx";
 
 export default function Map() {
   const { cities } = useCities();
@@ -19,20 +19,31 @@ export default function Map() {
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
   const [mapPosition, setMapPosition] = useState([51.505, -0.09]);
+  const { isLoading, lat: geoLat, lng: geoLng, getPosition } = useGoeLocation();
 
   useEffect(() => {
     if (lat && lng) {
       setMapPosition([lat, lng]);
     }
   }, [lat, lng]);
+  
+  useEffect(() => {
+    if (geoLat && geoLng) {
+      setMapPosition([geoLat, geoLng]);
+    }
+  }, [geoLat, geoLng]);
 
   return (
     <div className={styles.mapContainer}>
+      <button className={`btn position`} onClick={getPosition}>
+        {isLoading ? "getting your location ..." : "get current location"}
+      </button>
+
       <MapContainer
         center={mapPosition}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: "100%", width: "100%" }}
+        style={{ height: "100%", width: "100%", position: "relative" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

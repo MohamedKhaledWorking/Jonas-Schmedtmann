@@ -20,6 +20,7 @@ export function convertToEmoji(countryCode) {
 }
 
 export default function CityItem({ cityItem }) {
+  const { deleteCity } = useCities();
   const {
     cityName,
     emoji,
@@ -28,14 +29,29 @@ export default function CityItem({ cityItem }) {
     position: { lat, lng },
   } = cityItem;
   const { currentCity } = useCities();
-  const isSelected = currentCity?.id == id
+  const isSelected = currentCity?.id == id;
+
+  function handleDeleteCity(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
+    deleteCity(id);
+  }
+
   return (
-    <li >
-      <Link to={`${id}?lat=${lat}&lng=${lng}`} className={`${styles.cityItem} ${isSelected && styles.cityItemActive}`}>
+    <li>
+      <Link
+        to={`${id}?lat=${lat}&lng=${lng}`}
+        className={`${styles.cityItem} ${isSelected && styles.cityItemActive}`}
+      >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <span className={styles.date}> {formatDate(date || null)}</span>
-        <button className={styles.deleteBtn}>x</button>
+        <button
+          className={styles.deleteBtn}
+          onClick={(e) => handleDeleteCity(e, id)}
+        >
+          x
+        </button>
       </Link>
     </li>
   );

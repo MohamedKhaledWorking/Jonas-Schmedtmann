@@ -16,7 +16,6 @@ export function CitiesContextProvider({ children }) {
       .get(`http://localhost:3001/cities`)
       .then((res) => res.data)
       .then((data) => setCities(data));
-
     setIsLoading(false);
   }
 
@@ -28,16 +27,36 @@ export function CitiesContextProvider({ children }) {
     setIsLoading(false);
   }
 
+  function addNewCity(newCity) {
+    try {
+      setIsLoading(true);
+      axios
+        .post("http://localhost:3001/cities", newCity)
+        .then(() => setCities((cities) => [...cities, newCity]))
+        .then(() => navigate("/app/cities"))
+        .catch((err) => setError(err.message));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function deleteCity(id) {
+    try {
+      axios
+        .delete(`http://localhost:3001/cities/${id}`)
+        .then(() =>
+          setCities((cities) => cities.filter((city) => city.id !== id))
+        );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getData();
   }, []);
-
-  function addNewCity(newCity) {
-    axios
-      .post("http://localhost:3001/cities", newCity)
-      .then(() => navigate(`/app/cities/${newCity.id}`))
-      .catch((err) => setError(err.message));
-  }
 
   return (
     <CitiesContext.Provider
@@ -48,7 +67,8 @@ export function CitiesContextProvider({ children }) {
         currentCity,
         setCurrentCity,
         getCity,
-        addNewCity
+        addNewCity,
+        deleteCity,
       }}
     >
       {children}

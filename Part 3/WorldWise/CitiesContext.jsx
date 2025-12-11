@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const CitiesContext = createContext();
 
@@ -7,6 +8,7 @@ export function CitiesContextProvider({ children }) {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentCity, setCurrentCity] = useState({});
+  const navigate = useNavigate();
 
   function getData() {
     setIsLoading(true);
@@ -30,6 +32,13 @@ export function CitiesContextProvider({ children }) {
     getData();
   }, []);
 
+  function addNewCity(newCity) {
+    axios
+      .post("http://localhost:3001/cities", newCity)
+      .then(() => navigate(`/app/cities/${newCity.id}`))
+      .catch((err) => setError(err.message));
+  }
+
   return (
     <CitiesContext.Provider
       value={{
@@ -39,6 +48,7 @@ export function CitiesContextProvider({ children }) {
         currentCity,
         setCurrentCity,
         getCity,
+        addNewCity
       }}
     >
       {children}

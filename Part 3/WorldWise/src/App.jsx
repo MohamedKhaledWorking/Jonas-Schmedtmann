@@ -13,10 +13,12 @@ import CityList from "./component/City/CityList.jsx";
 import CountryList from "./component/Country/CountryList.jsx";
 import City from "./component/City/City.jsx";
 import Form from "./component/Form.jsx";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
     <>
+      <ToastContainer />
       <BrowserRouter>
         <CitiesContextProvider>
           <Navbar />

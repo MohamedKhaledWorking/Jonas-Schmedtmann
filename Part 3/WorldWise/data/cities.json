@@ -1,63 +1,123 @@
 {
   "cities": [
     {
-      "id": "1765479554468",
-      "cityName": "Division No. 10, Subd. C",
-      "country": "Canada",
-      "emoji": "🇨🇦",
-      "date": "2025-12-11T18:59:12.803Z",
+      "id": "1765484958745",
+      "cityName": "Dazhou",
+      "country": "China",
+      "emoji": "🇨🇳",
+      "date": "2025-12-11T20:29:17.944Z",
       "notes": "",
       "position": {
-        "lat": "52.528190539665154",
-        "lng": "-61.61132812500001"
+        "lat": "31.86639171092993",
+        "lng": "108.19335937500001"
       }
     },
     {
-      "id": "1765479557192",
+      "id": "1765493971814",
+      "cityName": "Timokten",
+      "country": "Algeria",
+      "emoji": "🇩🇿",
+      "date": "2025-12-11T22:59:30.707Z",
+      "notes": "",
+      "position": {
+        "lat": "27.11765988295788",
+        "lng": "0.6152343750000001"
+      }
+    },
+    {
+      "id": "1765493977392",
+      "cityName": "Timbuktu",
+      "country": "Mali",
+      "emoji": "🇲🇱",
+      "date": "2025-12-11T22:59:36.481Z",
+      "notes": "",
+      "position": {
+        "lat": "17.217932367990368",
+        "lng": "-3.1640625000000004"
+      }
+    },
+    {
+      "id": "1765497985592",
+      "cityName": "Kagisano/Molopo",
+      "country": "South Africa",
+      "emoji": "🇿🇦",
+      "date": "2025-12-12T00:06:24.681Z",
+      "notes": "",
+      "position": {
+        "lat": "-25.324166525738384",
+        "lng": "23.115234375"
+      }
+    },
+    {
+      "id": "1765497987808",
+      "cityName": "Aldeanueva de San Bartolome",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2025-12-12T00:06:26.979Z",
+      "notes": "",
+      "position": {
+        "lat": "39.63953756436671",
+        "lng": "-5.097656250000001"
+      }
+    },
+    {
+      "id": "1765497989628",
+      "cityName": "Caniapiscau",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2025-12-12T00:06:28.872Z",
+      "notes": "",
+      "position": {
+        "lat": "53.904338156274704",
+        "lng": "-69.87304687500001"
+      }
+    },
+    {
+      "id": "1765497992993",
       "cityName": "Daneborg",
       "country": "Greenland",
       "emoji": "🇬🇱",
-      "date": "2025-12-11T18:59:16.300Z",
+      "date": "2025-12-12T00:06:32.094Z",
       "notes": "",
       "position": {
-        "lat": "71.60759838029645",
-        "lng": "-38.40820312500001"
+        "lat": "72.60712040027555",
+        "lng": "-31.728515625000004"
       }
     },
     {
-      "id": "1765479560715",
-      "cityName": "Qikiqtaaluk Region",
-      "country": "Canada",
-      "emoji": "🇨🇦",
-      "date": "2025-12-11T18:59:18.984Z",
+      "id": "1765498045526",
+      "cityName": "Girawa",
+      "country": "Ethiopia",
+      "emoji": "🇪🇹",
+      "date": "2025-12-12T00:07:24.538Z",
       "notes": "",
       "position": {
-        "lat": "68.62291255242123",
-        "lng": "-71.01562500000001"
+        "lat": "9.102096738726456",
+        "lng": "41.83593750000001"
       }
     },
     {
-      "id": "1765479872321",
-      "cityName": "Region 1, Unorganized",
-      "country": "Canada",
-      "emoji": "🇨🇦",
-      "date": "2025-12-11T19:04:27.366Z",
-      "notes": "testing\n",
+      "id": "1765498460206",
+      "cityName": "Utajarvi",
+      "country": "Finland",
+      "emoji": "🇫🇮",
+      "date": "2025-12-12T00:14:19.282Z",
+      "notes": "",
       "position": {
-        "lat": "71.1839599488448",
-        "lng": "-110.74218750000001"
+        "lat": "64.99793920061401",
+        "lng": "26.806640625000004"
       }
     },
     {
-      "id": "1765480544106",
-      "cityName": "Assiut",
-      "country": "Egypt",
-      "emoji": "🇪🇬",
-      "date": "2025-12-11T19:14:35.938Z",
-      "notes": "my country",
+      "id": "1765498525881",
+      "cityName": "Ahmedabad",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2025-12-12T00:15:23.167Z",
+      "notes": "",
       "position": {
-        "lat": "27.17800210677604",
-        "lng": "31.180246779424895"
+        "lat": "22.968509022673924",
+        "lng": "72.54272460937501"
       }
     }
   ]

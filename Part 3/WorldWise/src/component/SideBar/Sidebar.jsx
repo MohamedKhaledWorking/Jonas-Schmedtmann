@@ -5,11 +5,13 @@ import { Outlet } from "react-router-dom";
 import AppNav from "../AppNav/AppNav.jsx";
 export default function Sidebar() {
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar}`}>
       <Logo />
       <AppNav />
 
-      <Outlet />
+      <div className="h-full overflow-y-auto mb-10 " >
+        <Outlet />
+      </div>
 
       <footer className={styles.footer}>
         <p className={styles.copyright}>

@@ -17,6 +17,9 @@
   width: 48rem;
   margin: 8rem auto;
 }
+input {
+  color: black;
+}
 
 .row {
   display: flex;

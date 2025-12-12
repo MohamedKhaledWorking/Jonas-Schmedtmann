@@ -8,7 +8,7 @@ import axios from "axios";
 import { useUrlPosition } from "../../hooks/useUrlPosition.jsx";
 import { Bounce, toast } from "react-toastify";
 import Message from "./Message.jsx";
-import { useCities } from "../../CitiesContext.jsx";
+import { useCities } from "../../Context/CitiesContext.jsx";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -29,7 +29,7 @@ function Form() {
   const { lat, lng } = useUrlPosition();
   const [error, setError] = useState("");
   const { addNewCity } = useCities();
-  
+
   function getCity(lat, lng) {
     axios
       .get(

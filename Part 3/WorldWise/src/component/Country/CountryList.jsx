@@ -21,10 +21,12 @@ export default function CountryList() {
   ) : cities?.length === 0 ? (
     <Message message="Add your first city by clicking on a marker on the map" />
   ) : (
-    <ul className={styles.countryList}>
-      {countries.map((country) => (
-        <CountryItem key={country.country} country={country} />
-      ))}
-    </ul>
+    <div className="h-full overflow-y-auto mb-10 ">
+      <ul className={styles.countryList}>
+        {countries.map((country) => (
+          <CountryItem key={country.country} country={country} />
+        ))}
+      </ul>
+    </div>
   );
 }

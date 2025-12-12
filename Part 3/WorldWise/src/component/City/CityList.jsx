@@ -17,10 +17,12 @@ export default function CityList() {
   ) : error ? (
     <Message message={error} />
   ) : (
-    <ul className={styles.cityList}>
-      {cities?.map((city) => {
-        return <CityItem cityItem={city} key={city.id} />;
-      })}
-    </ul>
+    <div className="h-full overflow-y-auto mb-10 ">
+      <ul className={styles.cityList}>
+        {cities?.map((city) => {
+          return <CityItem cityItem={city} key={city.id} />;
+        })}
+      </ul>
+    </div>
   );
 }

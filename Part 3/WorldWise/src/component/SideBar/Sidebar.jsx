@@ -9,9 +9,7 @@ export default function Sidebar() {
       <Logo />
       <AppNav />
 
-      <div className="h-full overflow-y-auto mb-10 " >
         <Outlet />
-      </div>
 
       <footer className={styles.footer}>
         <p className={styles.copyright}>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useCallback } from "react";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -65,14 +66,14 @@ export function CitiesContextProvider({ children }) {
       );
   }
 
-  function getCity(id) {
+  const getCity = useCallback(function getCity(id) {
     axios
       .get(`${import.meta.env.VITE_BASE_URL}/cities/${id}`)
       .then((res) => dispatch({ type: "city/fetched", payload: res.data }))
       .catch((error) =>
         dispatch({ type: "cities/error", payload: error?.response?.data })
       );
-  }
+  } , []);
 
   function addNewCity(newCity) {
     axios

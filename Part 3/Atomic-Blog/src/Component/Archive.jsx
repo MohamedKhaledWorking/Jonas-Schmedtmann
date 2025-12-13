@@ -1,13 +1,21 @@
-import { useContext, useState } from "react";
-import { PostsContext, usePosts } from "../Context/PostsContext.jsx";
+import { memo, useState } from "react";
+import { usePosts } from "../Context/PostsContext.jsx";
+import { faker } from "@faker-js/faker";
 
-export default function Archive() {
-  const { createRandomPost, handleAddPost } = usePosts();
+function createRandomPost() {
+  return {
+    title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
+    body: faker.hacker.phrase(),
+  };
+}
+
+const Archive = memo(function Archive({ archiveOptions, handleAddPost }) {
+  // const {  handleAddPost } = usePosts();
   const [posts] = useState(() =>
-    Array.from({ length: 10 }, () => createRandomPost())
+    Array.from({ length: 10000 }, () => createRandomPost())
   );
 
-  const [showArchive, setShowArchive] = useState(false);
+  const [showArchive, setShowArchive] = useState(archiveOptions.show);
 
   return (
     <aside>
@@ -23,11 +31,15 @@ export default function Archive() {
               <p>
                 <strong>{post.title}:</strong> {post.body}
               </p>
-              <button onClick={() => handleAddPost(post)}>Add as new post</button>
+              <button onClick={() => handleAddPost(post)}>
+                Add as new post
+              </button>
             </li>
           ))}
         </ul>
       )}
     </aside>
   );
-}
+});
+
+export default Archive;

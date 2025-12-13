@@ -9,8 +9,8 @@ function createRandomPost() {
   };
 }
 
-const Archive = memo(function Archive({ archiveOptions, handleAddPost }) {
-  // const {  handleAddPost } = usePosts();
+const Archive = memo(function Archive({ archiveOptions }) {
+  const {  handleAddPost } = usePosts();
   const [posts] = useState(() =>
     Array.from({ length: 10000 }, () => createRandomPost())
   );

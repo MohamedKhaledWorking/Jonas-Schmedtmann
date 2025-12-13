@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { PostsContext, usePosts } from "../Context/PostsContext.jsx";
+import {useState } from "react";
+import {usePosts } from "../Context/PostsContext.jsx";
 
 export default function FormAddPost() {
   const { handleAddPost } = usePosts();

@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import AccountOperations from "./Features/Account/AccountOperations.jsx";
+import BalanceDisplay from "./Features/Account/BalanceDisplay.jsx";
+import Customer from "./Features/User/Customer.jsx";
+import CreateCustomer from "./Features/User/CreateCustomer.jsx";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const user = useSelector((store) => store.user);
+  const isUserLoggedIn = user.name !== "";
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>🏦 The React-Redux Bank ⚛️</h1>
+        {isUserLoggedIn ? (
+          <>
+            <Customer />
+            <AccountOperations />
+            <BalanceDisplay />
+          </>
+        ) : (
+          <CreateCustomer />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -12,9 +12,7 @@ export default function AppLayout() {
       }`}
     >
       <NavBar setIsDark={setIsDark} />
-      <div className="container mx-auto  ">
-        <Outlet />
-      </div>
+      <Outlet />
       <Footer />
     </div>
   );

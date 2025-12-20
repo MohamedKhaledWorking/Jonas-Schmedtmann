@@ -16,7 +16,7 @@ export default function NavBar({ setIsDark }) {
   }, []);
 
   return (
-    <nav className="backdrop-blur fixed inset-x-0 top-0 bg-secBgc dark:bg-secBgcDark/20 z-999">
+    <nav className="backdrop-blur fixed inset-x-0 top-0 bg-secBgc/20 dark:bg-secBgcDark/20 z-999">
       <div className="navbar shadow-sm container mx-auto py-3">
         <div className="navbar-start">
           {/* ✅ MOBILE DROPDOWN WRAPPER (relative anchor) */}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BaggageClaim, Pizza, Sun } from "lucide-react";
 
-export default function NavBar() {
+export default function NavBar({ setIsDark }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef(null);
 
@@ -15,7 +15,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="backdrop-blur-md absolute inset-x-0 top-0 bg-secBgcDark dark:bg-secBgcDark">
+    <div className="backdrop-blur fixed inset-x-0 top-0 bg-secBgc dark:bg-secBgcDark/20 z-999">
       <div className="navbar shadow-sm container mx-auto py-3">
         <div className="navbar-start">
           {/* ✅ MOBILE DROPDOWN WRAPPER (relative anchor) */}
@@ -113,7 +113,10 @@ export default function NavBar() {
           <button className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl">
             <BaggageClaim />
           </button>
-          <button className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl">
+          <button
+            className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl"
+            onClick={() => setIsDark((v) => !v)}
+          >
             <Sun />
           </button>
         </div>

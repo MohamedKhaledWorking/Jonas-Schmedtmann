@@ -13,6 +13,12 @@
   --color-textClrDark: #f5f2f0;
   --color-textSecClr: #7e6f67;
   --color-textSEcClrDark: #a3998f;
+
+  --font-main: "Playfair Display", serif;
+}
+
+body {
+  font-family: "Inter", sans-serif;
 }
 
 .loaderWrap {

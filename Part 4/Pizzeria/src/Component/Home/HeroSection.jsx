@@ -13,7 +13,7 @@ import React from "react";
 export default function HeroSection() {
   return (
     <>
-      <div className="h-[90vh] flex flex-col justify-center items-center text-center capitalize md:mt-0 mt-15">
+      <section className="h-[90vh] mt-[20vh] md:mt-[10vh] flex flex-col justify-center items-center text-center capitalize ">
         <div className="px-6 text-xs md:text-base bg-orange-50 dark:bg-secBgcDark text-textClr dark:text-textClrDark p-2 rounded-full flex items-center border border-orange-500/30">
           <span className="text-xs md:text-xl mr-3 animate-pulse text-orange-500">
             •
@@ -108,7 +108,7 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

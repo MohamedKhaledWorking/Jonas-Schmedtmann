@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BaggageClaim, Pizza, Sun } from "lucide-react";
+import Logo from "./Logo.jsx";
 
 export default function NavBar({ setIsDark }) {
   const [open, setOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function NavBar({ setIsDark }) {
   }, []);
 
   return (
-    <div className="backdrop-blur fixed inset-x-0 top-0 bg-secBgc dark:bg-secBgcDark/20 z-999">
+    <nav className="backdrop-blur fixed inset-x-0 top-0 bg-secBgc dark:bg-secBgcDark/20 z-999">
       <div className="navbar shadow-sm container mx-auto py-3">
         <div className="navbar-start">
           {/* ✅ MOBILE DROPDOWN WRAPPER (relative anchor) */}
@@ -87,10 +88,7 @@ export default function NavBar({ setIsDark }) {
           </div>
 
           {/* Logo */}
-          <a className="text-xl lg:text-3xl group cursor-pointer flex items-center">
-            <Pizza className="inline mr-2 group-hover:scale-125 duration-300 text-inherit" />
-            Pizzeria<span className="text-orange-500 text-4xl">.</span>
-          </a>
+          <Logo />
         </div>
 
         {/* Desktop menu */}
@@ -121,6 +119,6 @@ export default function NavBar({ setIsDark }) {
           </button>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

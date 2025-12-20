@@ -1,2 +1,120 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-mainBgc: #fbfaf9;
+  --color-mainBgcDark: #171311;
+  --color-secBgcDark: #faf3ee;
+  --color-secBgcDark: #211812;
+
+  --color-textClr: #2e241f;
+  --color-textClrDark: #f5f2f0;
+  --color-textSecClr: #7e6f67;
+  --color-textSEcClrDark: #a3998f;
+}
+
+.loaderWrap {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+
+.loaderSvg {
+  color: #111827;
+  transform: translateZ(0);
+}
+
+/* Anti-flicker helpers */
+.loaderSvg path {
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+  will-change: stroke-dashoffset;
+}
+
+/* ONE animation pattern (draw -> hold -> erase -> hold) */
+@keyframes drawErase {
+  /* hidden */
+  0% {
+    stroke-dashoffset: var(--len);
+  }
+
+  /* draw */
+  40% {
+    stroke-dashoffset: 0;
+  }
+
+  /* hold drawn */
+  55% {
+    stroke-dashoffset: 0;
+  }
+
+  /* erase */
+  95% {
+    stroke-dashoffset: calc(-1 * var(--len));
+  }
+
+  /* tiny buffer to avoid loop pop */
+  100% {
+    stroke-dashoffset: calc(-1 * var(--len) - 0.001px);
+  }
+}
+
+/* ====== Each path gets its own true length (from SVG Artista) ====== */
+/* We keep dasharray equal to length and animate dashoffset. */
+
+.svg-elem-1 {
+  --len: 3.414213538169861px;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: drawErase 2200ms cubic-bezier(0.4, 0, 0.2, 1) 100s infinite;
+}
+
+.svg-elem-2 {
+  --len: 3.8917981386184692px;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: drawErase 2200ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+}
+
+.svg-elem-3 {
+  --len: 20.13536834716797px;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: drawErase 2200ms cubic-bezier(0.4, 0, 0.2, 1) 400ms infinite;
+}
+
+.svg-elem-4 {
+  --len: 14.535409927368164px;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: drawErase 2200ms cubic-bezier(0.4, 0, 0.2, 1) 600ms infinite;
+}
+
+.svg-elem-5 {
+  --len: 64.8704605102539px;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: drawErase 2200ms cubic-bezier(0.4, 0, 0.2, 1) 800ms infinite;
+}
+
+/* text */
+.loaderText {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .svg-elem-1,
+  .svg-elem-2,
+  .svg-elem-3,
+  .svg-elem-4,
+  .svg-elem-5 {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

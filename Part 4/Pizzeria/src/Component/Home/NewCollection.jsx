@@ -1,9 +1,2022 @@
-import React from "react";
+import React, { useState } from "react";
+import HeaderIcon from "../../UI/HeaderIcon.jsx";
+import { MoveLeft, MoveRight, Smile } from "lucide-react";
+import NewCollectionCard from "./NewCollectionCard.jsx";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/element/bundle";
+import "swiper/element";
 
 export default function NewCollection() {
+  const [newCollection, setNewCollection] = useState([
+    {
+      id: "1",
+      name: "Margherita Classica",
+      description:
+        "San Marzano tomatoes, fresh mozzarella, basil, and olive oil.",
+      ingredients: [
+        "San Marzano Tomatoes",
+        "Fresh Mozzarella",
+        "Basil",
+        "Extra Virgin Olive Oil",
+      ],
+      basePrice: 14.99,
+      image:
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=1200&q=80",
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.9,
+      reviewCount: 328,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 12,
+        max: 18,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "1-r1",
+          customerName: "Sarah M.",
+          rating: 5,
+          comment: "Perfect classic. Fresh basil and amazing crust.",
+          date: "2 days ago",
+        },
+        {
+          id: "1-r2",
+          customerName: "Luca P.",
+          rating: 5,
+          comment: "Simple, clean, and truly authentic.",
+          date: "1 week ago",
+        },
+      ],
+    },
+    {
+      id: "2",
+      name: "Pepperoni Supreme",
+      description: "Premium pepperoni, mozzarella, and signature tomato sauce.",
+      ingredients: ["Pepperoni", "Mozzarella", "Tomato Sauce", "Oregano"],
+      basePrice: 17.99,
+      image:
+        "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=1200&q=80",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a46?w=1200&q=80",
+      ],
+      category: "meat-lovers",
+      rating: 4.8,
+      reviewCount: 256,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 14,
+        max: 22,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "2-r1",
+          customerName: "James K.",
+          rating: 5,
+          comment: "Cheese pull is insane. Pepperoni is premium.",
+          date: "3 days ago",
+        },
+        {
+          id: "2-r2",
+          customerName: "Mona S.",
+          rating: 4,
+          comment: "Great flavor, would love a spicier option.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "3",
+      name: "Quattro Formaggi",
+      description:
+        "Mozzarella, gorgonzola, parmesan, and fontina for cheese lovers.",
+      ingredients: [
+        "Mozzarella",
+        "Gorgonzola",
+        "Parmesan",
+        "Fontina",
+        "Truffle Oil",
+      ],
+      basePrice: 19.99,
+      image:
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80",
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=1200&q=80",
+      ],
+      category: "specialty",
+      rating: 4.7,
+      reviewCount: 189,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 15,
+        max: 20,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "3-r1",
+          customerName: "Emily R.",
+          rating: 5,
+          comment: "Cheese heaven. Rich but balanced.",
+          date: "5 days ago",
+        },
+        {
+          id: "3-r2",
+          customerName: "Hassan A.",
+          rating: 4,
+          comment: "Loved it. A bit heavy but delicious.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "4",
+      name: "Garden Delight",
+      description: "Seasonal veggies, pesto, and creamy ricotta.",
+      ingredients: [
+        "Bell Peppers",
+        "Mushrooms",
+        "Olives",
+        "Artichokes",
+        "Pesto",
+        "Ricotta",
+      ],
+      basePrice: 16.99,
+      image:
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80",
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=1200&q=80",
+      ],
+      category: "vegetarian",
+      rating: 4.6,
+      reviewCount: 142,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 13,
+        max: 19,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "4-r1",
+          customerName: "Nina S.",
+          rating: 5,
+          comment: "Fresh and light. Pesto + ricotta is perfect.",
+          date: "1 week ago",
+        },
+        {
+          id: "4-r2",
+          customerName: "Kareem M.",
+          rating: 4,
+          comment: "Great veggie mix. Would reorder.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "5",
+      name: "Meat Feast",
+      description:
+        "Pepperoni, sausage, bacon, and ham for serious meat lovers.",
+      ingredients: [
+        "Pepperoni",
+        "Italian Sausage",
+        "Bacon",
+        "Ham",
+        "Mozzarella",
+      ],
+      basePrice: 21.99,
+      image:
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80",
+        "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=1200&q=80",
+      ],
+      category: "meat-lovers",
+      rating: 4.8,
+      reviewCount: 312,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 18,
+        max: 25,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "5-r1",
+          customerName: "Alex T.",
+          rating: 5,
+          comment: "Loaded! Exactly what I wanted.",
+          date: "6 days ago",
+        },
+        {
+          id: "5-r2",
+          customerName: "Yara H.",
+          rating: 5,
+          comment: "Meaty and satisfying. Great crust too.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "6",
+      name: "Truffle Mushroom",
+      description: "Wild mushrooms, truffle cream sauce, and aged parmesan.",
+      ingredients: [
+        "Porcini Mushrooms",
+        "Cremini",
+        "Truffle Cream",
+        "Parmesan",
+        "Thyme",
+      ],
+      basePrice: 23.99,
+      image:
+        "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=1200&q=80",
+        "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=1200&q=80",
+      ],
+      category: "specialty",
+      rating: 4.9,
+      reviewCount: 98,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 16,
+        max: 22,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "6-r1",
+          customerName: "Marco G.",
+          rating: 5,
+          comment: "Feels like a gourmet restaurant pizza.",
+          date: "4 days ago",
+        },
+        {
+          id: "6-r2",
+          customerName: "Dina A.",
+          rating: 5,
+          comment: "Truffle flavor is perfect, not overpowering.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "7",
+      name: "Spicy Diavola",
+      description:
+        "Fiery nduja, spicy salami, calabrian chili, and a honey drizzle.",
+      ingredients: [
+        "Nduja",
+        "Spicy Salami",
+        "Chili Peppers",
+        "Mozzarella",
+        "Hot Honey",
+      ],
+      basePrice: 19.99,
+      image:
+        "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=1200&q=80",
+        "https://images.unsplash.com/photo-1600628422019-6c61b9d31d2c?w=1200&q=80",
+      ],
+      category: "spicy",
+      rating: 4.7,
+      reviewCount: 203,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: true,
+      cookingTime: {
+        min: 15,
+        max: 22,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "7-r1",
+          customerName: "Omar S.",
+          rating: 5,
+          comment: "🔥 Perfect heat level and amazing flavor.",
+          date: "3 days ago",
+        },
+        {
+          id: "7-r2",
+          customerName: "Nada M.",
+          rating: 4,
+          comment: "Spicy and sweet together is great.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "8",
+      name: "Hawaiian Paradise",
+      description:
+        "Sweet pineapple meets savory ham over mozzarella and sauce.",
+      ingredients: ["Ham", "Pineapple", "Mozzarella", "Tomato Sauce"],
+      basePrice: 16.99,
+      image:
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=80",
+        "https://images.unsplash.com/photo-1604909052743-94e9e6cf9c6f?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.4,
+      reviewCount: 167,
+      isAvailable: false,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 13,
+        max: 21,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "8-r1",
+          customerName: "Tina W.",
+          rating: 4,
+          comment: "Love pineapple on pizza. Solid choice.",
+          date: "1 week ago",
+        },
+        {
+          id: "8-r2",
+          customerName: "Adel F.",
+          rating: 4,
+          comment: "Sweet + salty works well!",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "9",
+      name: "BBQ Chicken Crunch",
+      description: "Smoky BBQ sauce, grilled chicken, red onion, and cilantro.",
+      ingredients: [
+        "BBQ Sauce",
+        "Grilled Chicken",
+        "Red Onion",
+        "Mozzarella",
+        "Cilantro",
+      ],
+      basePrice: 18.99,
+      image:
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=1200&q=80",
+        "https://images.unsplash.com/photo-1544982503-7b5f03d9aafe?w=1200&q=80",
+      ],
+      category: "chicken",
+      rating: 4.6,
+      reviewCount: 144,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 15,
+        max: 23,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "9-r1",
+          customerName: "Rania Z.",
+          rating: 5,
+          comment: "BBQ chicken is top-tier.",
+          date: "6 days ago",
+        },
+        {
+          id: "9-r2",
+          customerName: "Samir N.",
+          rating: 4,
+          comment: "Great flavor, nice crunch.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "10",
+      name: "Buffalo Ranch Chicken",
+      description: "Buffalo sauce, chicken, ranch drizzle, and mozzarella.",
+      ingredients: [
+        "Buffalo Sauce",
+        "Chicken",
+        "Ranch",
+        "Mozzarella",
+        "Green Onion",
+      ],
+      basePrice: 19.49,
+      image:
+        "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=1200&q=80",
+        "https://images.unsplash.com/photo-1600628422019-6c61b9d31d2c?w=1200&q=80",
+      ],
+      category: "chicken",
+      rating: 4.6,
+      reviewCount: 121,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: true,
+      cookingTime: {
+        min: 16,
+        max: 24,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "10-r1",
+          customerName: "Hana Y.",
+          rating: 5,
+          comment: "Spicy + ranch is the perfect combo.",
+          date: "4 days ago",
+        },
+        {
+          id: "10-r2",
+          customerName: "Karim D.",
+          rating: 4,
+          comment: "Nice heat, very satisfying.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "11",
+      name: "Veggie Primavera",
+      description: "Zucchini, cherry tomatoes, peppers, olives, and basil.",
+      ingredients: [
+        "Zucchini",
+        "Cherry Tomatoes",
+        "Bell Peppers",
+        "Olives",
+        "Mozzarella",
+        "Basil",
+      ],
+      basePrice: 17.49,
+      image:
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=1200&q=80",
+        "https://images.unsplash.com/photo-1544982503-7b5f03d9aafe?w=1200&q=80",
+      ],
+      category: "vegetarian",
+      rating: 4.5,
+      reviewCount: 98,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 13,
+        max: 20,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "11-r1",
+          customerName: "Mariam",
+          rating: 5,
+          comment: "Super fresh veggies and great taste.",
+          date: "1 week ago",
+        },
+        {
+          id: "11-r2",
+          customerName: "Youssef",
+          rating: 4,
+          comment: "Light and delicious.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "12",
+      name: "Spinach Ricotta Bliss",
+      description: "Garlic cream base, spinach, ricotta, and parmesan.",
+      ingredients: [
+        "Garlic Cream",
+        "Spinach",
+        "Ricotta",
+        "Parmesan",
+        "Mozzarella",
+      ],
+      basePrice: 18.25,
+      image:
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=1200&q=80",
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80",
+      ],
+      category: "vegetarian",
+      rating: 4.7,
+      reviewCount: 105,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 14,
+        max: 21,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "12-r1",
+          customerName: "Salma",
+          rating: 5,
+          comment: "Creamy and perfect. Ricotta is amazing.",
+          date: "6 days ago",
+        },
+        {
+          id: "12-r2",
+          customerName: "Mostafa",
+          rating: 4,
+          comment: "Great flavor and texture.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "13",
+      name: "Classic Mushroom Melt",
+      description: "Mushrooms, mozzarella, garlic butter, and thyme.",
+      ingredients: ["Mushrooms", "Mozzarella", "Garlic Butter", "Thyme"],
+      basePrice: 16.75,
+      image:
+        "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=1200&q=80",
+        "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.5,
+      reviewCount: 87,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 13,
+        max: 20,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "13-r1",
+          customerName: "Nour",
+          rating: 5,
+          comment: "Mushroom flavor is rich and delicious.",
+          date: "1 week ago",
+        },
+        {
+          id: "13-r2",
+          customerName: "Fady",
+          rating: 4,
+          comment: "Simple but very tasty.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "14",
+      name: "Sausage & Peppers",
+      description: "Italian sausage, roasted peppers, onions, and mozzarella.",
+      ingredients: [
+        "Italian Sausage",
+        "Roasted Peppers",
+        "Onion",
+        "Mozzarella",
+        "Tomato Sauce",
+      ],
+      basePrice: 19.25,
+      image:
+        "https://images.unsplash.com/photo-1544982503-7b5f03d9aafe?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1544982503-7b5f03d9aafe?w=1200&q=80",
+        "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=1200&q=80",
+      ],
+      category: "meat-lovers",
+      rating: 4.6,
+      reviewCount: 133,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 15,
+        max: 23,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "14-r1",
+          customerName: "Tarek",
+          rating: 5,
+          comment: "Sausage is flavorful and juicy.",
+          date: "5 days ago",
+        },
+        {
+          id: "14-r2",
+          customerName: "Reem",
+          rating: 4,
+          comment: "Great combo, peppers are perfect.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "15",
+      name: "Smoked Turkey & Pesto",
+      description:
+        "Smoked turkey, pesto drizzle, mozzarella, and cherry tomatoes.",
+      ingredients: ["Smoked Turkey", "Pesto", "Mozzarella", "Cherry Tomatoes"],
+      basePrice: 20.25,
+      image:
+        "https://images.unsplash.com/photo-1604909052743-94e9e6cf9c6f?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1604909052743-94e9e6cf9c6f?w=1200&q=80",
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=1200&q=80",
+      ],
+      category: "specialty",
+      rating: 4.5,
+      reviewCount: 74,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 14,
+        max: 22,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "15-r1",
+          customerName: "Jana",
+          rating: 5,
+          comment: "Pesto makes it next level.",
+          date: "1 week ago",
+        },
+        {
+          id: "15-r2",
+          customerName: "Mahmoud",
+          rating: 4,
+          comment: "Light and tasty.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "16",
+      name: "Calabrian Heat",
+      description:
+        "Calabrian chili, spicy salami, mozzarella, and tomato sauce.",
+      ingredients: [
+        "Calabrian Chili",
+        "Spicy Salami",
+        "Mozzarella",
+        "Tomato Sauce",
+      ],
+      basePrice: 20.99,
+      image:
+        "https://images.unsplash.com/photo-1600628422019-6c61b9d31d2c?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1600628422019-6c61b9d31d2c?w=1200&q=80",
+        "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=1200&q=80",
+      ],
+      category: "spicy",
+      rating: 4.7,
+      reviewCount: 116,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: true,
+      cookingTime: {
+        min: 15,
+        max: 23,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "16-r1",
+          customerName: "Hady",
+          rating: 5,
+          comment: "Real heat, real flavor. Love it.",
+          date: "4 days ago",
+        },
+        {
+          id: "16-r2",
+          customerName: "Farah",
+          rating: 4,
+          comment: "Spicy but balanced. Great crust.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "17",
+      name: "Mediterranean Olive",
+      description:
+        "Kalamata olives, feta, oregano, cherry tomatoes, and olive oil.",
+      ingredients: [
+        "Kalamata Olives",
+        "Feta",
+        "Cherry Tomatoes",
+        "Oregano",
+        "Olive Oil",
+      ],
+      basePrice: 18.49,
+      image:
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=1200&q=80",
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80",
+      ],
+      category: "vegetarian",
+      rating: 4.4,
+      reviewCount: 92,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 13,
+        max: 20,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "17-r1",
+          customerName: "Aya",
+          rating: 5,
+          comment: "Feta + olives is a perfect combo.",
+          date: "1 week ago",
+        },
+        {
+          id: "17-r2",
+          customerName: "Bassem",
+          rating: 4,
+          comment: "Nice Mediterranean vibe.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "18",
+      name: "Garlic Parmesan Chicken",
+      description: "Garlic butter base, chicken, parmesan, and mozzarella.",
+      ingredients: [
+        "Garlic Butter",
+        "Chicken",
+        "Parmesan",
+        "Mozzarella",
+        "Parsley",
+      ],
+      basePrice: 19.75,
+      image:
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a46?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a46?w=1200&q=80",
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=1200&q=80",
+      ],
+      category: "chicken",
+      rating: 4.6,
+      reviewCount: 109,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 15,
+        max: 23,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "18-r1",
+          customerName: "Mina",
+          rating: 5,
+          comment: "Garlic parmesan is incredible.",
+          date: "6 days ago",
+        },
+        {
+          id: "18-r2",
+          customerName: "Laila",
+          rating: 4,
+          comment: "Great chicken and creamy flavor.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "19",
+      name: "Tomato Burrata",
+      description: "Cherry tomatoes, burrata, basil, and balsamic glaze.",
+      ingredients: [
+        "Cherry Tomatoes",
+        "Burrata",
+        "Basil",
+        "Balsamic Glaze",
+        "Olive Oil",
+      ],
+      basePrice: 22,
+      image:
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=1200&q=80",
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=1200&q=80",
+      ],
+      category: "specialty",
+      rating: 4.8,
+      reviewCount: 86,
+      isAvailable: true,
+      isPopular: true,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 12,
+        max: 18,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "19-r1",
+          customerName: "Nadia",
+          rating: 5,
+          comment: "Burrata makes it super creamy and fresh.",
+          date: "3 days ago",
+        },
+        {
+          id: "19-r2",
+          customerName: "Ali",
+          rating: 5,
+          comment: "Beautiful flavors and premium feel.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "20",
+      name: "Pesto Shrimp",
+      description: "Pesto base, shrimp, cherry tomatoes, and mozzarella.",
+      ingredients: [
+        "Pesto",
+        "Shrimp",
+        "Cherry Tomatoes",
+        "Mozzarella",
+        "Lemon Zest",
+      ],
+      basePrice: 24.5,
+      image:
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=1200&q=80",
+        "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=1200&q=80",
+      ],
+      category: "specialty",
+      rating: 4.6,
+      reviewCount: 61,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 14,
+        max: 21,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "20-r1",
+          customerName: "Mai",
+          rating: 5,
+          comment: "Shrimp + pesto is a crazy good combo.",
+          date: "1 week ago",
+        },
+        {
+          id: "20-r2",
+          customerName: "Hossam",
+          rating: 4,
+          comment: "Unique and tasty.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "21",
+      name: "Classic Tuna & Onion",
+      description: "Tuna, red onion, olives, and mozzarella.",
+      ingredients: [
+        "Tuna",
+        "Red Onion",
+        "Olives",
+        "Mozzarella",
+        "Tomato Sauce",
+      ],
+      basePrice: 18.75,
+      image:
+        "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=1200&q=80",
+        "https://images.unsplash.com/photo-1544982503-7b5f03d9aafe?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.3,
+      reviewCount: 77,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 13,
+        max: 20,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "21-r1",
+          customerName: "Ramy",
+          rating: 4,
+          comment: "Surprisingly good, very savory.",
+          date: "2 weeks ago",
+        },
+        {
+          id: "21-r2",
+          customerName: "Heba",
+          rating: 4,
+          comment: "Olives make it even better.",
+          date: "1 month ago",
+        },
+      ],
+    },
+    {
+      id: "22",
+      name: "Philly Steak",
+      description: "Steak strips, peppers, onions, and a creamy cheese sauce.",
+      ingredients: [
+        "Steak",
+        "Bell Peppers",
+        "Onion",
+        "Cheese Sauce",
+        "Mozzarella",
+      ],
+      basePrice: 23.25,
+      image:
+        "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=1200&q=80",
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80",
+      ],
+      category: "meat-lovers",
+      rating: 4.6,
+      reviewCount: 112,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 18,
+        max: 26,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "22-r1",
+          customerName: "Tamer",
+          rating: 5,
+          comment: "Steak is tender, sauce is perfect.",
+          date: "5 days ago",
+        },
+        {
+          id: "22-r2",
+          customerName: "Dalia",
+          rating: 4,
+          comment: "Very filling and tasty.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "23",
+      name: "Hot Honey Pepperoni",
+      description: "Pepperoni with a hot honey drizzle and chili flakes.",
+      ingredients: [
+        "Pepperoni",
+        "Mozzarella",
+        "Tomato Sauce",
+        "Hot Honey",
+        "Chili Flakes",
+      ],
+      basePrice: 20.75,
+      image:
+        "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=1200&q=80",
+        "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=1200&q=80",
+      ],
+      category: "spicy",
+      rating: 4.8,
+      reviewCount: 141,
+      isAvailable: true,
+      isPopular: true,
+      isNew: true,
+      isSpicy: true,
+      cookingTime: {
+        min: 14,
+        max: 22,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "23-r1",
+          customerName: "Ayman",
+          rating: 5,
+          comment: "Hot honey is addictive. Amazing.",
+          date: "4 days ago",
+        },
+        {
+          id: "23-r2",
+          customerName: "Menna",
+          rating: 5,
+          comment: "Sweet + spicy is perfection.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "24",
+      name: "Cheesy Garlic Bread Pizza",
+      description: "Garlic butter base, mozzarella blend, and parmesan crust.",
+      ingredients: ["Garlic Butter", "Mozzarella Blend", "Parmesan", "Parsley"],
+      basePrice: 16.49,
+      image:
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=1200&q=80",
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.5,
+      reviewCount: 90,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 12,
+        max: 18,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "24-r1",
+          customerName: "Samar",
+          rating: 5,
+          comment: "Garlic lovers dream.",
+          date: "1 week ago",
+        },
+        {
+          id: "24-r2",
+          customerName: "Islam",
+          rating: 4,
+          comment: "Super cheesy and comforting.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "25",
+      name: "Basil Chicken Alfredo",
+      description: "Alfredo base, chicken, basil, and parmesan.",
+      ingredients: [
+        "Alfredo Sauce",
+        "Chicken",
+        "Basil",
+        "Parmesan",
+        "Mozzarella",
+      ],
+      basePrice: 21,
+      image:
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=1200&q=80",
+        "https://images.unsplash.com/photo-1593560708920-61dd98c46a46?w=1200&q=80",
+      ],
+      category: "chicken",
+      rating: 4.6,
+      reviewCount: 88,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 15,
+        max: 23,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "25-r1",
+          customerName: "Hagar",
+          rating: 5,
+          comment: "Creamy and delicious.",
+          date: "6 days ago",
+        },
+        {
+          id: "25-r2",
+          customerName: "Ziad",
+          rating: 4,
+          comment: "Great flavor, very filling.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "26",
+      name: "Smoky BBQ Brisket",
+      description: "BBQ base, brisket, onion rings, and cheddar.",
+      ingredients: [
+        "BBQ Sauce",
+        "Brisket",
+        "Onion Rings",
+        "Cheddar",
+        "Mozzarella",
+      ],
+      basePrice: 24.99,
+      image:
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80",
+        "https://images.unsplash.com/photo-1544982503-7b5f03d9aafe?w=1200&q=80",
+      ],
+      category: "meat-lovers",
+      rating: 4.7,
+      reviewCount: 69,
+      isAvailable: true,
+      isPopular: true,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 18,
+        max: 28,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "26-r1",
+          customerName: "Khaled",
+          rating: 5,
+          comment: "Brisket is smoky and tender.",
+          date: "1 week ago",
+        },
+        {
+          id: "26-r2",
+          customerName: "Nada",
+          rating: 4,
+          comment: "BBQ flavor is strong (in a good way).",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "27",
+      name: "Classic Margherita Bianca",
+      description: "White pizza with mozzarella, ricotta, garlic, and basil.",
+      ingredients: ["Mozzarella", "Ricotta", "Garlic", "Basil", "Olive Oil"],
+      basePrice: 17.25,
+      image:
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80",
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.6,
+      reviewCount: 83,
+      isAvailable: true,
+      isPopular: false,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 12,
+        max: 18,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "27-r1",
+          customerName: "Hussein",
+          rating: 5,
+          comment: "White pizza done right.",
+          date: "5 days ago",
+        },
+        {
+          id: "27-r2",
+          customerName: "Doaa",
+          rating: 4,
+          comment: "Garlic + ricotta is perfect.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "28",
+      name: "Spicy Veggie Volcano",
+      description: "Jalapeños, peppers, onions, olives, and chili flakes.",
+      ingredients: [
+        "Jalapeños",
+        "Bell Peppers",
+        "Onion",
+        "Olives",
+        "Mozzarella",
+        "Chili Flakes",
+      ],
+      basePrice: 18.99,
+      image:
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1200&q=80",
+        "https://images.unsplash.com/photo-1600628422019-6c61b9d31d2c?w=1200&q=80",
+      ],
+      category: "spicy",
+      rating: 4.4,
+      reviewCount: 72,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: true,
+      cookingTime: {
+        min: 14,
+        max: 21,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "28-r1",
+          customerName: "Esraa",
+          rating: 5,
+          comment: "Veggie + heat = amazing.",
+          date: "1 week ago",
+        },
+        {
+          id: "28-r2",
+          customerName: "Badr",
+          rating: 4,
+          comment: "Good spice level, nice crunch.",
+          date: "3 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "29",
+      name: "Seafood Marinara",
+      description: "Marinara base, shrimp, calamari, garlic, and herbs.",
+      ingredients: [
+        "Marinara Sauce",
+        "Shrimp",
+        "Calamari",
+        "Garlic",
+        "Parsley",
+      ],
+      basePrice: 25.5,
+      image:
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=1200&q=80",
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=1200&q=80",
+      ],
+      category: "specialty",
+      rating: 4.5,
+      reviewCount: 55,
+      isAvailable: true,
+      isPopular: false,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 16,
+        max: 24,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "29-r1",
+          customerName: "Hend",
+          rating: 5,
+          comment: "Seafood tastes fresh and flavorful.",
+          date: "6 days ago",
+        },
+        {
+          id: "29-r2",
+          customerName: "Sherif",
+          rating: 4,
+          comment: "Great marinara base.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+    {
+      id: "30",
+      name: "Chocolate Dessert Pizza",
+      description:
+        "Nutella spread, strawberries, crushed hazelnuts, powdered sugar.",
+      ingredients: ["Nutella", "Strawberries", "Hazelnuts", "Powdered Sugar"],
+      basePrice: 15.99,
+      image:
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=1200&q=80",
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=1200&q=80",
+      ],
+      category: "dessert",
+      rating: 4.6,
+      reviewCount: 101,
+      isAvailable: true,
+      isPopular: true,
+      isNew: true,
+      isSpicy: false,
+      cookingTime: {
+        min: 10,
+        max: 14,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "30-r1",
+          customerName: "Maha",
+          rating: 5,
+          comment: "Dessert pizza is a win. So good.",
+          date: "3 days ago",
+        },
+        {
+          id: "30-r2",
+          customerName: "Faris",
+          rating: 4,
+          comment: "Sweet and fun. Great for sharing.",
+          date: "2 weeks ago",
+        },
+      ],
+    },
+  ]);
+
   return (
     <>
-      <p>NewCollection</p>
+      <section className="bg-secBgc dark:bg-secBgcDark text-textClr dark:text-textClrDark py-12 my-20 ">
+        <div className="container mx-auto">
+          <div className="flex justify-center items-center flex-col ">
+            <HeaderIcon
+              text={"Fresh From The Kitchen"}
+              icon={<Smile />}
+              bgColor={"cyan-500/10"}
+              textColor={"cyan-500"}
+            />
+            <p className="text-4xl text-textClr dark:text-textClrDark font-bold font-main my-6 text-center">
+              New Collection
+            </p>
+            <p className="text-textSecClr dark:text-textSecClrDark text-lg md:w-full w-4/5 text-center">
+              Our chefs have been busy crafting new flavors. Be the first to
+              taste these culinary masterpieces.
+            </p>
+          </div>
+          <div className="my-12 w-full">
+            <div className="flex items-center justify-end gap-4 mb-5">
+              <div className="border p-3 rounded-full swiper-prev cursor-pointer hover:border-orange-500 hover:text-orange-500">
+                <MoveLeft className="w-5 h-5" />
+              </div>
+              <div className="border p-3 rounded-full swiper-next cursor-pointer hover:border-orange-500 hover:text-orange-500">
+                <MoveRight className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="w-full">
+              <Swiper
+                className="w-full"
+                spaceBetween={16}
+                modules={[Navigation]}
+                navigation={{
+                  prevEl: ".swiper-prev",
+                  nextEl: ".swiper-next",
+                }}
+                simulateTouch={true}
+                touchStartPreventDefault={false}
+                breakpoints={{
+                  0: { slidesPerView: 1, slidesPerGroup: 1 },
+                  640: { slidesPerView: 2, slidesPerGroup: 1 },
+                  1024: { slidesPerView: 4, slidesPerGroup: 1 }, // (optional) smoother
+                }}
+              >
+                {newCollection?.map((pizza) => (
+                  <SwiperSlide key={pizza?.id ?? pizza?._id}>
+                    <NewCollectionCard pizza={pizza} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

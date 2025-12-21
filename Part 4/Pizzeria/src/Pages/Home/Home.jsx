@@ -3,6 +3,7 @@ import HeroSection from "../../Component/Home/HeroSection.jsx";
 import Trending from "../../Component/Home/Trending.jsx";
 import Category from "../../Component/Home/Category.jsx";
 import NewCollection from "../../Component/Home/NewCollection.jsx";
+import Masterpiece from "../../Component/Home/Masterpiece.jsx";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Trending />
       <Category />
       <NewCollection />
+      <Masterpiece />
     </>
   );
 }

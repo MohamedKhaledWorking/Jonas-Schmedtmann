@@ -218,7 +218,7 @@ export default function Trending() {
         </div>
         <div className="flex flex-wrap my-10 capitalize ">
           {trendPizza?.map((pizza, i) => {
-            return <TrendCard pizza={pizza} idx={i + 1} />;
+            return <TrendCard pizza={pizza} idx={i + 1} key={pizza?.id} />;
           })}
         </div>
       </div>

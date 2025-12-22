@@ -1,21 +1,21 @@
-import { Star, TrendingUp } from "lucide-react";
+import { Star } from "lucide-react";
 import React from "react";
 
 export default function TrendCard({ idx, pizza }) {
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 px-4 my-4">
-      <div className="rounded-2xl overflow-hidden group cursor-pointer border border-textSecClr dark:border-textSecClrDark  ">
+      <div className="rounded-2xl overflow-hidden group cursor-pointer border border-textSecClr/40 dark:border-textSecClrDark  ">
         <div className="overflow-hidden h-96 ">
           <img
             src={pizza?.image}
             alt={pizza?.name}
-            className="h-full group-hover:scale-110 duration-300"
+            className="h-full w-full object-cover group-hover:scale-150 duration-300"
           />
         </div>
         <div className="px-4 pb-8 ">
-            <p className="my-4 font-bold font-main text-3xl line-clamp-1 h-10 text-textClr dark:text-textClrDark group-hover:text-orange-500 duration-300 h-10 line-clamp-1">
-              {pizza?.name}
-            </p>
+          <p className="my-4 font-bold font-main text-3xl line-clamp-1 h-10 text-textClr dark:text-textClrDark group-hover:text-orange-500 duration-300 h-10 line-clamp-1">
+            {pizza?.name}
+          </p>
           <div className="flex items-center justify-between my-4">
             <div className="flex items-center space-x-2">
               <span>
@@ -35,7 +35,7 @@ export default function TrendCard({ idx, pizza }) {
                   : "bg-[#cd7f32] text-white"
               } `}
             >
-              #{idx} <TrendingUp size={20} />
+              #{idx}
             </div>
           </div>
           <div className="flex items-center justify-between ">

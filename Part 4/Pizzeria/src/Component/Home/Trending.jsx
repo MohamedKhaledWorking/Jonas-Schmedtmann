@@ -200,7 +200,7 @@ export default function Trending() {
     },
   ]);
   return (
-    <section className="bg-secBgc dark:bg-secBgcDark text-textClr dark:text-textClrDark py-12 my-20 ">
+    <section className="bg-secBgc dark:bg-secBgcDark text-textClr dark:text-textClrDark py-20 my-20 ">
       <div className="container mx-auto">
         <div className="flex justify-center items-center flex-col ">
           <HeaderIcon

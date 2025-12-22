@@ -1969,7 +1969,7 @@ export default function NewCollection() {
             <HeaderIcon
               text={"Fresh From The Kitchen"}
               icon={<Smile />}
-              bgColor={"cyan-500/10"}
+              bgColor={"cyan-500/20"}
               textColor={"cyan-500"}
             />
             <p className="text-4xl text-textClr dark:text-textClrDark font-bold font-main my-6 text-center">
@@ -1980,8 +1980,8 @@ export default function NewCollection() {
               taste these culinary masterpieces.
             </p>
           </div>
-          <div className="my-12 w-full">
-            <div className="flex items-center justify-end gap-4 mb-5">
+          <div className="my-12 w-full ">
+            <div className="flex items-center justify-end gap-4 mb-5 px-8">
               <div className="border p-3 rounded-full swiper-prev cursor-pointer hover:border-orange-500 hover:text-orange-500">
                 <MoveLeft className="w-5 h-5" />
               </div>

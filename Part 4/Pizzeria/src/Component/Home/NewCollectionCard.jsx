@@ -5,7 +5,7 @@ export default function NewCollectionCard({ pizza }) {
   return (
     <>
       <div className="w-full px-4 my-4 capitalize">
-        <div className="border border-textSecClr dark:border-textSecClrDark pb-8 rounded-4xl overflow-hidden group relative">
+        <div className="border border-textSecClr/40 dark:border-textSecClrDark/40 pb-8 rounded-4xl overflow-hidden group relative">
           <p
             className={`absolute left-5 top-5 px-4 rounded-full z-5 text-sm text-white ${
               pizza?.isNew

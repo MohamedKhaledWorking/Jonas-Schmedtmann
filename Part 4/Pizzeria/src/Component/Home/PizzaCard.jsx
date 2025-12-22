@@ -1,7 +1,7 @@
 import { Clock, Star } from "lucide-react";
 import React from "react";
 
-export default function NewCollectionCard({ pizza }) {
+export default function PizzaCard({ pizza }) {
   return (
     <>
       <div className="w-full px-4 my-4 capitalize">
@@ -22,7 +22,7 @@ export default function NewCollectionCard({ pizza }) {
           >
             <div className="flex items-center space-x-2">
               <span>
-                <Star size={15}  className="fill-yellow-500 text-yellow-500"/>
+                <Star size={15} className="fill-yellow-500 text-yellow-500" />
               </span>
               <span>4.9</span>
             </div>

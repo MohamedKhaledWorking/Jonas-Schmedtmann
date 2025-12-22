@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HeaderIcon from "../../UI/HeaderIcon.jsx";
 import { MoveLeft, MoveRight, Smile } from "lucide-react";
-import NewCollectionCard from "./NewCollectionCard.jsx";
+import PizzaCard from "./PizzaCard.jsx";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -2009,7 +2009,7 @@ export default function NewCollection() {
               >
                 {newCollection?.map((pizza) => (
                   <SwiperSlide key={pizza?.id ?? pizza?._id}>
-                    <NewCollectionCard pizza={pizza} />
+                    <PizzaCard pizza={pizza} />
                   </SwiperSlide>
                 ))}
               </Swiper>

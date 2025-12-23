@@ -4,7 +4,7 @@ import Logo from "./Logo.jsx";
 export default function Footer() {
   return (
     <>
-      <footer className="bg-secBgc dark:bg-secBgcDark text-textClr dark:text-textClrDark mt-20">
+      <footer className=" text-textClr dark:text-textClrDark mt-20">
         <div className="container mx-auto ">
           <div className="footer sm:footer-horizontal  p-10 flex flex-wrap sm:flex-nowrap ">
             <aside className="w-full md:w-1/4 space-y-3 ">

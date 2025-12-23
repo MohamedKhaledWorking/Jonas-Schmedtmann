@@ -283,7 +283,7 @@ export default function Featured() {
         <p className="text-textSecClr dark:text-textSecClrDark">
           Crowd favorites and chef's specials you don't want to miss
         </p>
-        <div className="text-end hover:text-orange-500 duration-300 cursor-pointer hover:scale-105">
+        <div className="text-end hover:text-orange-500 duration-300 cursor-pointer hover:scale-105 mt-8 md:mt-0">
           <span>View All Menu</span>
           <span>
             <MoveRight className="inline mx-4 " />

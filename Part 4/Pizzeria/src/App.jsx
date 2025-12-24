@@ -4,6 +4,7 @@ import AppLayout from "./UI/AppLayout.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Menu from "./Pages/Menu/Menu.jsx";
 import Details from "./Pages/Details/Details.jsx";
+import Track from "./Pages/Track/Track.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/menu/:id",
         element: <Details />,
+      },
+      {
+        path: "/track",
+        element: <Track />,
       },
     ],
   },

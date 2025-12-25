@@ -1852,5 +1852,44 @@
       ]
     }
   ],
-  "order": []
+  "orders": [
+    {
+      "id": "PZ-F3R3ZF",
+      "arriveAt": "2024-06-15T19:30:00Z",
+      "isPriority": false,
+      "items": [
+        {
+          "pizzaId": "3",
+          "size": "M",
+          "quantity": 2,
+          "extraToppings": ["Mushrooms", "Olives"],
+          "name": "Pepperoni Supreme",
+          "image": "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=800&q=80",
+          "price": 25.98
+        },
+        {
+          "pizzaId": "7",
+          "size": "L",
+          "quantity": 1,
+          "extraToppings": [],
+          "name": "Pepperoni Supreme",
+          "image": "https://images.unsplash.com/photo-1601924582975-7a63b1b6b1c6?w=800&q=80",
+          "price": 16.98
+        }
+      ],
+      "address": {
+        "street": "123 Pizza St.",
+        "city": "Cairo",
+        "postalCode": "11511",
+        "Apartment ": "Egypt"
+      },
+      "user": {
+        "name": "Faris",
+        "phone": "01012345678",
+        "email": "9u6tP@example.com"
+      },
+      "totalPrice": 55.99,
+      "paymentMethod": "Credit Card"
+    }
+  ]
 }

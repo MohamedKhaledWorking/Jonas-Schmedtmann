@@ -4,7 +4,7 @@ export default function Loading({ label = "loading Your Pizza" }) {
   return (
     <div
       className="
-    fixed inset-0 z-[9999999999]
+    fixed inset-0 z-9999
     flex items-center justify-center
     bg-mainBgc/5 
     backdrop-blur

@@ -9,10 +9,12 @@ import Order from "./Pages/Order/Order.jsx";
 import Cart from "./Pages/Cart/Cart.jsx";
 import CheckOut from "./Pages/CheckOut/CheckOut.jsx";
 import CreatePizza from "./Pages/CreatePizza/CreatePizza.jsx";
+import Error from "./UI/Error.jsx";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement : <Error />,
     children: [
       {
         index: true,
@@ -22,6 +24,7 @@ const router = createBrowserRouter([
         path: "/menu",
         element: <Menu />,
         loader: MenuLoader,
+        errorElement : <Error />,
       },
       {
         path: "/pizza/:id",

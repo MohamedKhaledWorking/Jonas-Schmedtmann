@@ -27,7 +27,7 @@ export default function PizzaCard({ pizza }) {
               <span>4.9</span>
             </div>
           </p>
-          <div className="w-full h-[250px]  overflow-hidden relative">
+          <div className="w-full h-62.5 overflow-hidden relative">
             <div className="absolute inset-0 bg-black/60 z-9 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 duration-300 ">
               <button className="bg-orange-500 text-white py-2 px-4 rounded-full cursor-pointer ">
                 Order Now

@@ -52,6 +52,7 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
       price: 2.0,
     },
   ];
+  const [selectedSize, setSelectedSize] = useState("l");
   return (
     <div className="px-4 md:px-12 w-full lg:w-1/2  ">
       <div className="flex justify-between items-center flex-wrap  mb-4">
@@ -89,7 +90,14 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
       <p className="font-main text-xl mt-4 font-bold">Choose Size</p>
       <div className="flex flex-wrap my-8 space-y-3">
         <div className="px-2 w-full md:w-1/3">
-          <div className="w-full py-3 border border-textClr dark:border-textClr text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400">
+          <div
+          onClick={() => setSelectedSize("s")}
+            className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
+              selectedSize.toUpperCase() == "S"
+                ? "border-orange-700"
+                : "border-textClr dark:border-textClr"
+            }`}
+          >
             <p className="text-2xl font-bold font-main">S</p>
             <p className="text-textSecClr dark:textSecClrDark text-sm my-1">
               small
@@ -98,7 +106,14 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
           </div>
         </div>
         <div className="px-2 w-full md:w-1/3">
-          <div className="w-full py-3 border border-textClr dark:border-textClr text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400">
+          <div
+          onClick={() => setSelectedSize("m")}
+            className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
+              selectedSize.toUpperCase() == "M"
+                ? "border-orange-700"
+                : "border-textClr dark:border-textClr"
+            }`}
+          >
             <p className="text-2xl font-bold font-main">m</p>
             <p className="text-textSecClr dark:textSecClrDark text-sm my-1">
               medium
@@ -107,7 +122,14 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
           </div>
         </div>
         <div className="px-2 w-full md:w-1/3">
-          <div className="w-full py-3 border border-textClr dark:border-textClr text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400">
+          <div
+          onClick={() => setSelectedSize("l")}
+            className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
+              selectedSize.toUpperCase() == "L"
+                ? "border-orange-700"
+                : "border-textClr dark:border-textClr"
+            }`}
+          >
             <p className="text-2xl font-bold font-main">l</p>
             <p className="text-textSecClr dark:textSecClrDark text-sm my-1">
               large
@@ -195,7 +217,7 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
         <div className="pe-4 w-full md:w-4/12 ">
           <div className="flex justify-center items-center space-x-2 bg-gray-900/10 dark:bg-gray-100/14 px-4 py-3 rounded-2xl">
             <button className="bg-mainBgc dark:bg-mainBgcDark px-5 py-2 rounded-lg cursor-pointer">
-            -
+              -
             </button>
             <input
               type="text"
@@ -203,7 +225,7 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
               value={2}
             />
             <button className="bg-mainBgc dark:bg-mainBgcDark px-5 py-2 rounded-lg cursor-pointer">
-               +
+              +
             </button>
           </div>
         </div>

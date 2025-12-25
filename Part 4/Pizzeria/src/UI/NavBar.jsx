@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BaggageClaim, Pizza, Sun } from "lucide-react";
 import Logo from "./Logo.jsx";
+import { Link } from "react-router-dom";
 
 export default function NavBar({ setIsDark }) {
   const [open, setOpen] = useState(false);
@@ -51,37 +52,40 @@ export default function NavBar({ setIsDark }) {
                   w-screen
                   menu menu-sm
                   rounded-box
-                  z-[999]
+                  z-[99999]
                   p-2 pb-6
-                  shadow
-                  bg-secBgc dark:bg-secBgcDark
+                  bg-secBgc/40 dark:bg-secBgcDark/80
                   flex flex-col items-center space-y-4
                   -ml-2 md:-ml-10
+                  backdrop-blur
                 "
               >
                 <li className="hover:text-orange-500 w-3/4">
-                  <button
+                  <Link
+                    to={"/"}
                     className="w-full flex justify-center items-center py-2"
                     onClick={() => setOpen(false)}
                   >
                     Home
-                  </button>
+                  </Link>
                 </li>
                 <li className="hover:text-orange-500 w-3/4">
-                  <button
+                  <Link
+                    to={"menu"}
                     className="w-full flex justify-center items-center py-2"
                     onClick={() => setOpen(false)}
                   >
                     Menu
-                  </button>
+                  </Link>
                 </li>
                 <li className="hover:text-orange-500 w-3/4">
-                  <button
+                  <Link
+                    to={"track"}
                     className="w-full flex justify-center items-center py-2"
                     onClick={() => setOpen(false)}
                   >
                     Track Order
-                  </button>
+                  </Link>
                 </li>
               </ul>
             )}
@@ -95,13 +99,13 @@ export default function NavBar({ setIsDark }) {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-lg space-x-4">
             <li className="hover:text-orange-500">
-              <a>Home</a>
+              <Link to={"/"}>Home</Link>
             </li>
             <li className="hover:text-orange-500">
-              <a>Menu</a>
+              <Link to={"/menu"}>Menu</Link>
             </li>
             <li className="hover:text-orange-500">
-              <a>Track Order</a>
+              <Link to={"/track"}>Track Order</Link>
             </li>
           </ul>
         </div>

@@ -6,6 +6,7 @@ import Menu from "./Pages/Menu/Menu.jsx";
 import Details from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
 import Order from "./Pages/Order/Order.jsx";
+import Cart from "./Pages/Cart/Cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/order",
         element: <Order />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

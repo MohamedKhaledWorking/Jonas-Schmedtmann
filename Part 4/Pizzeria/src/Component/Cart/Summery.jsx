@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Summery() {
+export default function Summery({ isPriority = false }) {
   return (
     <>
       <div className="w-full lg:w-4/12 ps-0 lg:ps-4 mb-10">
@@ -35,6 +35,12 @@ export default function Summery() {
               <p>Delivery</p>
               <p>free</p>
             </div>
+            {isPriority && (
+              <div className="my-3 flex items-center justify-between text-sm ">
+                <p>Priority</p>
+                <p>$5.99</p>
+              </div>
+            )}
           </div>
           <div className="my-3 flex items-center justify-between text-2xl font-bold font-main ">
             <p>Total</p>

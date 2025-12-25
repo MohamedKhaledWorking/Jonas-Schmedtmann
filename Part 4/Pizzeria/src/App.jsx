@@ -8,6 +8,7 @@ import Track from "./Pages/Track/Track.jsx";
 import Order from "./Pages/Order/Order.jsx";
 import Cart from "./Pages/Cart/Cart.jsx";
 import CheckOut from "./Pages/CheckOut/CheckOut.jsx";
+import CreatePizza from "./Pages/CreatePizza/CreatePizza.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/Checkout",
         element: <CheckOut />,
+      },
+      {
+        path: "/createPizza",
+        element: <CreatePizza />,
       },
     ],
   },

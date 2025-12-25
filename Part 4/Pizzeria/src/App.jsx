@@ -2,7 +2,7 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./UI/AppLayout.jsx";
 import Home from "./Pages/Home/Home.jsx";
-import Menu from "./Pages/Menu/Menu.jsx";
+import Menu, { MenuLoader } from "./Pages/Menu/Menu.jsx";
 import Details from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
 import Order from "./Pages/Order/Order.jsx";
@@ -15,24 +15,17 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
         path: "/menu",
         element: <Menu />,
+        loader: MenuLoader,
       },
       {
         path: "/pizza/:id",
         element: <Details />,
-      },
-      {
-        path: "/track",
-        element: <Track />,
-      },
-      {
-        path: "/order",
-        element: <Order />,
       },
       {
         path: "/cart",
@@ -41,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "/Checkout",
         element: <CheckOut />,
+      },
+      {
+        path: "/order",
+        element: <Order />,
+      },
+      {
+        path: "/track",
+        element: <Track />,
       },
       {
         path: "/createPizza",

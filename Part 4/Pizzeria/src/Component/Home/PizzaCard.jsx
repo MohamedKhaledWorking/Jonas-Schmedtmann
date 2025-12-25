@@ -36,6 +36,7 @@ export default function PizzaCard({ pizza }) {
             <img
               src={pizza?.image}
               alt={pizza?.name + " image"}
+              loading="lazy"
               className="w-full cursor-pointer group-hover:scale-150 duration-300"
             />
           </div>

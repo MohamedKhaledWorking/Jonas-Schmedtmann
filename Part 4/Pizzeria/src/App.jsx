@@ -5,6 +5,7 @@ import Home from "./Pages/Home/Home.jsx";
 import Menu from "./Pages/Menu/Menu.jsx";
 import Details from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
+import Order from "./Pages/Order/Order.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/track",
         element: <Track />,
+      },
+      {
+        path: "/order",
+        element: <Order />,
       },
     ],
   },

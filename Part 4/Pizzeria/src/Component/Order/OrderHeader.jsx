@@ -1,0 +1,21 @@
+import { Hourglass } from "lucide-react";
+import React from "react";
+
+export default function OrderHeader() {
+  return (
+    <>
+      <div className="flex justify-between items-center text-textSecClr dark:text-textSecClrDark text-base">
+        <p> order number</p>
+        <p>Estimated Arrival</p>
+      </div>
+      <div className="flex justify-between items-center text-xl font-bold ">
+        <p>PZ-F3R3ZF</p>
+        <p className="text-orange-700">8:56 PM</p>
+      </div>
+      <div className="bg-orange-700/20 flex space-x-2 items-center my-5 py-3 px-4 rounded-lg">
+        <Hourglass className="text-orange-700" />
+        <p>Priority Delivery Active </p>
+      </div>
+    </>
+  );
+}

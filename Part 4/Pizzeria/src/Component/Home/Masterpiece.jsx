@@ -2,6 +2,7 @@ import React from "react";
 import HeaderIcon from "../../UI/HeaderIcon.jsx";
 import { Car, Flame, Layers, Sparkles } from "lucide-react";
 import img from "../../assets/photo-1590947132387-155cc02f3212.jfif";
+import { Link } from "react-router-dom";
 
 export default function Masterpiece() {
   return (
@@ -88,9 +89,9 @@ export default function Masterpiece() {
                 </div>
               </div>
             </div>
-            <button className="bg-orange-800 text-white px-6 py-5 rounded-xl hover:bg-orange-600 duration-300 w-full cursor-pointer hover:ring-3 hover:ring-orange-600 hover:ring-offset-4 hover:ring-offset-secBgc dark:hover:ring-offset-secBgcDark">
+            <Link to={"/createPizza"} className="bg-orange-800 text-white px-6 py-5 rounded-xl hover:bg-orange-600 duration-300 w-full cursor-pointer hover:ring-3 hover:ring-orange-600 hover:ring-offset-4 hover:ring-offset-secBgc dark:hover:ring-offset-secBgcDark">
               Create My Custom Pizza
-            </button>
+            </Link>
           </div>
           <div className="px-8 w-full lg:w-1/2 mt-10 lg:mt-0 ">
             <div className="h-full rounded-4xl overflow-hidden relative flex items-end justify-start  group p-12 ">

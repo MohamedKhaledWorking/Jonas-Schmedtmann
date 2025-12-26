@@ -7,9 +7,12 @@ export default function Categories({ uniqueCategories }) {
         <button className="mx-2 text-xs md:text-base rounded-full md:px-8 px-6 py-2 bg-orange-700 hover:bg-transparent border border-orange-700 hover:ring-3 hover:ring-orange-700 ring-offset-mainBgc dark:ring-offset-mainBgcDark hover:ring-offset-3 cursor-pointer duration-400  ">
           All
         </button>
-        {uniqueCategories?.map((category) => {
+        {uniqueCategories?.map((category, idx) => {
           return (
-            <button className="mx-2 text-xs md:text-base rounded-full md:px-8 px-6 py-2 md:h-12 h-10 bg-orange-700 hover:bg-transparent border border-orange-700 hover:ring-3 hover:ring-orange-700 ring-offset-mainBgc dark:ring-offset-mainBgcDark hover:ring-offset-3 cursor-pointer duration-400  ">
+            <button
+              key={idx}
+              className="mx-2 text-xs md:text-base rounded-full md:px-8 px-6 py-2 md:h-12 h-10 bg-orange-700 hover:bg-transparent border border-orange-700 hover:ring-3 hover:ring-orange-700 ring-offset-mainBgc dark:ring-offset-mainBgcDark hover:ring-offset-3 cursor-pointer duration-400  "
+            >
               {category}
             </button>
           );

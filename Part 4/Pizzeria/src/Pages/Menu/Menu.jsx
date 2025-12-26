@@ -7,8 +7,6 @@ import Categories from "../../Component/Menu/Categories.jsx";
 export default function Menu() {
   const pizzas = useLoaderData();
   const uniqueCategories = [...new Set(pizzas.map((pizza) => pizza.category))];
-
-  console.log(uniqueCategories);
   return (
     <>
       <div className="container mx-auto capitalize text-mainClr dark:text-mainClrDark pt-30">
@@ -34,12 +32,12 @@ export default function Menu() {
           available only
         </label>
 
-        <Categories uniqueCategories={uniqueCategories}/>
+        <Categories uniqueCategories={uniqueCategories} />
 
         <div className="my-20 flex flex-wrap">
           {pizzas?.map((pizza) => (
-            <div className="w-full md:w-1/2 lg:w-1/4 px-2 ">
-              <PizzaCard pizza={pizza} key={pizza.id} />
+            <div className="w-full md:w-1/2 lg:w-1/4 px-2 " key={pizza.id}>
+              <PizzaCard pizza={pizza} />
             </div>
           ))}
         </div>

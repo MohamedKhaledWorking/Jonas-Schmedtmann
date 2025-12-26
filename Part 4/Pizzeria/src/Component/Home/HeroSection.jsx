@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import img from "../../assets/3.jfif";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
@@ -48,18 +49,19 @@ export default function HeroSection() {
 
             {/* buttons */}
             <div className="my-5 md:my-15 flex items-center flex-col md:flex-row space-y-4 md:space-y-0">
-              <button
+              <Link to={"/menu"}
                 className="bg-linear-to-r from-orange-800 to-orange-500 hover:ring-3 hover:ring-orange-600 hover:ring-offset-4 hover:ring-offset-mainBgc dark:hover:ring-offset-mainBgcDark duration-300 
                 text-white dark:text-black mx-4 px-15 py-2 md:py-4 rounded-full cursor-pointer flex items-center space-x-3 hover:text-black dark:hover:text-white duration-400 capitalize text-sm md:text-base "
               >
                 <Telescope size={20} /> <span> Explore our menu</span>
-              </button>
-              <button
+              </Link>
+              <Link
+              to={"/createPizza"}
                 className="border-2 border-secBgc/50 dark:border-mainBgc/50  text-textClr dark:text-textClrDark md:py-4 hover:ring-3 hover:ring-orange-600  hover:ring-offset-4 hover:ring-offset-mainBgc dark:hover:ring-offset-mainBgcDark duration-300
               rounded-full cursor-pointer flex items-center space-x-3 hover:bg-linear-to-r hover:text-orange-500 duration-300 hover:border-orange-500 capitalize text-sm md:text-base mx-4 px-15 py-2  "
               >
                 <Sparkles size={20} /> <span>build your own</span>
-              </button>
+              </Link>
             </div>
 
             {/* badges */}

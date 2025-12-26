@@ -3,6 +3,7 @@ import HeaderIcon from "../../UI/HeaderIcon.jsx";
 import { Feather, MoveRight, Pizza } from "lucide-react";
 import { useState } from "react";
 import PizzaCard from "./PizzaCard.jsx";
+import { Link } from "react-router-dom";
 
 export default function Featured() {
   const [Pizza, setPizza] = useState([
@@ -283,12 +284,15 @@ export default function Featured() {
         <p className="text-textSecClr dark:text-textSecClrDark">
           Crowd favorites and chef's specials you don't want to miss
         </p>
-        <div className="text-end hover:text-orange-500 duration-300 cursor-pointer hover:scale-105 mt-8 md:mt-0">
+        <Link
+          to={"/menu"}
+          className="text-end hover:text-orange-500 duration-300 cursor-pointer hover:scale-105 mt-8 md:mt-0 block"
+        >
           <span>View All Menu</span>
           <span>
             <MoveRight className="inline mx-4 " />
           </span>
-        </div>
+        </Link>
         <div className="flex flex-wrap ">
           {Pizza?.map((pizza) => {
             return (

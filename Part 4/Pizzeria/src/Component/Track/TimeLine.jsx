@@ -2,7 +2,6 @@ import React from "react";
 import { Box, ChefHat, PackageCheck, SearchCheck, Van } from "lucide-react";
 
 export default function TimeLine({ status }) {
-  console.log(status);
   return (
     <>
       <div className="border-b border-textSecClr dark:border-textSecClrDark ">

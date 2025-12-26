@@ -16,7 +16,7 @@ export default function Masterpiece() {
               textColor={"orange-500"}
               bgColor={"orange-500/20"}
             />
-            <p className="text-4xl font-bold my-4 font-main text-textClr dark:text-textClrDark my-8 text-center md:text-left">
+            <p className="text-4xl font-bold font-main text-textClr dark:text-textClrDark my-8 text-center md:text-left">
               Build Your{" "}
               <span className="text-transparent bg-linear-[120deg] from-orange-600 to-orange-700 via-orange-200 bg-clip-text">
                 Masterpiece
@@ -89,7 +89,8 @@ export default function Masterpiece() {
                 </div>
               </div>
             </div>
-            <Link to={"/createPizza"} className="bg-orange-800 text-white px-6 py-5 rounded-xl hover:bg-orange-600 duration-300 w-full cursor-pointer hover:ring-3 hover:ring-orange-600 hover:ring-offset-4 hover:ring-offset-secBgc dark:hover:ring-offset-secBgcDark">
+            <Link to={"/createPizza"} className="bg-orange-800 text-white px-6 py-5 rounded-xl hover:bg-orange-600 duration-300 w-full cursor-pointer hover:ring-3 hover:ring-orange-600 
+            hover:ring-offset-4 hover:ring-offset-secBgc dark:hover:ring-offset-secBgcDark">
               Create My Custom Pizza
             </Link>
           </div>

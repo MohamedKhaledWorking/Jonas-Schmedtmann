@@ -52,7 +52,7 @@ export default function NavBar({ setIsDark }) {
                   w-screen
                   menu menu-sm
                   rounded-box
-                  z-[99999]
+                  z-9999
                   p-2 pb-6
                   bg-secBgc/40 dark:bg-secBgcDark/80
                   flex flex-col items-center space-y-4

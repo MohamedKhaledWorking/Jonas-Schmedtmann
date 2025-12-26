@@ -23,7 +23,7 @@ export default function Track() {
           Enter your order number to see the real-time status
         </p>
         <div className="my-10 flex items-center justify-center flex-col lg:flex-row lg:w-4xl md:w-2xl md:mx-auto  space-y-4 md:space-y-6 lg:space-y-0">
-          <div className="md:pe-5 lg:w-8/12 w-10/12 lg:w-6/12 md:w-10/12">
+          <div className="md:pe-5  w-10/12 lg:w-6/12 md:w-10/12">
             <input
               type="text"
               placeholder="Order Number"

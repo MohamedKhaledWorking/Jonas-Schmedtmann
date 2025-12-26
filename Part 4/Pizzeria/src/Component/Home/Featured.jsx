@@ -292,7 +292,7 @@ export default function Featured() {
         <div className="flex flex-wrap ">
           {Pizza?.map((pizza) => {
             return (
-              <div className="md:w-1/2 lg:w-1/4 ">
+              <div className="md:w-1/2 lg:w-1/4" key={pizza.id}>
                 <PizzaCard pizza={pizza} />
               </div>
             );

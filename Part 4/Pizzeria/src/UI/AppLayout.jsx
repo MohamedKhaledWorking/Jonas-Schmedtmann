@@ -3,6 +3,7 @@ import { Outlet, useNavigation } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
 import Loading from "./Loading.jsx";
+import { Toaster } from "react-hot-toast";
 
 export default function AppLayout() {
   const [isDark, setIsDark] = useState(true);

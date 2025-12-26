@@ -17,7 +17,7 @@ export default function PizzaCard({ pizza }) {
           >
             {pizza?.isNew ? "New" : pizza?.isPopular ? "Popular" : ""}
           </p>
-          <p
+          <div
             className={`absolute right-5 top-5 px-2 rounded-full z-5 text-sm bg-mainBgcDark dark:bg-mainBgc text-textClrDark dark:text-textClr font-semibold`}
           >
             <div className="flex items-center space-x-2">
@@ -26,7 +26,7 @@ export default function PizzaCard({ pizza }) {
               </span>
               <span>4.9</span>
             </div>
-          </p>
+          </div>
           <div className="w-full h-62.5 overflow-hidden relative">
             <div className="absolute inset-0 bg-black/60 z-9 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 duration-300 ">
               <button className="bg-orange-500 text-white py-2 px-4 rounded-full cursor-pointer ">
@@ -56,7 +56,6 @@ export default function PizzaCard({ pizza }) {
                   <Clock />
                 </span>
                 <span>
-                  {" "}
                   {pizza?.cookingTime?.min} - {pizza?.cookingTime?.max} min
                 </span>
               </div>

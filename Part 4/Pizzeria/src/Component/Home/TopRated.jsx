@@ -308,7 +308,10 @@ export default function TopRated() {
             </div>
             <div className="px-4 w-full lg:w-1/2 flex flex-col">
               {topRated?.map((pizza, idx) => (
-                <div className="w-full  mb-4 rounded-3xl overflow-hidden px-4 py-3 flex items-center border border-textSecClr/20 dark:border-textSecClrDark/20 hover:border-orange-500 duration-300 group space-x-4">
+                <div
+                  key={idx}
+                  className="w-full  mb-4 rounded-3xl overflow-hidden px-4 py-3 flex items-center border border-textSecClr/20 dark:border-textSecClrDark/20 hover:border-orange-500 duration-300 group space-x-4"
+                >
                   <div className="w-6/12 md:w-2/12 ">
                     <img
                       src={pizza?.image}

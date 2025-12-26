@@ -20,10 +20,10 @@ export default function Category() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-pizza-icon lucide-pizza"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-pizza-icon lucide-pizza"
         >
           <path d="m12 14-1 1" />
           <path d="m13.75 18.25-1.25 1.42" />
@@ -49,10 +49,10 @@ export default function Category() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-beef-icon lucide-beef"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-beef-icon lucide-beef"
         >
           <path d="M16.4 13.7A6.5 6.5 0 1 0 6.28 6.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3" />
           <path d="m18.5 6 2.19 4.5a6.48 6.48 0 0 1-2.29 7.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5" />
@@ -75,10 +75,10 @@ export default function Category() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-vegan-icon lucide-vegan"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-vegan-icon lucide-vegan"
         >
           <path d="M16 8q6 0 6-6-6 0-6 6" />
           <path d="M17.41 3.59a10 10 0 1 0 3 3" />
@@ -102,10 +102,10 @@ export default function Category() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-gem-icon lucide-gem"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-gem-icon lucide-gem"
         >
           <path d="M10.5 3 8 9l4 13 4-13-2.5-6" />
           <path d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z" />
@@ -135,12 +135,7 @@ export default function Category() {
           </div>
           <div className="flex my-8 flex-wrap  w-full">
             {category?.map((category, i) => {
-              return (
-                <CategoryCard
-                  category={category}
-                  key={category?.id}
-                />
-              );
+              return <CategoryCard category={category} key={category?.id} />;
             })}
           </div>
         </div>

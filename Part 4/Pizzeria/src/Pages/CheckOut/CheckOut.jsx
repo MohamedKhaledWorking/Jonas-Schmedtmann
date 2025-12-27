@@ -201,6 +201,8 @@ export default function CheckOut() {
     },
   ]);
 
+  Features
+
   return (
     <section className="my-30  bg-main dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize text-base">
       <div className="container mx-auto px-4">

@@ -54,7 +54,7 @@ export default function DetailsContent({ isSpicy, setIsSpicy, pizza }) {
       price: 2.0,
     },
   ];
-  const [selectedSize, setSelectedSize] = useState("l");
+  const [selectedSize, setSelectedSize] = useState(pizza?.sizes[0].size);
   return (
     <div className="px-4 md:px-12 w-full lg:w-1/2  ">
       <div className="flex justify-between items-center flex-wrap  mb-4">

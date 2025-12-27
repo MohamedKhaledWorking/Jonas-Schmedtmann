@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import DetailsSlider from "../../Component/Details/DetailsSlider.jsx";
 import DetailsContent from "../../Component/Details/DetailsContent.jsx";
 import Related from "../../Component/Details/Related.jsx";
+import { useLoaderData, useParams } from "react-router-dom";
+import { getPizza } from "../../Services/apiRestaurant.js";
 
 export default function Details() {
   const [isSpicy, setIsSpicy] = useState(false);
+  const pizza = useLoaderData();
 
   return (
     <section className="my-30 bg-mainBgc dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize ">
@@ -15,11 +18,16 @@ export default function Details() {
           <p>Back to Menu</p>
         </div>
         <div className="flex my-10 flex-wrap border-b">
-          <DetailsSlider isSpicy={isSpicy} />
-          <DetailsContent isSpicy={isSpicy} setIsSpicy={setIsSpicy} />
+          <DetailsSlider isSpicy={isSpicy} pizza={pizza} />
+          <DetailsContent isSpicy={isSpicy} setIsSpicy={setIsSpicy} pizza={pizza} />
         </div>
         <Related />
       </div>
     </section>
   );
+}
+
+export async function pizzaLoader({ params }) {
+  const pizza = await getPizza(params.id);
+  return pizza;
 }

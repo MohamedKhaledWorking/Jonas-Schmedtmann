@@ -1,7 +1,9 @@
 import { Flame, Star } from "lucide-react";
 import React, { useState } from "react";
+import Ingredients from "./Ingredients.jsx";
+import Size from "./Size.jsx";
 
-export default function DetailsContent({ isSpicy, setIsSpicy }) {
+export default function DetailsContent({ isSpicy, setIsSpicy, pizza }) {
   const ingredients = [
     {
       name: "Extra Mozzarella",
@@ -56,87 +58,39 @@ export default function DetailsContent({ isSpicy, setIsSpicy }) {
   return (
     <div className="px-4 md:px-12 w-full lg:w-1/2  ">
       <div className="flex justify-between items-center flex-wrap  mb-4">
-        <p className="text-4xl font-bold my-4 font-main ">Pepperoni Supreme</p>
+        <p className="text-4xl font-bold my-4 font-main ">{pizza?.name}</p>
         <div className="px-4 py-2 rounded-full text-white bg-white/10 backdrop-blur ">
-          meat lovers
+          {pizza?.category}
         </div>
       </div>
       <div className="flex items-center space-x-2 text-sm">
         <Star className="text-yellow-500 fill-yellow-500 w-4 h-4" />
-        <p className="font-bold">4.8</p>
+        <p className="font-bold">{pizza?.rating}</p>
         <p className="text-textSecClr dark:text-textSecClrDark">
-          (1.2k) Reviews
+          ({pizza?.reviewCount}) Reviews
         </p>
       </div>
       <p className="my-6 text-textSecClr dark:text-textSecClrDark">
-        Loaded with premium pepperoni, mozzarella, and our signature tomato
-        sauce
+        {pizza?.description}
       </p>
       <p className="font-main text-xl mt-4 font-bold">Ingredients</p>
       <div className="flex flex-wrap space-x-2 my-2 text-sm">
-        <div className="px-4 py-2 rounded-full  text-textClr dark:text-textClrDark border border-textSecClr dark:border-textSecClrDark my-2">
-          Pepperoni
-        </div>
-        <div className="px-4 py-2 rounded-full  text-textClr dark:text-textClrDark border border-textSecClr dark:border-textSecClrDark my-2">
-          Mozzarella
-        </div>
-        <div className="px-4 py-2 rounded-full  text-textClr dark:text-textClrDark border border-textSecClr dark:border-textSecClrDark my-2">
-          Tomato Sauce
-        </div>
-        <div className="px-4 py-2 rounded-full  text-textClr dark:text-textClrDark border border-textSecClr dark:border-textSecClrDark my-2">
-          Basil
-        </div>
+        {pizza?.ingredients?.map((ingredient, idx) => {
+          return <Ingredients ingredient={ingredient} key={idx} />;
+        })}
       </div>
       <p className="font-main text-xl mt-4 font-bold">Choose Size</p>
       <div className="flex flex-wrap my-8 space-y-3">
-        <div className="px-2 w-full md:w-1/3">
-          <div
-          onClick={() => setSelectedSize("s")}
-            className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-              selectedSize.toUpperCase() == "S"
-                ? "border-orange-700"
-                : "border-textClr dark:border-textClr"
-            }`}
-          >
-            <p className="text-2xl font-bold font-main">S</p>
-            <p className="text-textSecClr dark:textSecClrDark text-sm my-1">
-              small
-            </p>
-            <p>14 inc</p>
-          </div>
-        </div>
-        <div className="px-2 w-full md:w-1/3">
-          <div
-          onClick={() => setSelectedSize("m")}
-            className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-              selectedSize.toUpperCase() == "M"
-                ? "border-orange-700"
-                : "border-textClr dark:border-textClr"
-            }`}
-          >
-            <p className="text-2xl font-bold font-main">m</p>
-            <p className="text-textSecClr dark:textSecClrDark text-sm my-1">
-              medium
-            </p>
-            <p>18 inc</p>
-          </div>
-        </div>
-        <div className="px-2 w-full md:w-1/3">
-          <div
-          onClick={() => setSelectedSize("l")}
-            className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-              selectedSize.toUpperCase() == "L"
-                ? "border-orange-700"
-                : "border-textClr dark:border-textClr"
-            }`}
-          >
-            <p className="text-2xl font-bold font-main">l</p>
-            <p className="text-textSecClr dark:textSecClrDark text-sm my-1">
-              large
-            </p>
-            <p>20 inc</p>
-          </div>
-        </div>
+        {pizza?.sizes?.map((size) => {
+          return (
+            <Size
+              setSelectedSize={setSelectedSize}
+              size={size}
+              key={size?.size}
+              selectedSize={selectedSize}
+            />
+          );
+        })}
       </div>
       <div
         className={`my-4  ${

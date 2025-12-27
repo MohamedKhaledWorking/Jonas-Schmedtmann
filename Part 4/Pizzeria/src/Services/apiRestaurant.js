@@ -10,6 +10,15 @@ export async function getPizzas() {
   }
 }
 
+export async function getPizza(id) {
+  try {
+    const { data } = await axios.get(`${API_URL}/pizzas/${id}`);
+    return data;
+  } catch (error) {
+    console.log(`something went wrong on fetching menu: ${error}`);
+  }
+}
+
 export async function getOrder(id) {
   try {
     const { data } = await axios.get(`${API_URL}/orders/${id}`);

@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./UI/AppLayout.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Menu, { MenuLoader } from "./Pages/Menu/Menu.jsx";
-import Details from "./Pages/Details/Details.jsx";
+import Details, { pizzaLoader } from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
 import Order from "./Pages/Order/Order.jsx";
 import Cart from "./Pages/Cart/Cart.jsx";
@@ -31,6 +31,7 @@ const router = createBrowserRouter([
       {
         path: "/pizza/:id",
         element: <Details />,
+        loader: pizzaLoader,
       },
       {
         path: "/cart",

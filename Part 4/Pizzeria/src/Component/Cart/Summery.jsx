@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Summery({ isPriority = false }) {
+export default function Summery({ isPriority = false, state }) {
   return (
     <>
       <div className="w-full lg:w-4/12 ps-0 lg:ps-4 mb-10">
@@ -16,6 +16,7 @@ export default function Summery({ isPriority = false }) {
               />
             </div>
             <button
+              type="submit"
               className="block w-full md:w-3/12  px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300   
                   hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm cursor-pointer"
             >
@@ -47,10 +48,13 @@ export default function Summery({ isPriority = false }) {
             <p>$26.415</p>
           </div>
           <button
-            className="w-full mt-3 px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 cursor-pointer  
-                hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm"
+            className={`w-full mt-3 px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 
+                hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm ${
+                  state == "submitting" ? "opacity-50 cursor-not-allowed" : "cursor-pointer  "
+                }`}
+            disabled={state == "submitting"}
           >
-            Proceed to Checkout
+            {state == "submitting" ? "Processing..." : "Proceed to Checkout"}
           </button>
           <button
             className="w-full mt-3 px-6 py-3 border border-orange-600 text-orange-700 hover:text-white rounded-xl 

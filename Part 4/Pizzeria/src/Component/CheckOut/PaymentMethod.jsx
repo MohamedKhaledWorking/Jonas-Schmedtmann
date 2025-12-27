@@ -1,8 +1,7 @@
 import { CreditCard, HandCoins } from "lucide-react";
 import React, { useState } from "react";
 
-export default function PaymentMethod() {
-  const [isCashed, setIsCashed] = useState(true);
+export default function PaymentMethod({ isCashed, setIsCashed }) {
   return (
     <>
       <div className="bg-secBgc dark:bg-secBgcDark px-6 py-8 my-4 rounded-3xl">

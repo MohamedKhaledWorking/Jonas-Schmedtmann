@@ -18,6 +18,7 @@ export default function Address() {
             <input
               id="street"
               type="text"
+              name="street"
               placeholder="1234 Main St"
               className="w-full border border-textClr/50 dark:border-textClrDark/50 px-4 py-3 rounded-xl mt-2 outline-none 
                     focus:ring-2 focus:ring-orange-700 focus:ring-offset-mainBgc dark:focus:ring-offset-mainBgcDark focus:ring-offset-6 duration-400 focus:border-orange-700"
@@ -28,6 +29,7 @@ export default function Address() {
             <input
               id="Apartment"
               type="text"
+              name="Apartment"
               placeholder="Apartment or suite"
               className="w-full border border-textClr/50 dark:border-textClrDark/50 px-4 py-3 rounded-xl mt-2 outline-none 
                     focus:ring-2 focus:ring-orange-700 focus:ring-offset-mainBgc dark:focus:ring-offset-mainBgcDark focus:ring-offset-6 duration-400 focus:border-orange-700"
@@ -39,6 +41,7 @@ export default function Address() {
             <input
               id="City"
               type="text"
+              name="city"
               placeholder="cairo"
               className="w-full border border-textClr/50 dark:border-textClrDark/50 px-4 py-3 rounded-xl mt-2 outline-none 
                     focus:ring-2 focus:ring-orange-700 focus:ring-offset-mainBgc dark:focus:ring-offset-mainBgcDark focus:ring-offset-6 duration-400 focus:border-orange-700"
@@ -49,6 +52,7 @@ export default function Address() {
             <input
               id="Code"
               type="number"
+              name="postalCode"
               placeholder="12345"
               className="w-full border border-textClr/50 dark:border-textClrDark/50 px-4 py-3 rounded-xl mt-2 outline-none 
                     focus:ring-2 focus:ring-orange-700 focus:ring-offset-mainBgc dark:focus:ring-offset-mainBgcDark focus:ring-offset-6 duration-400 focus:border-orange-700"

@@ -7,7 +7,7 @@ export default function Cart() {
     <>
       <section className="my-30 bg-mainBgc dark:bg-mainBgcDark ">
         <div className="container mx-auto px-2">
-          <p className="text-4xl font-bold my-4 font-main text-center text-start">
+          <p className="text-4xl font-bold my-4 font-main text-start">
             Your Cart
           </p>
 

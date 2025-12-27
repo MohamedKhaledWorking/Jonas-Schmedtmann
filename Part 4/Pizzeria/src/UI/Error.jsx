@@ -9,7 +9,7 @@ export default function Error() {
        OOPS ! Something went wrong
       </p>
       <p>{error?.status}</p>
-      <p className="my-5 text-secBgc dark:text-secBgcDark font-main ">
+      <p className="my-5 text-textSecClr dark:text-textSEcClrDark font-main ">
         {error?.statusText ||
           (error?.message == "Cannot read properties of undefined (reading 'map')" ? "failed to get data from server" : error?.message ) ||
           "Something went wrong please try again"}

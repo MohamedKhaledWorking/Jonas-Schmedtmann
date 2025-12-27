@@ -7,7 +7,7 @@ import Details from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
 import Order from "./Pages/Order/Order.jsx";
 import Cart from "./Pages/Cart/Cart.jsx";
-import CheckOut from "./Pages/CheckOut/CheckOut.jsx";
+import CheckOut, { orderAction } from "./Pages/CheckOut/CheckOut.jsx";
 import CreatePizza from "./Pages/CreatePizza/CreatePizza.jsx";
 import Error from "./UI/Error.jsx";
 import NoTrackFound from "./Component/Track/NoTrackFound.jsx";
@@ -39,6 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/Checkout",
         element: <CheckOut />,
+        action: orderAction,
       },
       {
         path: "/order",

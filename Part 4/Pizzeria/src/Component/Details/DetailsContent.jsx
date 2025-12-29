@@ -1,4 +1,4 @@
-import { Flame, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import React, { useState } from "react";
 import Ingredients from "./Ingredients.jsx";
 import Size from "./Size.jsx";
@@ -7,9 +7,48 @@ import Actions from "./Actions.jsx";
 import Instructions from "./Instructions.jsx";
 import SelectedToppings from "./SelectedToppings.jsx";
 import Spicy from "./Spicy.jsx";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Features/cartSlice.js";
+import { useNavigate } from "react-router-dom";
 
 export default function DetailsContent({ isSpicy, setIsSpicy, pizza }) {
-  const [selectedSize, setSelectedSize] = useState(pizza?.sizes[0].size);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [selectedSize, setSelectedSize] = useState(pizza?.sizes[0].name);
+  const [quantity, setQuantity] = useState(1);
+  const [instructions, setInstructions] = useState("");
+  const [extraToppings, setExtraToppings] = useState([]);
+  const selectedSizePrice = pizza?.sizes.find(
+    (size) => size.name === selectedSize
+  );
+  const totalToppingsPrice = extraToppings?.reduce(
+    (acc, topping) => acc + topping.price,
+    0
+  );
+  const totalPrice =
+    pizza?.basePrice * quantity * selectedSizePrice?.priceMultiplier +
+    totalToppingsPrice * quantity;
+
+  function handleAddToCart() {
+    const newPizzaCart = {
+      id: crypto.randomUUID(),
+      name: pizza?.name,
+      size: selectedSize,
+      isSpicy,
+      quantity,
+      extraToppings,
+      instructions,
+      image: pizza?.image,
+      basePrice: pizza?.basePrice,
+      totalToppingsPrice,
+      selectedSizePrice: selectedSizePrice?.priceMultiplier,
+      totalPrice,
+    };
+    dispatch(addToCart(newPizzaCart));
+    navigate("/cart");
+  }
+
   return (
     <div className="px-4 md:px-12 w-full lg:w-1/2  ">
       <div className="flex justify-between items-center flex-wrap  mb-4">
@@ -39,19 +78,35 @@ export default function DetailsContent({ isSpicy, setIsSpicy, pizza }) {
         {pizza?.sizes?.map((size) => {
           return (
             <Size
-              setSelectedSize={setSelectedSize}
               size={size}
               key={size?.size}
               selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
             />
           );
         })}
       </div>
       <Spicy isSpicy={isSpicy} setIsSpicy={setIsSpicy} />
-      <Toppings />
-      <SelectedToppings />
-      <Instructions />
-      <Actions />
+      <Toppings
+        extraToppings={extraToppings}
+        setExtraToppings={setExtraToppings}
+      />
+      {extraToppings?.length > 0 && (
+        <SelectedToppings
+          extraToppings={extraToppings}
+          totalToppingsPrice={totalToppingsPrice}
+        />
+      )}
+      <Instructions
+        instructions={instructions}
+        setInstructions={setInstructions}
+      />
+      <Actions
+        quantity={quantity}
+        setQuantity={setQuantity}
+        totalPrice={totalPrice}
+        handleAddToCart={handleAddToCart}
+      />
     </div>
   );
 }

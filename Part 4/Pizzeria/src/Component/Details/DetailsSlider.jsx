@@ -10,9 +10,9 @@ export default function DetailsSlider({ isSpicy, pizza }) {
     <div className="px-4 md:px-12 w-full lg:w-1/2">
       <MainImage isSpicy={isSpicy} image={mainUrl} name={pizza?.name} />
       <div className="my-10 flex space-x-4 flex-wrap space-y-4 justify-center lg:justify-start">
-        {pizza?.images?.map((img) => {
+        {pizza?.images?.map((img , idx) => {
           return (
-            <SliderImage img={img} name={pizza?.name} setMainUrl={setMainUrl} key={img}/>
+            <SliderImage img={img} name={pizza?.name} setMainUrl={setMainUrl} key={idx}/>
           );
         })}
       </div>

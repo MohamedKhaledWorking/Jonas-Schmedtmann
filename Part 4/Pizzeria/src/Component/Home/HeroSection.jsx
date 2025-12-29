@@ -9,7 +9,6 @@ import {
   Truck,
 } from "lucide-react";
 import React from "react";
-import img from "../../assets/3.jfif";
 import { Link } from "react-router-dom";
 
 export default function HeroSection() {

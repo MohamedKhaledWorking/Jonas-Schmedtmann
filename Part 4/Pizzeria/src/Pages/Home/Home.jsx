@@ -7,7 +7,6 @@ import Masterpiece from "../../Component/Home/Masterpiece.jsx";
 import TopRated from "../../Component/Home/TopRated.jsx";
 import SpecialOffer from "../../Component/Home/SpecialOffer.jsx";
 import Featured from "../../Component/Home/Featured.jsx";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   return (

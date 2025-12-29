@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HeaderIcon from "../../UI/HeaderIcon.jsx";
-import { Flame, Sparkles } from "lucide-react";
+import { Flame } from "lucide-react";
 import TrendCard from "./TrendCard.jsx";
 
 export default function Trending() {

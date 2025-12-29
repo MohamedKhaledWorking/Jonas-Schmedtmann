@@ -1,7 +1,10 @@
 import React from "react";
 import SelectedTopping from "./SelectedTopping.jsx";
 
-export default function SelectedToppings() {
+export default function SelectedToppings({
+  extraToppings,
+  totalToppingsPrice,
+}) {
   return (
     <>
       <div className="my-4 bg-red-700/5 border border-orange-700/30 p-4 rounded-xl">
@@ -9,13 +12,13 @@ export default function SelectedToppings() {
           <p className="text-textClr dark:text-textClrDark font-bold font-main">
             Extra Toppings
           </p>
-          <p className="text-orange-700"> +$4.50</p>
+          <p className="text-orange-700"> +${totalToppingsPrice}</p>
         </div>
-        <div className="flex flex-wrap my-4">
-          <SelectedTopping />
-          <SelectedTopping />
-          <SelectedTopping />
-        </div>
+        <ul className="flex flex-wrap my-4">
+          {extraToppings?.map((topping) => {
+            return <SelectedTopping topping={topping} />;
+          })}
+        </ul>
       </div>
     </>
   );

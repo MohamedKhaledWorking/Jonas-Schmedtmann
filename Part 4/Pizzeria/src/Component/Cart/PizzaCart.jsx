@@ -2,32 +2,32 @@ import React from "react";
 import { Trash } from "lucide-react";
 import Toppings from "./Toppings.jsx";
 
-export default function Products() {
+export default function PizzaCart({ pizza }) {
   return (
     <>
-      <div className="w-full  pe-4 bg-secBgc dark:bg-secBgcDark px-4 py-6 rounded-3xl  ">
+      <div className="w-full  pe-4 bg-secBgc dark:bg-secBgcDark px-4 pt-6 rounded-3xl  ">
         <div className="mb-4 pb-4">
           <div className="flex flex-col md:flex-row ">
             <div className="size-full md:w-30 md:me-4 mx-auto mb-4">
               <img
-                src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80"
+                src={pizza?.image}
                 className=" rounded-xl"
-                alt="order image"
+                alt={pizza?.name + " order image"}
               />
             </div>
             <div className="w-full">
               <div className="flex justify-between items-center">
-                <p className="text-2xl font-bold font-main ">
-                  Pepperoni Supreme
-                </p>
+                <p className="text-2xl font-bold font-main ">{pizza?.name}</p>
                 <Trash className="hover:text-red-500 cursor-pointer duration-300" />
               </div>
               <p className="text-textSecClr dark:text-textSecClrDark text-sm my-1">
-                Medium (12")
+                {pizza?.selectedSize} (12")
               </p>
-              <div className="bg-red-500/20 w-fit px-2 py-1 rounded-full text-red-500 text-sm my-2">
-                🌶️ Spicy
-              </div>
+              {pizza?.isSpicy && (
+                <div className="bg-red-500/20 w-fit px-2 py-1 rounded-full text-red-500 text-sm my-2">
+                  🌶️ Spicy
+                </div>
+              )}
             </div>
           </div>
           <div className="flex justify-between items-center my-3">
@@ -47,7 +47,7 @@ export default function Products() {
             </div>
             <p className="font-bold text-2xl text-orange-700">$31.49</p>
           </div>
-          <Toppings />
+          {pizza?.extraTopping && <Toppings />}
         </div>
       </div>
     </>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import HeaderIcon from "../../UI/HeaderIcon.jsx";
-import { MoveRight, Star, Trophy } from "lucide-react";
-import img from "../../assets/photo-1590947132387-155cc02f3212.jfif";
+import { Trophy } from "lucide-react";
+import MainTopRated from "./MainTopRated.jsx";
+import SecTopRated from "./SecTopRated.jsx";
 
 export default function TopRated() {
   const [topRated, setTopRate] = useState([
@@ -278,73 +279,8 @@ export default function TopRated() {
             </p>
           </div>
           <div className="flex flex-col lg:flex-row my-12 space-y-8">
-            <div className="px-4 w-full lg:w-1/2 ">
-              <div className="w-full rounded-3xl overflow-hidden relative border border-textSecClr/20 dark:border-textSecClrDark/20">
-                <img src={img} alt=" top rated pizza image" />
-                <div className="absolute inset-0 bg-linear-to-b from-black/10 to-secBgc to-65% dark:to-secBgcDark px-10 flex justify-end flex-col md:pb-5 ">
-                  <p className="text-lg md:text-3xl font-bold font-main ">
-                    Margherita Classica
-                  </p>
-                  <p className="text-textSecClr dark:text-textSecClrDark my-2 md:max-w-11/12 text-xs md:text-lg">
-                    The timeless classic with San Marzano tomatoes, fresh
-                    mozzarella, and fragrant basil
-                  </p>
-                  <div className="flex space-x-4  ">
-                    <p className="text-bold text-sm md:text-lg ">4.9</p>
-                    <p className="text-bold text-sm md:text-lg text-textSecClr dark:text-textSecClrDark">
-                      (328 reviews)
-                    </p>
-                  </div>
-                  <div className="flex justify-between items-center mb-4">
-                    <p className="text-lg md:text-2xl font-bold text-orange-500">
-                      $14.99
-                    </p>
-                    <button className="px-4 md:px-16 py-2.5 bg-orange-500 text-white rounded-xl cursor-pointer">
-                      order now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="px-4 w-full lg:w-1/2 flex flex-col">
-              {topRated?.map((pizza, idx) => (
-                <div
-                  key={idx}
-                  className="w-full  mb-4 rounded-3xl overflow-hidden px-4 py-3 flex items-center border border-textSecClr/20 dark:border-textSecClrDark/20 hover:border-orange-500 duration-300 group space-x-4"
-                >
-                  <div className="w-6/12 md:w-2/12 ">
-                    <img
-                      src={pizza?.image}
-                      alt={pizza?.name + " image"}
-                      className="w-full object-cover h-25  rounded-2xl group-hover:scale-110 duration-300 "
-                    />
-                  </div>
-                  <div className="w-8/12">
-                    <p className="font-bold font-main text-base md:text-2xl line-clamp-1 group-hover:text-orange-500 duration-300 cursor-pointer">
-                      {pizza?.name}
-                    </p>
-                    <div className="flex space-x-2 my-2 text-xs md:text-base">
-                      <span className="font-bold">#{idx + 2}</span>
-                      <Star className="text-yellow-500 fill-yellow-500  w-4 h-4 md:w-6 md:h-6" />
-                      <span className="font-bold">{pizza?.rating}</span>
-                      <span className="text-textSecClr dark:text-textSecClrDark">
-                        ({pizza?.reviewCount} )
-                      </span>
-                    </div>
-
-                    <p className="text-textSecClr dark:text-textSecClrDark line-clamp-1 text-xs md:text-sm">
-                      {pizza?.description}
-                    </p>
-                  </div>
-                  <div className="w-2/12 flex flex-col items-center justify-center space-y-2 ">
-                    <div className="text-sm md:text-2xl font-bold text-orange-500">
-                      ${pizza?.basePrice}
-                    </div>
-                    <MoveRight className="group-hover:text-orange-500 duration-300 cursor-pointer w-6 h-6 md:w-8 md:h-8" />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <MainTopRated />
+            <SecTopRated topRated={topRated} />
           </div>
         </div>
       </section>

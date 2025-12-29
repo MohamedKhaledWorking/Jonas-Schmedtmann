@@ -112,9 +112,9 @@ export default function NavBar({ setIsDark }) {
 
         {/* Right icons */}
         <div className="navbar-end space-x-4">
-          <button className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl">
+          <Link to={"/cart"} className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl">
             <BaggageClaim />
-          </button>
+          </Link>
           <button
             className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl"
             onClick={() => setIsDark((v) => !v)}

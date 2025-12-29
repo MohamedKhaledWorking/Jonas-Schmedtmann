@@ -1,8 +1,10 @@
 import React from "react";
-import Products from "../../Component/Cart/Products.jsx";
+import PizzaCart from "../../Component/Cart/PizzaCart.jsx";
 import Summery from "../../Component/Cart/Summery.jsx";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
+  const items = useSelector((store) => store?.cart?.items);
   return (
     <>
       <section className="my-30 bg-mainBgc dark:bg-mainBgcDark ">
@@ -13,8 +15,9 @@ export default function Cart() {
 
           <div className="my-8  flex flex-col-reverse lg:flex-row ">
             <div className="lg:w-8/12  space-y-6">
-              <Products />
-              <Products />
+              {items?.map((pizza) => {
+                return <PizzaCart pizza={pizza} key={pizza?.id} />;
+              })}
             </div>
             <Summery />
           </div>

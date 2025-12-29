@@ -7,8 +7,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import { getPizza } from "../../Services/apiRestaurant.js";
 
 export default function Details() {
-  const [isSpicy, setIsSpicy] = useState(false);
   const pizza = useLoaderData();
+  const [isSpicy, setIsSpicy] = useState(false);
 
   return (
     <section className="my-30 bg-mainBgc dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize ">

@@ -3,15 +3,19 @@ import { Trash } from "lucide-react";
 import Toppings from "./Toppings.jsx";
 
 export default function PizzaCart({ pizza }) {
+  const toppingsPrice =
+    pizza?.toppings?.reduce((acc, topping) => acc + topping.price, 0) ?? 0;
+  const totalPrice = toppingsPrice + pizza?.basePrice;
+  
   return (
     <>
       <div className="w-full  pe-4 bg-secBgc dark:bg-secBgcDark px-4 pt-6 rounded-3xl  ">
         <div className="mb-4 pb-4">
           <div className="flex flex-col md:flex-row ">
-            <div className="size-full md:w-30 md:me-4 mx-auto mb-4">
+            <div className="size-full md:w-40 md:me-4 mx-auto mb-4 md:mb-0">
               <img
                 src={pizza?.image}
-                className=" rounded-xl"
+                className=" rounded-xl lg:w-50  lg:h-25 object-cover"
                 alt={pizza?.name + " order image"}
               />
             </div>
@@ -21,16 +25,17 @@ export default function PizzaCart({ pizza }) {
                 <Trash className="hover:text-red-500 cursor-pointer duration-300" />
               </div>
               <p className="text-textSecClr dark:text-textSecClrDark text-sm my-1">
-                {pizza?.selectedSize} (12")
+                {pizza?.size} (12")
               </p>
               {pizza?.isSpicy && (
-                <div className="bg-red-500/20 w-fit px-2 py-1 rounded-full text-red-500 text-sm my-2">
+                <div className="bg-red-500/10 w-fit px-2 py-1 rounded-full text-red-500 text-xs my-2">
                   🌶️ Spicy
                 </div>
               )}
             </div>
           </div>
-          <div className="flex justify-between items-center my-3">
+
+          <div className="flex justify-between items-center my-1">
             <div className="flex items-center justify-between bg-black/10 dark:bg-slate-400/15 px-2 py-2 rounded-xl my-2">
               <button className="px-3 py-1 text-white rounded-xl  bg-black text-lg cursor-pointer">
                 -
@@ -45,9 +50,18 @@ export default function PizzaCart({ pizza }) {
                 +
               </button>
             </div>
-            <p className="font-bold text-2xl text-orange-700">$31.49</p>
+            <p className="font-bold text-2xl text-orange-700">
+              ${totalPrice.toFixed(2)}
+            </p>
           </div>
-          {pizza?.extraTopping && <Toppings />}
+          {pizza?.instructions && (
+            <div className="bg-orange-700/10 rounded-lg text-orange-700 py-2 px-4 text-xs mb-4">
+              {pizza?.instructions}
+            </div>
+          )}
+          {pizza?.toppings?.length > 0 && (
+            <Toppings toppings={pizza?.toppings} />
+          )}
         </div>
       </div>
     </>

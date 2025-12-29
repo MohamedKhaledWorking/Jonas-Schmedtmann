@@ -1932,7 +1932,7 @@ export default function Related() {
         className="mySwiper my-6"
       >
         {pizzas.map((pizza) => (
-          <SwiperSlide key={pizza.id}>
+          <SwiperSlide key={pizza?.id}>
             <PizzaCard pizza={pizza} />
           </SwiperSlide>
         ))}

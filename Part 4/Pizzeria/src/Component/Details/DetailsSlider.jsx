@@ -12,7 +12,7 @@ export default function DetailsSlider({ isSpicy, pizza }) {
       <div className="my-10 flex space-x-4 flex-wrap space-y-4 justify-center lg:justify-start">
         {pizza?.images?.map((img) => {
           return (
-            <SliderImage img={img} name={pizza?.name} setMainUrl={setMainUrl} />
+            <SliderImage img={img} name={pizza?.name} setMainUrl={setMainUrl} key={img}/>
           );
         })}
       </div>

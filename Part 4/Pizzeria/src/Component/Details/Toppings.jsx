@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Ingredients from "./Ingredients.jsx";
 import Topping from "./Topping.jsx";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function Toppings({ extraToppings, setExtraToppings }) {
+export default function Toppings() {
+  const { extraToppings, dispatch } = useCart();
   const Toppings = [
     {
       id: 1,
@@ -70,11 +72,9 @@ export default function Toppings({ extraToppings, setExtraToppings }) {
     const newTopping = Toppings?.find((topping) => topping.id == id);
     const isExist = extraToppings?.find((topping) => topping.id == id);
     if (!isExist) {
-      setExtraToppings([...extraToppings, newTopping]);
+      dispatch({ type: "set/extraToppings", payload: newTopping });
     } else {
-      setExtraToppings((extraToppings) =>
-        extraToppings.filter((topping) => topping.id != id)
-      );
+      dispatch({ type: "remove/extraToppings", payload: newTopping });
     }
   }
   return (

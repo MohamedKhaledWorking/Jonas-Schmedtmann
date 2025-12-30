@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function Actions({
-  quantity,
-  setQuantity,
-  totalPrice,
-  handleAddToCart,
-}) {
+export default function Actions({ totalPrice, handleAddToCart }) {
+  const [qut, setQut] = useState(1);
+  const { dispatch } = useCart();
+
+  function handleQuantity() {
+    dispatch({ type: "set/quantity", payload: +qut });
+  }
   return (
     <>
       <div className="my-5 flex flex-wrap space-y-4 md:space-y-0">
@@ -13,19 +15,20 @@ export default function Actions({
           <div className="flex justify-center items-center space-x-2 bg-gray-900/10 dark:bg-gray-100/14 px-4 py-3 rounded-2xl">
             <button
               className="bg-mainBgc dark:bg-mainBgcDark px-5 py-2 rounded-lg cursor-pointer"
-              onClick={() => setQuantity((q) => q - 1)}
+              onClick={() => dispatch({ type: "decrement/quantity" })}
             >
               -
             </button>
             <input
               type="text"
               className="w-20 border border-textClr dark:border-textClr rounded-lg text-center py-2"
-              value={quantity}
-              onChange={(e) => setQuantity(+e.target.value)}
+              value={qut}
+              onChange={(e) => setQut(+e.target.value)}
+              onBlur={handleQuantity}
             />
             <button
               className="bg-mainBgc dark:bg-mainBgcDark px-5 py-2 rounded-lg cursor-pointer"
-              onClick={() => setQuantity((q) => q + 1)}
+              onClick={() => dispatch({ type: "increment/quantity" })}
             >
               +
             </button>

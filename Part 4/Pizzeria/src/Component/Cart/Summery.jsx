@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Summery({ isPriority = false, state }) {
   return (
@@ -17,7 +18,7 @@ export default function Summery({ isPriority = false, state }) {
             </div>
             <button
               type="submit"
-              className="block w-full md:w-3/12  px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300   
+              className="block w-full md:w-3/12  px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 capitalize 
                   hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm cursor-pointer"
             >
               apply
@@ -47,21 +48,25 @@ export default function Summery({ isPriority = false, state }) {
             <p>Total</p>
             <p>$26.415</p>
           </div>
-          <button
-            className={`w-full mt-3 px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 
+          <Link
+            to={"/checkout"}
+            className={`w-full px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 mt-5 block text-center capitalize
                 hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm ${
-                  state == "submitting" ? "opacity-50 cursor-not-allowed" : "cursor-pointer  "
+                  state == "submitting"
+                    ? "opacity-50 cursor-not-allowed"
+                    : "cursor-pointer  "
                 }`}
             disabled={state == "submitting"}
           >
             {state == "submitting" ? "Processing..." : "Proceed to Checkout"}
-          </button>
-          <button
-            className="w-full mt-3 px-6 py-3 border border-orange-600 text-orange-700 hover:text-white rounded-xl 
+          </Link>
+          <Link
+            to={"/menu"}
+            className="w-full mt-4 px-6 py-3 border border-orange-600 text-orange-700 hover:text-white rounded-xl block text-center capitalize
                 hover:bg-orange-700 duration-300 cursor-pointer  hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm"
           >
             back to menu
-          </button>
+          </Link>
         </div>
       </div>
     </>

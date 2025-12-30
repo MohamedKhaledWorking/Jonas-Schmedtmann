@@ -1,10 +1,9 @@
 import React from "react";
 import SelectedTopping from "./SelectedTopping.jsx";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function SelectedToppings({
-  extraToppings,
-  totalToppingsPrice,
-}) {
+export default function SelectedToppings({ totalToppingsPrice }) {
+  const { extraToppings } = useCart();
   return (
     <>
       <div className="my-4 bg-red-700/5 border border-orange-700/30 p-4 rounded-xl">

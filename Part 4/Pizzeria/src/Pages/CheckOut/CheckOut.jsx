@@ -201,7 +201,6 @@ export default function CheckOut() {
     },
   ]);
 
-  Features
 
   return (
     <section className="my-30  bg-main dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize text-base">

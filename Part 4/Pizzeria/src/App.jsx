@@ -1,7 +1,7 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./UI/AppLayout.jsx";
-import Home from "./Pages/Home/Home.jsx";
+import Home, { homePizzasLoader } from "./Pages/Home/Home.jsx";
 import Menu, { MenuLoader } from "./Pages/Menu/Menu.jsx";
 import Details, { pizzaLoader } from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
@@ -12,6 +12,7 @@ import CreatePizza from "./Pages/CreatePizza/CreatePizza.jsx";
 import Error from "./UI/Error.jsx";
 import NoTrackFound from "./Component/Track/NoTrackFound.jsx";
 import TrackFound, { getOrderLoader } from "./Component/Track/TrackFound.jsx";
+import CartContextProvider from "./Context/CartContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: homePizzasLoader,
       },
       {
         path: "/menu",
@@ -70,7 +72,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <CartContextProvider>
+      <RouterProvider router={router} />
+    </CartContextProvider>
+  );
 }
 
 export default App;

@@ -1,7 +1,9 @@
 import { Flame } from "lucide-react";
 import React from "react";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function MainImage({ isSpicy, image, name }) {
+export default function MainImage() {
+  const { isSpicy, mainImg } = useCart();
   return (
     <>
       <div className="w-full h-[60vh] lg:h-[50vh] space-y-4 ">
@@ -14,8 +16,8 @@ export default function MainImage({ isSpicy, image, name }) {
           )}
 
           <img
-            src={image}
-            alt={`${name} image`}
+            src={mainImg}
+            alt={`main image`}
             className="h-full w-full object-cover"
           />
         </div>

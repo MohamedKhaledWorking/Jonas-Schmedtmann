@@ -1,7 +1,9 @@
 import { Flame } from "lucide-react";
 import React from "react";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function Spicy({ isSpicy, setIsSpicy }) {
+export default function Spicy() {
+  const { isSpicy, dispatch } = useCart();
   return (
     <>
       <div
@@ -25,7 +27,7 @@ export default function Spicy({ isSpicy, setIsSpicy }) {
         <input
           type="checkbox"
           className="toggle border-red-700/50 checked:bg-red-700 "
-          onClick={() => setIsSpicy((s) => !s)}
+          onClick={() => dispatch({ type: "set/Spicy", payload: !isSpicy })}
         />
       </div>
     </>

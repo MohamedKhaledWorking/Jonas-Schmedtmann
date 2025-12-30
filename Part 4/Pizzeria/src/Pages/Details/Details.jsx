@@ -1,14 +1,19 @@
 import { MoveLeft } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DetailsSlider from "../../Component/Details/DetailsSlider.jsx";
 import DetailsContent from "../../Component/Details/DetailsContent.jsx";
 import Related from "../../Component/Details/Related.jsx";
 import { Link, useLoaderData } from "react-router-dom";
 import { getPizza } from "../../Services/apiRestaurant.js";
+import { useCart } from "../../Context/CartContext.jsx";
 
 export default function Details() {
   const pizza = useLoaderData();
-  const [isSpicy, setIsSpicy] = useState(false);
+  const { dispatch } = useCart();
+
+  useEffect(() => {
+    dispatch({ type: "set/Pizza", payload: pizza });
+  }, [pizza, dispatch]);
 
   return (
     <section className="my-30 bg-mainBgc dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize ">
@@ -21,12 +26,8 @@ export default function Details() {
           <p>Back to Menu</p>
         </Link>
         <div className="flex my-10 flex-wrap border-b">
-          <DetailsSlider isSpicy={isSpicy} pizza={pizza} />
-          <DetailsContent
-            isSpicy={isSpicy}
-            setIsSpicy={setIsSpicy}
-            pizza={pizza}
-          />
+          <DetailsSlider />
+          <DetailsContent />
         </div>
         <Related />
       </div>

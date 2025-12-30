@@ -7,6 +7,73 @@ import SecTopRated from "./SecTopRated.jsx";
 export default function TopRated() {
   const [topRated, setTopRate] = useState([
     {
+      id: "1",
+      name: "Margherita Classica",
+      description:
+        "San Marzano tomatoes, fresh mozzarella, basil, and olive oil.",
+      ingredients: [
+        "San Marzano Tomatoes",
+        "Fresh Mozzarella",
+        "Basil",
+        "Extra Virgin Olive Oil",
+      ],
+      basePrice: 14.99,
+      image:
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=800&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=1200&q=80",
+        "https://images.unsplash.com/photo-1548365328-9f547d94b3a7?w=1200&q=80",
+      ],
+      category: "classic",
+      rating: 4.9,
+      reviewCount: 328,
+      isAvailable: true,
+      isPopular: true,
+      isNew: false,
+      isSpicy: false,
+      cookingTime: {
+        min: 12,
+        max: 18,
+      },
+      sizes: [
+        {
+          size: "S",
+          name: "Small",
+          priceMultiplier: 0.8,
+          diameter: '10"',
+        },
+        {
+          size: "M",
+          name: "Medium",
+          priceMultiplier: 1,
+          diameter: '12"',
+        },
+        {
+          size: "L",
+          name: "Large",
+          priceMultiplier: 1.3,
+          diameter: '14"',
+        },
+      ],
+      reviews: [
+        {
+          id: "1-r1",
+          customerName: "Sarah M.",
+          rating: 5,
+          comment: "Perfect classic. Fresh basil and amazing crust.",
+          date: "2 days ago",
+        },
+        {
+          id: "1-r2",
+          customerName: "Luca P.",
+          rating: 5,
+          comment: "Simple, clean, and truly authentic.",
+          date: "1 week ago",
+        },
+      ],
+    },
+
+    {
       id: "21",
       name: "Classic Tuna & Onion",
       description: "Tuna, red onion, olives, and mozzarella.",
@@ -280,7 +347,7 @@ export default function TopRated() {
           </div>
           <div className="flex flex-col lg:flex-row my-12 space-y-8">
             <MainTopRated />
-            <SecTopRated topRated={topRated} />
+            <SecTopRated />
           </div>
         </div>
       </section>

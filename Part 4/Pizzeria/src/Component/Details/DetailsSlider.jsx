@@ -1,19 +1,24 @@
-import { EvCharger, Flame, Timer, Zap } from "lucide-react";
-import React, { useState } from "react";
+import { EvCharger, Timer, Zap } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import MainImage from "./MainImage.jsx";
 import SliderImage from "./SliderImage.jsx";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function DetailsSlider({ isSpicy, pizza }) {
-  const [mainUrl, setMainUrl] = useState(pizza?.image);
+export default function DetailsSlider() {
+  const { pizza, dispatch } = useCart();
+
+  useEffect(() => {
+    if (pizza?.images?.length > 0) {
+      dispatch({ type: "set/mainImg", payload: pizza?.images[0] });
+    }
+  }, [pizza?.images]);
 
   return (
     <div className="px-4 md:px-12 w-full lg:w-1/2">
-      <MainImage isSpicy={isSpicy} image={mainUrl} name={pizza?.name} />
+      <MainImage />
       <div className="my-10 flex space-x-4 flex-wrap space-y-4 justify-center lg:justify-start">
-        {pizza?.images?.map((img , idx) => {
-          return (
-            <SliderImage img={img} name={pizza?.name} setMainUrl={setMainUrl} key={idx}/>
-          );
+        {pizza?.images?.map((img, idx) => {
+          return <SliderImage key={idx} img={img} name={pizza?.name} />;
         })}
       </div>
       <div className="flex flex-wrap space-y-4 md:space-y-0">

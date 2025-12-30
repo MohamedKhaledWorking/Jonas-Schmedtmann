@@ -1,12 +1,14 @@
 import { MoveRight, Star } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
-export default function SecTopRated({ topRated }) {
+export default function SecTopRated() {
+  const { topRated } = useLoaderData();
+  const topRatedPizzas = topRated?.slice(1);
   return (
     <>
       <div className="px-4 w-full lg:w-1/2 flex flex-col">
-        {topRated?.map((pizza, idx) => (
+        {topRatedPizzas?.map((pizza, idx) => (
           <div
             key={idx}
             className="w-full  mb-4 rounded-3xl overflow-hidden px-4 py-3 flex items-center border border-textSecClr/20 dark:border-textSecClrDark/20 hover:border-orange-500 duration-300 group space-x-4"

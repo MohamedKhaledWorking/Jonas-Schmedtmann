@@ -10,25 +10,30 @@ import Spicy from "./Spicy.jsx";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Features/cartSlice.js";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../Context/CartContext.jsx";
 
-export default function DetailsContent({ isSpicy, setIsSpicy, pizza }) {
+export default function DetailsContent() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    isSpicy,
+    pizza,
+    selectedSize,
+    extraToppings,
+    instructions,
+    quantity,
+  } = useCart();
 
-  const [selectedSize, setSelectedSize] = useState(pizza?.sizes[0].name);
-  const [quantity, setQuantity] = useState(1);
-  const [instructions, setInstructions] = useState("");
-  const [extraToppings, setExtraToppings] = useState([]);
-  const selectedSizePrice = pizza?.sizes.find(
-    (size) => size.name === selectedSize
+  const selectedSizePrice = pizza?.sizes?.find(
+    (size) => size.name?.toUpperCase() === selectedSize.toUpperCase()
   );
   const totalToppingsPrice = extraToppings?.reduce(
-    (acc, topping) => acc + topping.price,
+    (acc, topping) => acc + +topping.price,
     0
   );
   const totalPrice =
-    pizza?.basePrice * quantity * selectedSizePrice?.priceMultiplier +
-    totalToppingsPrice * quantity;
+    +pizza?.basePrice * +quantity * +selectedSizePrice?.priceMultiplier +
+    +totalToppingsPrice * +quantity;
 
   function handleAddToCart() {
     const newPizzaCart = {
@@ -64,49 +69,36 @@ export default function DetailsContent({ isSpicy, setIsSpicy, pizza }) {
           ({pizza?.reviewCount}) Reviews
         </p>
       </div>
+
       <p className="my-6 text-textSecClr dark:text-textSecClrDark">
         {pizza?.description}
       </p>
+
       <p className="font-main text-xl mt-4 font-bold">Ingredients</p>
       <div className="flex flex-wrap space-x-2 my-2 text-sm">
         {pizza?.ingredients?.map((ingredient, idx) => {
           return <Ingredients ingredient={ingredient} key={idx} />;
         })}
       </div>
+
       <p className="font-main text-xl mt-4 font-bold">Choose Size</p>
       <div className="flex flex-wrap my-8 space-y-3">
         {pizza?.sizes?.map((size) => {
-          return (
-            <Size
-              size={size}
-              key={size?.size}
-              selectedSize={selectedSize}
-              setSelectedSize={setSelectedSize}
-            />
-          );
+          return <Size key={size?.size} size={size} />;
         })}
       </div>
-      <Spicy isSpicy={isSpicy} setIsSpicy={setIsSpicy} />
-      <Toppings
-        extraToppings={extraToppings}
-        setExtraToppings={setExtraToppings}
-      />
+
+      <Spicy />
+
+      <Toppings />
+
       {extraToppings?.length > 0 && (
-        <SelectedToppings
-          extraToppings={extraToppings}
-          totalToppingsPrice={totalToppingsPrice}
-        />
+        <SelectedToppings totalToppingsPrice={totalToppingsPrice} />
       )}
-      <Instructions
-        instructions={instructions}
-        setInstructions={setInstructions}
-      />
-      <Actions
-        quantity={quantity}
-        setQuantity={setQuantity}
-        totalPrice={totalPrice}
-        handleAddToCart={handleAddToCart}
-      />
+
+      <Instructions />
+
+      <Actions totalPrice={totalPrice} handleAddToCart={handleAddToCart} />
     </div>
   );
 }

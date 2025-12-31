@@ -42,9 +42,9 @@ export default function DetailsContent() {
       return toast.error("Please select a quantity");
     }
     if (!selectedSize) return toast.error("Please select a size");
-
     const newPizzaCart = {
       id: crypto.randomUUID(),
+      pizzaId: pizza?.id,
       name: pizza?.name,
       size: selectedSize,
       isSpicy,

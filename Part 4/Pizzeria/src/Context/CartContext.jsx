@@ -46,12 +46,6 @@ function reducer(state, action) {
     case "set/Pizza":
       return {
         ...state,
-        // isSpicy: false,
-        // selectedSize: "small",
-        // extraToppings: [],
-        // instructions: "",
-        // quantity: 1,
-        // mainImg: action.payload?.image || null,
         pizza: action.payload,
       };
     case "reset/Pizza":

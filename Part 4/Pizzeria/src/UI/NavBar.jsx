@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { BaggageClaim, Pizza, Sun } from "lucide-react";
 import Logo from "./Logo.jsx";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function NavBar({ setIsDark }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef(null);
-
+  const cartNumber = useSelector((store) => store?.cart?.cart).length;
   useEffect(() => {
     function onDocClick(e) {
       if (!wrapRef.current) return;
@@ -60,7 +61,7 @@ export default function NavBar({ setIsDark }) {
                   backdrop-blur
                 "
               >
-                <li className="hover:text-orange-500 w-3/4">
+                <li className="hover:text-orange-700 w-3/4">
                   <Link
                     to={"/"}
                     className="w-full flex justify-center items-center py-2"
@@ -69,7 +70,7 @@ export default function NavBar({ setIsDark }) {
                     Home
                   </Link>
                 </li>
-                <li className="hover:text-orange-500 w-3/4">
+                <li className="hover:text-orange-700 w-3/4">
                   <Link
                     to={"menu"}
                     className="w-full flex justify-center items-center py-2"
@@ -78,7 +79,7 @@ export default function NavBar({ setIsDark }) {
                     Menu
                   </Link>
                 </li>
-                <li className="hover:text-orange-500 w-3/4">
+                <li className="hover:text-orange-700 w-3/4">
                   <Link
                     to={"track"}
                     className="w-full flex justify-center items-center py-2"
@@ -98,13 +99,13 @@ export default function NavBar({ setIsDark }) {
         {/* Desktop menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-lg space-x-4">
-            <li className="hover:text-orange-500">
+            <li className="hover:text-orange-700">
               <Link to={"/"}>Home</Link>
             </li>
-            <li className="hover:text-orange-500">
+            <li className="hover:text-orange-700">
               <Link to={"/menu"}>Menu</Link>
             </li>
-            <li className="hover:text-orange-500">
+            <li className="hover:text-orange-700">
               <Link to={"/track"}>Track Order</Link>
             </li>
           </ul>
@@ -112,11 +113,36 @@ export default function NavBar({ setIsDark }) {
 
         {/* Right icons */}
         <div className="navbar-end space-x-4">
-          <Link to={"/cart"} className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl">
-            <BaggageClaim />
+          <Link
+            to={"/cart"}
+            className="cursor-pointer hover:bg-orange-700 p-2.5 rounded-xl duration-300 group"
+          >
+            <div tabindex="0" role="button" c>
+              <div class="indicator">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-7 w-7"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />{" "}
+                </svg>
+                {cartNumber > 0 && (
+                  <span class="badge badge-sm indicator-item dark:bg-mainBgcDark border-mainBgc dark:border-mainBgcDark  group-hover:bg-orange-700">
+                    {cartNumber}
+                  </span>
+                )}
+              </div>
+            </div>
           </Link>
           <button
-            className="cursor-pointer hover:bg-orange-500 p-2.5 rounded-xl"
+            className="cursor-pointer hover:bg-orange-700 p-2.5 rounded-xl"
             onClick={() => setIsDark((v) => !v)}
           >
             <Sun />

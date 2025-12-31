@@ -21,6 +21,12 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+div:where(.swal2-container) div:where(.swal2-popup) {
+  background: #1d1c1c !important;
+  border-radius: 20px !important;
+  padding-bottom: 50px !important;
+}
+
 .loaderWrap {
   display: grid;
   place-items: center;

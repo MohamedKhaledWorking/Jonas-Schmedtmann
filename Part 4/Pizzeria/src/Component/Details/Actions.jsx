@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCart } from "../../Context/CartContext.jsx";
+import toast from "react-hot-toast";
 
 export default function Actions({ totalPrice, handleAddToCart }) {
-  const [qut, setQut] = useState(1);
-  const { dispatch } = useCart();
+  const { quantity, dispatch } = useCart();
 
-  function handleQuantity() {
-    dispatch({ type: "set/quantity", payload: +qut });
-  }
   return (
     <>
       <div className="my-5 flex flex-wrap space-y-4 md:space-y-0">
@@ -20,11 +17,14 @@ export default function Actions({ totalPrice, handleAddToCart }) {
               -
             </button>
             <input
-              type="text"
+              type="number"
+              name="quantity"
+              min={1}
               className="w-20 border border-textClr dark:border-textClr rounded-lg text-center py-2"
-              value={qut}
-              onChange={(e) => setQut(+e.target.value)}
-              onBlur={handleQuantity}
+              value={quantity}
+              onChange={(e) =>
+                dispatch({ type: "set/quantity", payload: +e.target.value })
+              }
             />
             <button
               className="bg-mainBgc dark:bg-mainBgcDark px-5 py-2 rounded-lg cursor-pointer"

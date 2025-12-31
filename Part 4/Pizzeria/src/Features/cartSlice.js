@@ -22,7 +22,7 @@ const cartSlice = createSlice({
         items.quantity *
           items.basePrice *
           items.selectedSizePrice +
-        items.totalToppingsPrice;
+        items.totalToppingsPrice * items.quantity;
     },
     clearItems(state) {
       state.cart = [];

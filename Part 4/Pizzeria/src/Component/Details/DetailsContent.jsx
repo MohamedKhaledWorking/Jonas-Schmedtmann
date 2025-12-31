@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import React, { useState } from "react";
+import React, { use, useEffect } from "react";
 import Ingredients from "./Ingredients.jsx";
 import Size from "./Size.jsx";
 import Toppings from "./Toppings.jsx";
@@ -11,9 +11,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../Features/cartSlice.js";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../Context/CartContext.jsx";
+import toast from "react-hot-toast";
 
 export default function DetailsContent() {
-  const dispatch = useDispatch();
+  const reduxDispatch = useDispatch();
   const navigate = useNavigate();
   const {
     isSpicy,
@@ -22,6 +23,7 @@ export default function DetailsContent() {
     extraToppings,
     instructions,
     quantity,
+    dispatch,
   } = useCart();
 
   const selectedSizePrice = pizza?.sizes?.find(
@@ -32,10 +34,15 @@ export default function DetailsContent() {
     0
   );
   const totalPrice =
-    +pizza?.basePrice * +quantity * +selectedSizePrice?.priceMultiplier +
-    +totalToppingsPrice * +quantity;
+    pizza?.basePrice * quantity * selectedSizePrice?.priceMultiplier +
+    totalToppingsPrice * quantity;
 
   function handleAddToCart() {
+    if (quantity <= 0) {
+      return toast.error("Please select a quantity");
+    }
+    if (!selectedSize) return toast.error("Please select a size");
+
     const newPizzaCart = {
       id: crypto.randomUUID(),
       name: pizza?.name,
@@ -50,18 +57,25 @@ export default function DetailsContent() {
       selectedSizePrice: selectedSizePrice?.priceMultiplier,
       totalPrice,
     };
-    dispatch(addToCart(newPizzaCart));
+    reduxDispatch(addToCart(newPizzaCart));
     navigate("/cart");
   }
 
+  useEffect(() => {
+    return () => {
+      dispatch({ type: "reset/Pizza" });
+    };
+  }, [dispatch]);
+
   return (
-    <div className="px-4 md:px-12 w-full lg:w-1/2  ">
+    <div className="px-4 md:px-12 w-full lg:w-1/2 ">
       <div className="flex justify-between items-center flex-wrap  mb-4">
         <p className="text-4xl font-bold my-4 font-main ">{pizza?.name}</p>
         <div className="px-4 py-2 rounded-full text-white bg-white/10 backdrop-blur ">
           {pizza?.category}
         </div>
       </div>
+
       <div className="flex items-center space-x-2 text-sm">
         <Star className="text-yellow-500 fill-yellow-500 w-4 h-4" />
         <p className="font-bold">{pizza?.rating}</p>

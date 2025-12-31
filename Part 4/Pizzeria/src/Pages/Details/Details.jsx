@@ -1,5 +1,5 @@
 import { MoveLeft } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import DetailsSlider from "../../Component/Details/DetailsSlider.jsx";
 import DetailsContent from "../../Component/Details/DetailsContent.jsx";
 import Related from "../../Component/Details/Related.jsx";
@@ -11,9 +11,10 @@ export default function Details() {
   const pizza = useLoaderData();
   const { dispatch } = useCart();
 
+
   useEffect(() => {
     dispatch({ type: "set/Pizza", payload: pizza });
-  }, [pizza, dispatch]);
+  }, [pizza?.id, dispatch]);
 
   return (
     <section className="my-30 bg-mainBgc dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize ">
@@ -25,9 +26,9 @@ export default function Details() {
           <MoveLeft />
           <p>Back to Menu</p>
         </Link>
-        <div className="flex my-10 flex-wrap border-b">
+        <div className="flex my-10 flex-wrap border-b" >
           <DetailsSlider />
-          <DetailsContent />
+          <DetailsContent  />
         </div>
         <Related />
       </div>

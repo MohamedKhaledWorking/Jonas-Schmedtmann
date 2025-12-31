@@ -17,8 +17,6 @@ function reducer(state, action) {
   switch (action.type) {
     case "set/Spicy":
       return { ...state, isSpicy: action.payload };
-    case "set/Pizza":
-      return { ...state, pizza: action.payload };
     case "set/mainImg":
       return { ...state, mainImg: action.payload };
     case "set/selectedSize":
@@ -28,8 +26,10 @@ function reducer(state, action) {
     case "increment/quantity":
       return { ...state, quantity: state.quantity + 1 };
     case "decrement/quantity":
+      if (state.quantity <= 1) return state;
       return { ...state, quantity: state.quantity - 1 };
     case "set/quantity":
+      if (action.payload < 0) return state;
       return { ...state, quantity: action.payload };
     case "set/extraToppings":
       return {
@@ -43,6 +43,19 @@ function reducer(state, action) {
           (topping) => topping.name !== action.payload.name
         ),
       };
+    case "set/Pizza":
+      return {
+        ...state,
+        // isSpicy: false,
+        // selectedSize: "small",
+        // extraToppings: [],
+        // instructions: "",
+        // quantity: 1,
+        // mainImg: action.payload?.image || null,
+        pizza: action.payload,
+      };
+    case "reset/Pizza":
+      return initialState;
 
     default:
       return state;

@@ -1,5 +1,5 @@
 import { EvCharger, Timer, Zap } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import MainImage from "./MainImage.jsx";
 import SliderImage from "./SliderImage.jsx";
 import { useCart } from "../../Context/CartContext.jsx";

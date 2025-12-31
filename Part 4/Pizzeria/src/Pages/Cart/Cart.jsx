@@ -17,10 +17,10 @@ export default function Cart() {
             </p>
             <button
               onClick={() => dispatch(clearItems())}
-              className="py-3 px-10 bg-orange-700 rounded-full border-2 border-orange-700 text-xl 
+              className="py-3 px-15 bg-orange-700 rounded-xl border-2 border-orange-700 text-xl  capitalize
             hover:ring-3 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-textClr dark:text-textClrDark duration-500 cursor-pointer"
             >
-              clear
+              clear cart
             </button>
           </div>
 

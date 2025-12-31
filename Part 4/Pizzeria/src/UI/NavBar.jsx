@@ -117,7 +117,7 @@ export default function NavBar({ setIsDark }) {
             to={"/cart"}
             className="cursor-pointer hover:bg-orange-700 p-2.5 rounded-xl duration-300 group"
           >
-            <div tabIndex="0" role="button" c>
+            <div tabIndex="0" role="button" >
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

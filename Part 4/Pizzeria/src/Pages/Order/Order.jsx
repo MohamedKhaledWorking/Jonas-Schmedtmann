@@ -1,16 +1,10 @@
-import {
-  Box,
-  CircleCheckBig,
-  Hourglass,
-  MapPinHouse,
-  PackagePlus,
-  SearchCheck,
-} from "lucide-react";
+import { CircleCheckBig } from "lucide-react";
 import React from "react";
 import OrderHeader from "../../Component/Order/OrderHeader.jsx";
 import OrderFooter from "../../Component/Order/OrderFooter.jsx";
 import Orders from "../../Component/Order/Orders.jsx";
 import Buttons from "../../Component/Order/Buttons.jsx";
+import { getOrder } from "../../Services/apiRestaurant.js";
 
 export default function Order() {
   return (
@@ -34,4 +28,9 @@ export default function Order() {
       </div>
     </div>
   );
+}
+
+export async function orderLoader({ params }) {
+  const data = await getOrder(params.id);
+  return data;
 }

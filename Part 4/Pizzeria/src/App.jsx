@@ -5,7 +5,7 @@ import Home, { homePizzasLoader } from "./Pages/Home/Home.jsx";
 import Menu, { MenuLoader } from "./Pages/Menu/Menu.jsx";
 import Details, { pizzaLoader } from "./Pages/Details/Details.jsx";
 import Track from "./Pages/Track/Track.jsx";
-import Order from "./Pages/Order/Order.jsx";
+import Order, { orderLoader } from "./Pages/Order/Order.jsx";
 import Cart from "./Pages/Cart/Cart.jsx";
 import CheckOut, { orderAction } from "./Pages/CheckOut/CheckOut.jsx";
 import CreatePizza from "./Pages/CreatePizza/CreatePizza.jsx";
@@ -45,8 +45,9 @@ const router = createBrowserRouter([
         action: orderAction,
       },
       {
-        path: "/order",
+        path: "/order/:id",
         element: <Order />,
+        loader: orderLoader,
       },
       {
         path: "/track",

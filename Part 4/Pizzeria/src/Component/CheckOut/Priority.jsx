@@ -23,7 +23,7 @@ export default function Priority({ isPriority, setIsPriority }) {
 
           <div>
             <p>Priority Delivery</p>
-            <p>Get it in 25 min instead of 45 min (+$5.99)</p>
+            <p>Get it in 25 min instead of 45 min (+$3) for each pizza</p>
           </div>
         </div>
 

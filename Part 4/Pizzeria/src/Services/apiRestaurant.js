@@ -40,9 +40,7 @@ export async function getOrder(id) {
 
 export async function createOrder(newOrder) {
   try {
-    console.log("asdf");
     const res = await axios.post(`${API_URL}/orders`, newOrder);
-    console.log(res);
     return res.data;
   } catch (error) {
     console.log(`something went wrong on fetching menu: ${error}`);

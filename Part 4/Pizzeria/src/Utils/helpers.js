@@ -8,9 +8,9 @@ export function formatTime(dateString) {
   });
 }
 
-export function buildOrderObject(row) {
+export function buildOrderObject(id, row) {
   return {
-    id: Math.floor(Math.random() * 10000000000).toString(),
+    id,
     arriveAt: new Date() + (row.isPriority === "true" ? 25 : 45) * 60000,
     user: {
       name: row.name,

@@ -1,7 +1,9 @@
 import React from "react";
 import OrderItem from "./OrderItem.jsx";
+import { useLoaderData } from "react-router-dom";
 
 export default function Orders() {
+  const { items } = useLoaderData();
   return (
     <>
       <div>
@@ -9,7 +11,9 @@ export default function Orders() {
           Order Items
         </p>
         <div className="my-5 border-y border-textSecClr dark:border-textSecClrDark py-6">
-          <OrderItem />
+          {items?.map((order) => {
+            return <OrderItem order={order} key={order?.id}/>;
+          })}
         </div>
       </div>
     </>

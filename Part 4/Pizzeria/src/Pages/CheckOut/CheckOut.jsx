@@ -4,15 +4,15 @@ import Contact from "../../Component/CheckOut/Contact.jsx";
 import Address from "../../Component/CheckOut/Address.jsx";
 import PaymentMethod from "../../Component/CheckOut/PaymentMethod.jsx";
 import Priority from "../../Component/CheckOut/Priority.jsx";
-import Summery from "../../Component/Cart/Summery.jsx";
 import { Form, redirect, useNavigation } from "react-router-dom";
 import { buildOrderObject, validateInputs } from "../../Utils/helpers.js";
 import { createOrder } from "../../Services/apiRestaurant.js";
 import toast from "react-hot-toast";
-import { useCart } from "../../Context/CartContext.jsx";
 import { useSelector } from "react-redux";
+import Summery from "../../Component/CheckOut/Summery.jsx";
 
 export default function CheckOut() {
+
   const { state } = useNavigation();
   const [isCashed, setIsCashed] = useState(true);
   const [isPriority, setIsPriority] = useState(false);
@@ -36,7 +36,7 @@ export default function CheckOut() {
             <input type="hidden" name="isPriority" value={isPriority} />
             <input type="hidden" name="items" value={JSON.stringify(items)} />
           </div>
-          <Summery state={state} />
+          <Summery state={state} isPriority={isPriority} />
         </Form>
       </div>
     </section>
@@ -46,8 +46,8 @@ export default function CheckOut() {
 export async function orderAction({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+
   const isValid = validateInputs(data);
-  console.log(isValid);
   if (Object.keys(isValid).length > 0) {
     return toast.error(
       Object.values(isValid)
@@ -55,7 +55,24 @@ export async function orderAction({ request }) {
         .join("\n")
     );
   }
-  const order = buildOrderObject(data);
+
+  const id = Math.floor(Math.random() * 10000000000).toString();
+  // const stored = {
+  //   id,
+  //   user: data.name,
+  //   isPriority: data.isPriority === "true",
+  //   items: JSON.parse(data.items),
+  //   address: {
+  //     street: data.street,
+  //     city: data.city,
+  //     postalCode: data.postalCode,
+  //     Apartment: data.Apartment,
+  //   },
+  //   paymentMethod: data.paymentMethod ? "Cash on Delivery" : "credit Card",
+  // };
+  // setStoredOrder(setOrder(stored));
+
+  const order = buildOrderObject(id ,data);
   await createOrder(order);
-  return redirect("/order");
+  return redirect(`/order/${id}`);
 }

@@ -23,11 +23,17 @@ export function buildOrderObject(id, row) {
       postalCode: row.postalCode,
       Apartment: row.Apartment,
     },
-    paymentMethod: row.paymentMethod ? "Cash on Delivery" : "credit Card",
+    paymentMethod:
+      row.paymentMethod == "true" ? "Cash on Delivery" : "credit Card",
     isPriority: row.isPriority === "true",
     orderStatusCode: 0,
     items: JSON.parse(row.items),
     fullPrice: row.fullPrice,
+    creditCard: {
+      cardNumber: row.cardNumber,
+      expiryDate: row.expire,
+      cvv: row.cvv,
+    },
   };
 }
 
@@ -51,6 +57,18 @@ export function validateInputs(row) {
     : null;
   row.paymentMethod === "" || typeof row.paymentMethod !== "string"
     ? (error.paymentMethod = "Payment method is required")
+    : null;
+  (row.paymentMethod == "false" && row.cardNumber === "") ||
+  (row.paymentMethod == "false" && row.cardNumber.length != 16)
+    ? (error.cardNumber = "card number is invalid")
+    : null;
+  (row.paymentMethod == "false" && row.expire === "") ||
+  (row.paymentMethod == "false" && row.expire.length != 5)
+    ? (error.expire = "expiration date is invalid")
+    : null;
+  (row.paymentMethod == "false" && row.cvv === "") ||
+  (row.paymentMethod == "false" && row.cvv.length != 3)
+    ? (error.cvv = "CVC is invalid")
     : null;
 
   return error;

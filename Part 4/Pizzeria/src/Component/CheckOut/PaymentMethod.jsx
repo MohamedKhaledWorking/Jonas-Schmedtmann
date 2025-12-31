@@ -1,5 +1,6 @@
 import { CreditCard, HandCoins } from "lucide-react";
 import React from "react";
+import CreditInputs from "./CreditInputs.jsx";
 
 export default function PaymentMethod({ isCashed, setIsCashed }) {
   return (
@@ -9,7 +10,7 @@ export default function PaymentMethod({ isCashed, setIsCashed }) {
         <div className="flex flex-wrap w-full my-4 b">
           <div className="md:w-1/2   w-full md:pe-4 my-3">
             <div
-              onClick={() => setIsCashed((isCashed) => !isCashed)}
+              onClick={() => setIsCashed(false)}
               className={`border  p-5 rounded-2xl flex items-center hover:border-orange-700 cursor-pointer duration-400 ${
                 !isCashed
                   ? "border-orange-700 text-orange-700 ring-2 ring-offset-3 ring-orange-700 ring-offset-mainBgc dark:ring-offset-mainBgcDark"
@@ -27,7 +28,7 @@ export default function PaymentMethod({ isCashed, setIsCashed }) {
           </div>
           <div className="md:w-1/2  w-full md:pe-4 my-3">
             <div
-              onClick={() => setIsCashed((isCashed) => !isCashed)}
+              onClick={() => setIsCashed(true)}
               className={`border  p-5 rounded-2xl flex items-center hover:border-orange-700 cursor-pointer duration-400 ${
                 isCashed
                   ? "border-orange-700 text-orange-700 ring-2 ring-offset-3 ring-orange-700 ring-offset-mainBgc dark:ring-offset-mainBgcDark"
@@ -44,6 +45,7 @@ export default function PaymentMethod({ isCashed, setIsCashed }) {
             </div>
           </div>
         </div>
+        {isCashed ? null : <CreditInputs />}
       </div>
     </>
   );

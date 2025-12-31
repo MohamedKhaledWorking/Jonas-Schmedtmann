@@ -50,6 +50,7 @@ export async function orderAction({ request }) {
   const data = Object.fromEntries(formData);
 
   const isValid = validateInputs(data);
+
   if (Object.keys(isValid).length > 0) {
     return toast.error(
       Object.values(isValid)
@@ -57,6 +58,7 @@ export async function orderAction({ request }) {
         .join("\n")
     );
   }
+
 
   const id = Math.floor(Math.random() * 10000000000).toString();
   const order = buildOrderObject(id, data);

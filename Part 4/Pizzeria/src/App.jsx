@@ -13,6 +13,7 @@ import Error from "./UI/Error.jsx";
 import NoTrackFound from "./Component/Track/NoTrackFound.jsx";
 import TrackFound, { getOrderLoader } from "./Component/Track/TrackFound.jsx";
 import CartContextProvider from "./Context/CartContext.jsx";
+import CreatePizzaContextProvider from "./Context/CreatePizzaContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -66,7 +67,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/createPizza",
-        element: <CreatePizza />,
+        element: (
+          <CreatePizzaContextProvider>
+            <CreatePizza />
+          </CreatePizzaContextProvider>
+        ),
       },
     ],
   },

@@ -1,8 +1,9 @@
 import { SoapDispenserDroplet } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { useCreatePizza } from "../../Context/CreatePizzaContext.jsx";
 
 export default function Sauce() {
-  const [selectedSize, setSelectedSize] = React.useState("l");
+  const { sauce, dispatch } = useCreatePizza();
   return (
     <div className="my-8 p-8 pb-0 bg-secBgc dark:bg-secBgcDark rounded-2xl border border-textClr/20 dark:border-textSEcClrDark/20">
       <div className="flex space-x-3 items-center">
@@ -13,9 +14,14 @@ export default function Sauce() {
         <div className="flex flex-wrap my-8 space-y-3">
           <div className="px-2 w-full md:w-1/4">
             <div
-              onClick={() => setSelectedSize("s")}
+              onClick={() =>
+                dispatch({
+                  type: "set/sauce",
+                  payload: { sauce: "tomato", price: 2 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "S"
+                sauce.sauce == "tomato"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}
@@ -28,9 +34,14 @@ export default function Sauce() {
           </div>
           <div className="px-2 w-full md:w-1/4">
             <div
-              onClick={() => setSelectedSize("m")}
+              onClick={() =>
+                dispatch({
+                  type: "set/sauce",
+                  payload: { sauce: "bbq", price: 2 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "M"
+                sauce.sauce == "bbq"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}
@@ -43,9 +54,14 @@ export default function Sauce() {
           </div>
           <div className="px-2 w-full md:w-1/4">
             <div
-              onClick={() => setSelectedSize("l")}
+              onClick={() =>
+                dispatch({
+                  type: "set/sauce",
+                  payload: { sauce: "garlic", price: 6.5 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "L"
+                sauce.sauce == "garlic"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}
@@ -58,9 +74,14 @@ export default function Sauce() {
           </div>
           <div className="px-2 w-full md:w-1/4">
             <div
-              onClick={() => setSelectedSize("l")}
+              onClick={() =>
+                dispatch({
+                  type: "set/sauce",
+                  payload: { sauce: "basil", price: 3 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "L"
+                sauce.sauce == "basil"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}

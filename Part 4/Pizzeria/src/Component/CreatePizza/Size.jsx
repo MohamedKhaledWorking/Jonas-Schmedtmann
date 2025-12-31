@@ -1,8 +1,9 @@
 import { RulerDimensionLine } from "lucide-react";
 import React, { useState } from "react";
+import { useCreatePizza } from "../../Context/CreatePizzaContext.jsx";
 
 export default function Size() {
-  const [selectedSize, setSelectedSize] = useState("l");
+  const { size, dispatch } = useCreatePizza();
 
   return (
     <div className="my-8 p-8 pb-0 bg-secBgc dark:bg-secBgcDark rounded-2xl border border-textClr/20 dark:border-textSEcClrDark/20">
@@ -14,9 +15,14 @@ export default function Size() {
         <div className="flex flex-wrap my-8 space-y-3">
           <div className="px-2 w-full md:w-1/3">
             <div
-              onClick={() => setSelectedSize("s")}
+              onClick={() =>
+                dispatch({
+                  type: "set/size",
+                  payload: { size: "small", priceMultiplier: 0.8 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "S"
+                size.size == "small"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}
@@ -30,9 +36,14 @@ export default function Size() {
           </div>
           <div className="px-2 w-full md:w-1/3">
             <div
-              onClick={() => setSelectedSize("m")}
+              onClick={() =>
+                dispatch({
+                  type: "set/size",
+                  payload: { size: "medium", priceMultiplier: 1 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "M"
+                size.size == "medium"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}
@@ -46,9 +57,14 @@ export default function Size() {
           </div>
           <div className="px-2 w-full md:w-1/3">
             <div
-              onClick={() => setSelectedSize("l")}
+              onClick={() =>
+                dispatch({
+                  type: "set/size",
+                  payload: { size: "large", priceMultiplier: 1.2 },
+                })
+              }
               className={`w-full py-3 border text-center rounded-2xl cursor-pointer hover:border-orange-700 duration-400 ${
-                selectedSize.toUpperCase() == "L"
+                size.size == "large"
                   ? "border-orange-700"
                   : "border-textClr dark:border-textClr"
               }`}

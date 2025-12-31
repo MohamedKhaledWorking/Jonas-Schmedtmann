@@ -89,7 +89,7 @@ export default function Cart() {
                   return <PizzaCart pizza={pizza} key={pizza?.id} />;
                 })}
               </div>
-              <Summery />
+              <Summery showPromoCode={true} />
             </div>
           )}
         </div>

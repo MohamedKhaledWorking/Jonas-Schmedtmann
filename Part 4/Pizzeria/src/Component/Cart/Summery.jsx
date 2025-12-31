@@ -1,41 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Summery({ isPriority = false, state }) {
+  const carts = useSelector((store) => store?.cart?.cart);
+  const subTotal = carts.reduce((acc, curr) => acc + curr.totalPrice, 0);
+  const tax = subTotal * 0.08;
+  const delivery = 0;
   return (
     <>
       <div className="w-full lg:w-4/12 ps-0 lg:ps-4 mb-10">
         <div className="bg-secBgc dark:bg-secBgcDark px-4 py-8 rounded-3xl">
           <p className="text-lg font-bold font-main">Order Summary</p>
-          <div className="my-5 flex items-center justify-between flex-col md:flex-row lg:flex-row lg:w-full space-y-4 md:space-y-0 ">
-            <div className="md:pe-4 md:w-9/12 w-full">
-              <input
-                type="text"
-                placeholder="Order Number"
-                className="px-4 py-3 rounded-xl border border-orange-700/20 bg-transparent focus:outline-none w-full 
-             focus:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark focus:border-orange-600 duration-300 text-sm text "
-              />
-            </div>
-            <button
-              type="submit"
-              className="block w-full md:w-3/12  px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 capitalize 
-                  hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm cursor-pointer"
-            >
-              apply
-            </button>
-          </div>
           <div className="border-b border-b-slate-700/50">
             <div className="my-3 flex items-center justify-between text-sm ">
               <p>Subtotal</p>
-              <p className="text-textSecClr dark:text-textSecClrDark">$10</p>
+              <p className="text-textSecClr dark:text-textSecClrDark">
+                ${subTotal.toFixed(2)}
+              </p>
             </div>
             <div className="my-3 flex items-center justify-between text-sm ">
               <p>Tax (8%)</p>
-              <p className="text-textSecClr dark:text-textSecClrDark">$2.52</p>
+              <p className="text-textSecClr dark:text-textSecClrDark">
+                ${tax.toFixed(2)}
+              </p>
             </div>
             <div className="my-3 flex items-center justify-between text-sm ">
               <p>Delivery</p>
-              <p>free</p>
+              <p>{delivery == 0 ? "Free" : `$${delivery.toFixed(2)}`}</p>
             </div>
             {isPriority && (
               <div className="my-3 flex items-center justify-between text-sm ">
@@ -46,7 +38,7 @@ export default function Summery({ isPriority = false, state }) {
           </div>
           <div className="my-3 flex items-center justify-between text-2xl font-bold font-main ">
             <p>Total</p>
-            <p>$26.415</p>
+            <p>${(subTotal + tax + delivery).toFixed(2)}</p>
           </div>
           <Link
             to={"/checkout"}

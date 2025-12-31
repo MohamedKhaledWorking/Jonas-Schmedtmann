@@ -19,7 +19,6 @@ export async function getHomePizzas() {
   }
 }
 
-
 export async function getPizza(id) {
   try {
     const { data } = await axios.get(`${API_URL}/pizzas/${id}`);
@@ -41,8 +40,18 @@ export async function getOrder(id) {
 
 export async function createOrder(newOrder) {
   try {
+    console.log("asdf");
     const res = await axios.post(`${API_URL}/orders`, newOrder);
     console.log(res);
+    return res.data;
+  } catch (error) {
+    console.log(`something went wrong on fetching menu: ${error}`);
+  }
+}
+
+export async function sendPromoCodes(promoCodes) {
+  try {
+    const res = await axios.post(`${API_URL}/promoCodes`, promoCodes);
     return res.data;
   } catch (error) {
     console.log(`something went wrong on fetching menu: ${error}`);

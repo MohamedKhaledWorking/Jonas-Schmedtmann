@@ -31,7 +31,6 @@ export async function getPizza(id) {
 export async function getOrder(id) {
   try {
     const { data } = await axios.get(`${API_URL}/orders/${id}`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(`something went wrong on fetching menu: ${error}`);

@@ -10,13 +10,14 @@ import { createOrder } from "../../Services/apiRestaurant.js";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import Summery from "../../Component/CheckOut/Summery.jsx";
+import { useTotalPrice } from "../../Hooks/useTotalPrice.js";
 
 export default function CheckOut() {
-
   const { state } = useNavigation();
   const [isCashed, setIsCashed] = useState(true);
   const [isPriority, setIsPriority] = useState(false);
   const items = useSelector((store) => store.cart.cart);
+  const { total: fullPrice } = useTotalPrice(isPriority);
 
   return (
     <section className="my-30  bg-main dark:bg-mainBgcDark text-textClr dark:text-textClrDark capitalize text-base">
@@ -35,6 +36,7 @@ export default function CheckOut() {
             <input type="hidden" name="paymentMethod" value={isCashed} />
             <input type="hidden" name="isPriority" value={isPriority} />
             <input type="hidden" name="items" value={JSON.stringify(items)} />
+            <input type="hidden" name="fullPrice" value={fullPrice} />
           </div>
           <Summery state={state} isPriority={isPriority} />
         </Form>
@@ -57,22 +59,7 @@ export async function orderAction({ request }) {
   }
 
   const id = Math.floor(Math.random() * 10000000000).toString();
-  // const stored = {
-  //   id,
-  //   user: data.name,
-  //   isPriority: data.isPriority === "true",
-  //   items: JSON.parse(data.items),
-  //   address: {
-  //     street: data.street,
-  //     city: data.city,
-  //     postalCode: data.postalCode,
-  //     Apartment: data.Apartment,
-  //   },
-  //   paymentMethod: data.paymentMethod ? "Cash on Delivery" : "credit Card",
-  // };
-  // setStoredOrder(setOrder(stored));
-
-  const order = buildOrderObject(id ,data);
+  const order = buildOrderObject(id, data);
   await createOrder(order);
   return redirect(`/order/${id}`);
 }

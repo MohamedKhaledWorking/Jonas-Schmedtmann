@@ -8,7 +8,6 @@ import { formatTime } from "../../Utils/helpers.js";
 
 export default function TrackFound() {
   const order = useLoaderData();
-  console.log(order);
   return (
     <>
       {order ? (
@@ -34,7 +33,12 @@ export default function TrackFound() {
             address={order?.address}
             items={order?.items}
             total={order?.totalPrice}
+            isPriority={order?.isPriority}
+            fullPrice={order?.fullPrice}
           />
+          <p className="text-sm text-textSecClr dark:text-textSecClrDark">
+            this price including tax and shipping cost
+          </p>
         </>
       ) : (
         <p className="my-5 text-2xl text-orange-700 font-bold font-main">

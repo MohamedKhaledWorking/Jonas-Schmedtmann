@@ -1,7 +1,15 @@
 import { MapPinHouse } from "lucide-react";
 import React from "react";
+import { useTotalPrice } from "../../Hooks/useTotalPrice.js";
 
-export default function TimeLineFooter({ user, address, items, total }) {
+export default function TimeLineFooter({
+  user,
+  address,
+  items,
+  isPriority,
+  fullPrice,
+}) {
+  const { total: totalPrice } = useTotalPrice(isPriority);
   return (
     <>
       <div className="flex items-center space-x-4 my-5 border-b border-textSecClr dark:border-textSecClrDark pb-5">
@@ -27,7 +35,7 @@ export default function TimeLineFooter({ user, address, items, total }) {
               <p>
                 {item?.quantity}× {item?.name}({item?.size})
               </p>
-              <p>${item?.price}</p>
+              <p>${(item?.totalPrice).toFixed(2)}</p>
             </div>
           );
         })}
@@ -35,7 +43,9 @@ export default function TimeLineFooter({ user, address, items, total }) {
           <p className="font-bold font-main text-mainClr dark:text-mainClrDark text-2xl">
             Total
           </p>
-          <p className="font-bold text-orange-700 text-2xl ">${total}</p>
+          <p className="font-bold text-orange-700 text-2xl ">
+            ${Number(fullPrice).toFixed(2)}
+          </p>
         </div>
       </div>
     </>

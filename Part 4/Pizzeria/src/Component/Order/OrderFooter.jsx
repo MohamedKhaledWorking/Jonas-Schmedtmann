@@ -4,8 +4,9 @@ import { useLoaderData } from "react-router-dom";
 import { useTotalPrice } from "../../Hooks/useTotalPrice.js";
 
 export default function OrderFooter() {
-  const { paymentMethod, user, address, isPriority } = useLoaderData();
-  const { total, priority } = useTotalPrice(isPriority);
+  const { paymentMethod, user, address, isPriority, fullPrice } =
+    useLoaderData();
+  const { priority } = useTotalPrice(isPriority);
 
   return (
     <>
@@ -28,7 +29,7 @@ export default function OrderFooter() {
           Total Paid
         </p>
         <p className="font-bold text-orange-700 text-2xl ">
-          ${total.toFixed(2)}
+          ${Number(fullPrice).toFixed(2)}
         </p>
       </div>
       <p className=" font-bold font-main text-start text-sm text-textSecClr dark:text-textSecClrDark">

@@ -1,12 +1,18 @@
 import { CircleCheckBig } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import OrderHeader from "../../Component/Order/OrderHeader.jsx";
 import OrderFooter from "../../Component/Order/OrderFooter.jsx";
 import Orders from "../../Component/Order/Orders.jsx";
 import Buttons from "../../Component/Order/Buttons.jsx";
 import { getOrder } from "../../Services/apiRestaurant.js";
+import { useDispatch } from "react-redux";
+import { clearItems } from "../../Features/cartSlice.js";
 
 export default function Order() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearItems());
+  });
   return (
     <div className="py-30 ">
       <div className="container mx-auto px-4 ">

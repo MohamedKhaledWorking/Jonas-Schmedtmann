@@ -27,6 +27,7 @@ export function buildOrderObject(id, row) {
     isPriority: row.isPriority === "true",
     orderStatusCode: 0,
     items: JSON.parse(row.items),
+    fullPrice: row.fullPrice,
   };
 }
 

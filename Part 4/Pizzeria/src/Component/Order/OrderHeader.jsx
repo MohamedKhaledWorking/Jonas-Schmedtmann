@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { formatTime } from "../../Utils/helpers.js";
 
 export default function OrderHeader() {
-  const { id, arriveAt, priority } = useLoaderData();
+  const { id, arriveAt, isPriority } = useLoaderData();
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function OrderHeader() {
         <p>{id}</p>
         <p className="text-orange-700">{formatTime(arriveAt)}</p>
       </div>
-      {priority && (
+      {isPriority && (
         <div className="bg-orange-700/20 flex space-x-2 items-center my-5 py-3 px-4 rounded-lg">
           <Hourglass className="text-orange-700" />
           <p>Priority Delivery Active </p>

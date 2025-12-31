@@ -3,14 +3,9 @@ import { Link } from "react-router-dom";
 import { useTotalPrice } from "../../Hooks/useTotalPrice.js";
 
 export default function Summery({ isPriority = false, state }) {
-  // const carts = useSelector((store) => store?.cart?.cart);
-  // const subTotal = carts.reduce((acc, curr) => acc + curr.totalPrice, 0);
-  // const quantity = carts.reduce((acc, curr) => acc + curr.quantity, 0);
-  // const priority = isPriority ? quantity * 3 : 0;
-  // const tax = subTotal * 0.08;
-  // const delivery = 0;
   const { subTotal, priority, tax, delivery, total } =
-  useTotalPrice(isPriority);
+    useTotalPrice(isPriority);
+
   return (
     <>
       <div className="w-full lg:w-4/12 ps-0 lg:ps-4 mb-10">
@@ -45,6 +40,7 @@ export default function Summery({ isPriority = false, state }) {
             <p>${total.toFixed(2)}</p>
           </div>
           <button
+            type="submit"
             className={`w-full px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 duration-300 mt-5 block text-center capitalize
                 hover:ring-2 ring-orange-700 ring-offset-4 ring-offset-mainBgc dark:ring-offset-mainBgcDark text-sm ${
                   state == "submitting"
@@ -53,7 +49,7 @@ export default function Summery({ isPriority = false, state }) {
                 }`}
             disabled={state == "submitting"}
           >
-            {state == "submitting" ? "Processing..." : "Proceed to Checkout"}
+            {state == "submitting" ? "Processing..." : "Checkout"}
           </button>
           <Link
             to={"/menu"}

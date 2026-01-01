@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer } from "react";
 const CreatePizzaContext = createContext();
 
 const initialState = {
-  name: "great pizza",
+  name: "",
   size: {
     size: "small",
     priceMultiplier: 0.8,

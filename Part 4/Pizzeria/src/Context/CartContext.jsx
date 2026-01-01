@@ -88,5 +88,6 @@ export default function CartContextProvider({ children }) {
 }
 
 export function useCart() {
+  
   return useContext(CartContext);
 }

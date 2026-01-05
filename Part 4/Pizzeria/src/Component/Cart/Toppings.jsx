@@ -9,7 +9,7 @@ export default function Toppings({ toppings }) {
         <div className="my-2 flex flex-wrap">
           {toppings?.map((topping) => {
             return (
-              <div className="pe-2">
+              <div className="pe-2" key={topping?.id}>
                 <div className="bg-white/30 dark:bg-slate-900/50 w-fit px-4 py-2 rounded-full  text-xs my-2 flex justify-between border border-slate-700/80">
                   <p>{topping?.name}</p>
                   <p className="ms-2 text-textSecClr dark:text-textSecClrDark">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import HeaderIcon from "../../UI/HeaderIcon.jsx";
 import { MoveLeft, MoveRight, Smile } from "lucide-react";
 import PizzaCard from "./PizzaCard.jsx";

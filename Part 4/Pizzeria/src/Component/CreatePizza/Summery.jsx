@@ -73,7 +73,6 @@ export default function Summary() {
       totalPrice, // Final total price
     };
 
-    console.log(pizza); // Debugging the pizza object
     reduxDispatch(addCustomToCart(pizza));
     navigate("/cart");
   }

@@ -11,8 +11,8 @@ export default function Orders() {
           Order Items
         </p>
         <div className="my-5 border-y border-textSecClr dark:border-textSecClrDark py-6">
-          {items?.map((order) => {
-            return <OrderItem order={order} key={order?.id}/>;
+          {items?.map((order , idx) => {
+            return <OrderItem order={order} key={idx} />;
           })}
         </div>
       </div>

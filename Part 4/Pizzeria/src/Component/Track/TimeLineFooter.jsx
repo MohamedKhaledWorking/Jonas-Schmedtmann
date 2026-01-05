@@ -29,9 +29,9 @@ export default function TimeLineFooter({
         <p className="font-bold font-main text-mainClr dark:text-mainClrDark mb-2">
           Order Items
         </p>
-        {items.map((item) => {
+        {items.map((item, idx) => {
           return (
-            <div className="flex justify-between">
+            <div className="flex justify-between" key={idx}>
               <p>
                 {item?.quantity}× {item?.name}({item?.size})
               </p>

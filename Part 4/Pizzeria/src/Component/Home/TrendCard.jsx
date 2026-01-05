@@ -15,7 +15,7 @@ export default function TrendCard({ idx, pizza }) {
             />
           </div>
           <div className="px-4 pb-8 ">
-            <p className="my-4 font-bold font-main text-3xl line-clamp-1 h-10 text-textClr dark:text-textClrDark group-hover:text-orange-500 duration-300 h-10 line-clamp-1">
+            <p className="my-4 font-bold font-main text-3xl text-textClr dark:text-textClrDark group-hover:text-orange-500 duration-300 h-10 line-clamp-1">
               {pizza?.name}
             </p>
             <div className="flex items-center justify-between my-4">

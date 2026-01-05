@@ -20,7 +20,10 @@ export default function OrderItem({ order }) {
             <div className="flex space-x-1 flex-wrap space-y-1">
               {order?.extraToppings.map((topping) => {
                 return (
-                  <div className="border rounded-full px-2 py-1 text-xs h-6">
+                  <div
+                    className="border rounded-full px-2 py-1 text-xs h-6"
+                    key={topping?.id}
+                  >
                     {topping?.name}
                   </div>
                 );

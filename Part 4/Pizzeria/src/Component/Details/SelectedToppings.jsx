@@ -15,7 +15,7 @@ export default function SelectedToppings({ totalToppingsPrice }) {
         </div>
         <ul className="flex flex-wrap my-4">
           {extraToppings?.map((topping) => {
-            return <SelectedTopping topping={topping} />;
+            return <SelectedTopping topping={topping} key={topping?.id} />;
           })}
         </ul>
       </div>

@@ -6,7 +6,6 @@ import { useTotalPrice } from "../../Hooks/useTotalPrice.js";
 export default function OrderFooter() {
   const { paymentMethod, user, address, isPriority, fullPrice } =
     useLoaderData();
-  console.log(paymentMethod);
   const { priority } = useTotalPrice(isPriority);
 
   return (

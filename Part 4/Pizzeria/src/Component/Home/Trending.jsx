@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import HeaderIcon from "../../UI/HeaderIcon.jsx";
 import { Flame } from "lucide-react";
 import TrendCard from "./TrendCard.jsx";
-import { getHomePizzas } from "../../Services/apiRestaurant.js";
 import { useLoaderData } from "react-router-dom";
 
 export default function Trending() {

@@ -9,7 +9,7 @@
       "customTemplates": {
         "component": "./Templates/TemplateName.jsx"
       },
-      "path": "src/Pages",
+      "path": "src/UI",
       "withStyle": false,
       "withTest": false,
       "withStory": false,
@@ -17,3 +17,4 @@
     }
   }
 }
+

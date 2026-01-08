@@ -41,8 +41,8 @@ export default function AppNavbar() {
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="full"
       classNames={{
-        base: "px-10", // remove outer padding
-        wrapper: "px-0 max-w-full", // remove inner container padding + full width
+        base: "px-10 bg-mainBgc border-b lightBorder", 
+        wrapper: "px-0 max-w-full", 
       }}
     >
       <NavbarContent className="gap-2">

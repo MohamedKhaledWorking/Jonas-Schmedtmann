@@ -2,3 +2,44 @@
 @plugin './hero.js';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-mainBgc: #0b0f17;
+  --color-secBgc: #101828;
+
+  --color-themeClr: #195de6;
+
+  --color-textMainClr: #fff;
+  --color-textSecClr: #7093af;
+}
+
+.lightBorder {
+  border-color: #d0d5dd2c;
+}
+
+.mainBtn {
+  @apply px-6 py-3.5 bg-themeClr text-white rounded-xl cursor-pointer capitalize flex items-center space-x-4 hover:bg-transparent border border-themeClr
+  hover:text-themeClr duration-300 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-themeClr;
+}
+.mainDeleteBtn {
+  @apply px-6 py-3.5 bg-red-700 text-white rounded-xl cursor-pointer capitalize flex items-center space-x-4 hover:bg-transparent border border-red-700
+  hover:text-red-700 duration-300 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-red-700;
+}
+/* HeroUI DatePicker - force transparent (no hover/focus bg) */
+.dp-transparent [data-slot="input-wrapper"],
+.dp-transparent [data-slot="input-wrapper"]::before,
+.dp-transparent [data-slot="input-wrapper"]::after {
+  background: transparent !important;
+}
+
+/* Text color (DatePicker uses segmented text sometimes) */
+.dp-transparent [data-slot="input"],
+.dp-transparent [data-slot="segment"] {
+  color: #fff !important;
+}
+
+/* Border */
+.dp-transparent [data-slot="input-wrapper"] {
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  height: 56px; /* h-14 */
+}

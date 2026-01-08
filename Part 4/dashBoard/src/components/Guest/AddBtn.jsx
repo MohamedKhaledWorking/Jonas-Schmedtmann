@@ -41,7 +41,12 @@ export default function AddBtn({ icon, buttonText, children }) {
             <>
               {children}
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose} className="w-full mainDeleteBtn bg-red-700 text-xl h-15">
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={onClose}
+                  className="w-full mainDeleteBtn bg-red-700 text-xl h-15"
+                >
                   Close
                 </Button>
               </ModalFooter>

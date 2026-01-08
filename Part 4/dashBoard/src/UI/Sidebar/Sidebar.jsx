@@ -7,8 +7,10 @@ export default function Sidebar() {
   return (
     <>
       <aside
-        className={`h-screen duration-500 border-r lightBorder p-10 ${
-          showSidebar ? "w-3/20 " : "w-1/20"
+        className={`h-screen duration-500 border-r lightBorder md:py-5 lg:py-10 hidden  md:absolute lg:relative z-50 bg-mainBgc md:flex items-center flex-col ${
+          showSidebar
+            ? "md:w-7/20 lg:w-3/21 px-5"
+            : "lg:w-1/23 md:hidden lg:flex"
         }`}
       >
         <div className="logo">
@@ -22,6 +24,10 @@ export default function Sidebar() {
           <p>luxe hotel</p>
         </div>
         <p>Sidebar</p>
+
+        <button onClick={() => dispatch({ type: "toggle/sidebar" })}>
+          collapse
+        </button>
       </aside>
     </>
   );

@@ -11,7 +11,7 @@ export default function Layout() {
         <Sidebar />
         <section className="flex flex-col w-full ">
           <AppNavbar />
-          <div className=" min-h-screen w-full mx-auto p-10">
+          <div className=" min-h-screen w-full mx-auto p-5 md:p-10">
             <Outlet />
           </div>
         </section>

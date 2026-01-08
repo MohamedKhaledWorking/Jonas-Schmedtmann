@@ -4,7 +4,7 @@ import { DatePicker, DateRangePicker, NumberInput } from "@heroui/react";
 
 export default function AddForm() {
   return (
-    <form action className>
+    <form action >
       <div className="flex gap-x-6 mb-6">
         <div className="w-full relative">
           <label className="flex  items-center mb-2 text-gray-600 text-sm font-medium">

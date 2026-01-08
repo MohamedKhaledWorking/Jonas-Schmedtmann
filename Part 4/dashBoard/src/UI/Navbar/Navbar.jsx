@@ -51,8 +51,8 @@ export default function AppNavbar() {
           className="sm:hidden"
         />
         <div
-          onClick={() => dispatch({ type: "set/sidebar" })}
-          className="cursor-pointer"
+          onClick={() => dispatch({ type: "toggle/sidebar" })}
+          className="cursor-pointer hidden md:block"
         >
           {showSidebar ? <ListIndentDecrease /> : <ListIndentIncrease />}
         </div>

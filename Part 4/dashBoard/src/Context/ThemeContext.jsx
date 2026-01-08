@@ -12,7 +12,7 @@ function reducer(state, action) {
   switch (action.type) {
     case "set/theme":
       return { ...state, theme: action.payload };
-    case "set/sidebar":
+    case "toggle/sidebar":
       return { ...state, showSidebar: !state.showSidebar };
   }
 }

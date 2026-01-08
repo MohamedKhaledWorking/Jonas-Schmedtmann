@@ -10,17 +10,19 @@ export default function SectionHeader({
   buttonText = "",
 }) {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-start md:items-center flex-col md:flex-row space-y-5 md:space-y-0">
       <div>
-        <h1 className="text-3xl font-bold ">{head}</h1>
-        <h2 className="text-base text-textSecClr">{subHead}</h2>
+        <h1 className="text-5xl font-bold ">{head}</h1>
+        <h2 className="text-base text-textSecClr mt-2 line-clamp-1">
+          {subHead}
+        </h2>
       </div>
       <div>
         <AddBtn icon={icon} buttonText={buttonText}>
           <ModalHeader className="flex flex-col gap-1 text-white mx-auto py-10 font-bold capitalize text-2xl">
             add guest
           </ModalHeader>
-          <ModalBody>
+          <ModalBody> 
             <AddForm />
           </ModalBody>
         </AddBtn>

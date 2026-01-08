@@ -15,6 +15,7 @@ import { getUsers } from "../../services/user.js";
 
 export const columns = [
   { name: "Guest", uid: "name" },
+  { name: "Contact", uid: "email" },
   { name: "Country", uid: "role" },
   { name: "Total Stays", uid: "status" },
   { name: "Total Spent", uid: "status" },
@@ -267,12 +268,16 @@ export default function App() {
 //     queryFn: getUsers,
 //   });
 
-  console.log(users);
 
   return (
     <Table
       aria-label="Example table with custom cells"
-      className="dark my-20 px-0"
+      className="dark my-10 px-0"
+      classNames={
+        {
+          wrapper : "p-0"
+        }
+      }
     >
       <TableHeader columns={columns}>
         {(column) => (
@@ -286,7 +291,7 @@ export default function App() {
       </TableHeader>
       <TableBody items={users}>
         {(item) => (
-          <TableRow key={item.id} className="bg-red-200 cursor-pointer">
+          <TableRow key={item.id} className=" cursor-pointer">
             {(columnKey) => (
               <TableCell>{renderCell(item, columnKey)}</TableCell>
             )}

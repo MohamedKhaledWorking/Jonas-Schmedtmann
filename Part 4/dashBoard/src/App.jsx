@@ -33,13 +33,14 @@ function App() {
     <>
       <Toaster />
       <HeroUIProvider>
-        <ThemeContextProvider>
-          <RouterProvider router={router}>
-            <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
+          <ThemeContextProvider>
+            <RouterProvider router={router}>
               <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
-          </RouterProvider>
-        </ThemeContextProvider>
+            </RouterProvider>
+          </ThemeContextProvider>
+        </QueryClientProvider>
       </HeroUIProvider>
     </>
   );

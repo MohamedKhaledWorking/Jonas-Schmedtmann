@@ -1,303 +1,308 @@
 import React from "react";
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  User,
-  Chip,
-  Tooltip,
-} from "@heroui/react";
+import { EllipsisVertical, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/user.js";
+
+import { getGuests } from "../../services/guests.js";
+import TableSkeleton from "../../UI/Table/TableSkeleton.jsx";
+import { filterRows, paginateRows, sortRows } from "../../utils/tableUtils.js";
+import Pagination from "../../UI/Table/Pagination.jsx";
+
+const levelStyles = {
+  gold: "bg-yellow-500/15 text-yellow-300 border border-yellow-500/30",
+  silver: "bg-slate-400/15 text-slate-200 border border-slate-400/30",
+  bronze: "bg-orange-800/15 text-orange-300 border border-orange-800/30",
+  user: "bg-dark/10 text-white/80 border border-white/15",
+};
 
 export const columns = [
-  { name: "Guest", uid: "name" },
-  { name: "Contact", uid: "email" },
-  { name: "Country", uid: "role" },
-  { name: "Total Stays", uid: "status" },
-  { name: "Total Spent", uid: "status" },
-  { name: "from/to", uid: "status" },
-  { name: "ACTIONS", uid: "actions" },
+  {
+    name: "Guest",
+    uid: "guest",
+    sortable: true,
+    sortKey: "full_name",
+    sortType: "string",
+  },
+  {
+    name: "CONTACT",
+    uid: "contact",
+    sortable: true,
+    sortKey: "email",
+    sortType: "string",
+  },
+  {
+    name: "Level",
+    uid: "level",
+    sortable: true,
+    sortKey: "vip_level",
+    sortType: "string",
+  },
+  {
+    name: "STAY",
+    uid: "total_stay",
+    sortable: true,
+    sortKey: "total_stays",
+    sortType: "number",
+  },
+  {
+    name: "SPENT",
+    uid: "total_spent",
+    sortable: true,
+    sortKey: "total_spent",
+    sortType: "number",
+  },
+  { name: "ACTIONS", uid: "actions", sortable: false },
 ];
 
-export const users = [
-  {
-    id: 1,
-    name: "Tony Reichert",
-    role: "CEO",
-    team: "Management",
-    status: "active",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    email: "tony.reichert@example.com",
-  },
-  {
-    id: 2,
-    name: "Zoey Lang",
-    role: "Technical Lead",
-    team: "Development",
-    status: "paused",
-    age: "25",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    email: "zoey.lang@example.com",
-  },
-  {
-    id: 3,
-    name: "Jane Fisher",
-    role: "Senior Developer",
-    team: "Development",
-    status: "active",
-    age: "22",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-    email: "jane.fisher@example.com",
-  },
-  {
-    id: 4,
-    name: "William Howard",
-    role: "Community Manager",
-    team: "Marketing",
-    status: "vacation",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
-  {
-    id: 5,
-    name: "Kristen Copper",
-    role: "Sales Manager",
-    team: "Sales",
-    status: "active",
-    age: "24",
-    avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-    email: "kristen.cooper@example.com",
-  },
-];
+function ThSort({ col, sortDescriptor, onSort }) {
+  const isActive = sortDescriptor.column === col.uid;
+  const dir = isActive ? sortDescriptor.direction : undefined;
 
-export const EyeIcon = (props) => {
   return (
-    <svg
-      aria-hidden="true"
-      fill="none"
-      focusable="false"
-      height="1em"
-      role="presentation"
-      viewBox="0 0 20 20"
-      width="1em"
-      {...props}
+    <th
+      className={`py-4 px-4 text-left text-sm font-medium text-slate-300 border-b border-white/10 bg-secBgc
+      ${col.sortable ? "cursor-pointer select-none hover:bg-white/5" : ""}`}
+      onClick={() => col.sortable && onSort(col.uid)}
+      title={col.sortable ? "Sort" : undefined}
     >
-      <path
-        d="M12.9833 10C12.9833 11.65 11.65 12.9833 10 12.9833C8.35 12.9833 7.01666 11.65 7.01666 10C7.01666 8.35 8.35 7.01666 10 7.01666C11.65 7.01666 12.9833 8.35 12.9833 10Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-      <path
-        d="M9.99999 16.8916C12.9417 16.8916 15.6833 15.1583 17.5917 12.1583C18.3417 10.9833 18.3417 9.00831 17.5917 7.83331C15.6833 4.83331 12.9417 3.09998 9.99999 3.09998C7.05833 3.09998 4.31666 4.83331 2.40833 7.83331C1.65833 9.00831 1.65833 10.9833 2.40833 12.1583C4.31666 15.1583 7.05833 16.8916 9.99999 16.8916Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-    </svg>
+      <div className="flex items-center gap-2">
+        <span>{col.name}</span>
+        {col.sortable && (
+          <span className="text-xs opacity-80">
+            {isActive ? (dir === "ascending" ? "▲" : "▼") : "↕"}
+          </span>
+        )}
+      </div>
+    </th>
   );
-};
+}
 
-export const DeleteIcon = (props) => {
-  return (
-    <svg
-      aria-hidden="true"
-      fill="none"
-      focusable="false"
-      height="1em"
-      role="presentation"
-      viewBox="0 0 20 20"
-      width="1em"
-      {...props}
-    >
-      <path
-        d="M17.5 4.98332C14.725 4.70832 11.9333 4.56665 9.15 4.56665C7.5 4.56665 5.85 4.64998 4.2 4.81665L2.5 4.98332"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-      <path
-        d="M7.08331 4.14169L7.26665 3.05002C7.39998 2.25835 7.49998 1.66669 8.90831 1.66669H11.0916C12.5 1.66669 12.6083 2.29169 12.7333 3.05835L12.9166 4.14169"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-      <path
-        d="M15.7084 7.61664L15.1667 16.0083C15.075 17.3166 15 18.3333 12.675 18.3333H7.32502C5.00002 18.3333 4.92502 17.3166 4.83335 16.0083L4.29169 7.61664"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-      <path
-        d="M8.60834 13.75H11.3833"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-      <path
-        d="M7.91669 10.4167H12.0834"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-      />
-    </svg>
+export default function GuestTable() {
+  const [filterValue, setFilterValue] = React.useState("");
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [sortDescriptor, setSortDescriptor] = React.useState({
+    column: "total_spent",
+    direction: "descending",
+  });
+  const [page, setPage] = React.useState(1);
+
+  const {
+    data: users,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["guests"],
+    queryFn: getGuests,
+  });
+
+  const filtered = React.useMemo(
+    () =>
+      filterRows(users, filterValue, [
+        "full_name",
+        "email",
+        "phone",
+        "country",
+        "vip_level",
+      ]),
+    [users, filterValue]
   );
-};
 
-export const EditIcon = (props) => {
-  return (
-    <svg
-      aria-hidden="true"
-      fill="none"
-      focusable="false"
-      height="1em"
-      role="presentation"
-      viewBox="0 0 20 20"
-      width="1em"
-      {...props}
-    >
-      <path
-        d="M11.05 3.00002L4.20835 10.2417C3.95002 10.5167 3.70002 11.0584 3.65002 11.4334L3.34169 14.1334C3.23335 15.1084 3.93335 15.775 4.90002 15.6084L7.58335 15.15C7.95835 15.0834 8.48335 14.8084 8.74168 14.525L15.5834 7.28335C16.7667 6.03335 17.3 4.60835 15.4583 2.86668C13.625 1.14168 12.2334 1.75002 11.05 3.00002Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit={10}
-        strokeWidth={1.5}
-      />
-      <path
-        d="M9.90833 4.20831C10.2667 6.50831 12.1333 8.26665 14.45 8.49998"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit={10}
-        strokeWidth={1.5}
-      />
-      <path
-        d="M2.5 18.3333H17.5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit={10}
-        strokeWidth={1.5}
-      />
-    </svg>
+  const sorted = React.useMemo(
+    () => sortRows(filtered, sortDescriptor, columns),
+    [filtered, sortDescriptor]
   );
-};
 
-const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
+  const {
+    items: pageItems,
+    totalPages,
+    page: safePage,
+  } = React.useMemo(
+    () => paginateRows(sorted, page, rowsPerPage),
+    [sorted, page, rowsPerPage]
+  );
 
-export default function App() {
-  const renderCell = React.useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
+  React.useEffect(() => {
+    if (safePage !== page) setPage(safePage);
+  }, [safePage, page]);
 
+  const onSort = (uid) => {
+    setSortDescriptor((prev) => {
+      if (prev.column !== uid) return { column: uid, direction: "ascending" };
+      return {
+        column: uid,
+        direction: prev.direction === "ascending" ? "descending" : "ascending",
+      };
+    });
+  };
+
+  const renderCell = (user, columnKey) => {
     switch (columnKey) {
-      case "name":
+      case "guest":
         return (
-          <User
-            avatarProps={{ radius: "lg", src: user.avatar }}
-            description={user.email}
-            name={cellValue}
-          >
-            {user.email}
-          </User>
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-full bg-white/10 overflow-hidden flex items-center justify-center text-white/70 text-sm">
+              {user?.avatar_url ? (
+                // you said images later - keep it simple
+                <img
+                  className="h-full w-full object-cover"
+                  src={user.avatar_url}
+                  alt=""
+                />
+              ) : (
+                user?.full_name?.[0]?.toUpperCase() ?? "?"
+              )}
+            </div>
+            <div className="flex flex-col">
+              <div className="text-white font-medium">{user.full_name}</div>
+              <div className="text-white/60 text-sm">{user.country ?? "-"}</div>
+            </div>
+          </div>
         );
-      case "role":
+
+      case "contact":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">
-              {user.team}
-            </p>
+            <div className="text-white/90 text-sm">{user.phone ?? "-"}</div>
+            <a
+              className="text-sky-300 text-sm hover:underline"
+              href={`mailto:${user.email ?? ""}`}
+            >
+              {user.email ?? "-"}
+            </a>
           </div>
         );
-      case "status":
+
+      case "level": {
+        const level = (user.vip_level ?? "user").toLowerCase();
+        const cls = levelStyles[level] ?? levelStyles.user;
         return (
-          <Chip
-            className="capitalize"
-            color={statusColorMap[user.status]}
-            size="sm"
-            variant="flat"
+          <span
+            className={`inline-flex items-center px-3 py-1 rounded-full text-xs border ${cls}`}
           >
-            {cellValue}
-          </Chip>
+            {level}
+          </span>
         );
+      }
+
+      case "total_stay":
+        return <span className="text-white/90">{user.total_stays ?? 0}</span>;
+
+      case "total_spent":
+        return <span className="text-white/90">{user.total_spent ?? 0} $</span>;
+
       case "actions":
         return (
-          <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EyeIcon />
-              </span>
-            </Tooltip>
-            <Tooltip content="Edit user">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EditIcon />
-              </span>
-            </Tooltip>
-            <Tooltip color="danger" content="Delete user">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
-              </span>
-            </Tooltip>
-          </div>
+          <button
+            className="p-2 rounded-lg hover:bg-white/10 text-white/80"
+            onClick={() => console.log("actions for", user.id)}
+            title="Actions"
+          >
+            <EllipsisVertical size={18} />
+          </button>
         );
+
       default:
-        return cellValue;
+        return (
+          <span className="text-white/80">{user?.[columnKey] ?? "-"}</span>
+        );
     }
-  }, []);
-
-//   const { data: users } = useQuery({
-//     queryKey: ["users"],
-//     queryFn: getUsers,
-//   });
-
+  };
 
   return (
-    <Table
-      aria-label="Example table with custom cells"
-      className="dark my-10 px-0"
-      classNames={
-        {
-          wrapper : "p-0"
-        }
-      }
-    >
-      <TableHeader columns={columns}>
-        {(column) => (
-          <TableColumn
-            key={column.uid}
-            align={column.uid === "actions" ? "center" : "start"}
-          >
-            {column.name}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={users}>
-        {(item) => (
-          <TableRow key={item.id} className=" cursor-pointer">
-            {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
+    <div className="w-full">
+      {/* Top */}
+      <div className="flex flex-col gap-4 mb-4">
+        <div className="relative w-full">
+          <Search
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40"
+            size={18}
+          />
+          <input
+            value={filterValue}
+            onChange={(e) => setFilterValue(e.target.value)}
+            placeholder="Search by name, email, phone..."
+            className="w-full bg-transparent border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white outline-none focus:border-white/25"
+          />
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="text-white/60 text-sm">
+            Total {users?.length} guests
+          </span>
+
+          <label className="flex items-center gap-2 text-white/60 text-sm">
+            Rows per page:
+            <select
+              className="bg-transparent border border-white/10 rounded-lg px-2 py-1 text-white outline-none"
+              value={rowsPerPage}
+              onChange={(e) => setRowsPerPage(Number(e.target.value))}
+            >
+              <option className="text-black" value="5">
+                5
+              </option>
+              <option className="text-black" value="10">
+                10
+              </option>
+              <option className="text-black" value="15">
+                15
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto rounded-2xl border border-white/10">
+        <table className="min-w-full">
+          <thead>
+            <tr>
+              {columns.map((col) => (
+                <ThSort
+                  key={col.uid}
+                  col={col}
+                  sortDescriptor={sortDescriptor}
+                  onSort={onSort}
+                />
+              ))}
+            </tr>
+          </thead>
+
+          <tbody className="bg-[#0f1720]">
+            {isLoading ? (
+              // ✅ spinner/skeleton ONLY in tbody
+              <TableSkeleton colsCount={columns.length} rows={rowsPerPage} />
+            ) : pageItems.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={columns.length}
+                  className="py-10 text-center text-white/60"
+                >
+                  No users found
+                </td>
+              </tr>
+            ) : (
+              pageItems.map((u) => (
+                <tr
+                  key={u.id}
+                  className="border-b border-white/10 hover:bg-white/5"
+                >
+                  {columns.map((col) => (
+                    <td key={col.uid} className="py-5 px-4 align-middle">
+                      {renderCell(u, col.uid)}
+                    </td>
+                  ))}
+                </tr>
+              ))
             )}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+          </tbody>
+
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onChange={setPage}
+            columnsLength={columns.length}
+          />
+        </table>
+      </div>
+    </div>
   );
 }

@@ -41,7 +41,7 @@ export default function AppNavbar() {
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="full"
       classNames={{
-        base: "px-10 bg-mainBgc border-b lightBorder", 
+        base: "px-10 bg-mainBgc border-b lightBorder py-2.5", 
         wrapper: "px-0 max-w-full", 
       }}
     >
@@ -54,7 +54,7 @@ export default function AppNavbar() {
           onClick={() => dispatch({ type: "toggle/sidebar" })}
           className="cursor-pointer hidden md:block"
         >
-          {showSidebar ? <ListIndentDecrease /> : <ListIndentIncrease />}
+          {showSidebar ? <ListIndentDecrease size={27} /> : <ListIndentIncrease size={27} />}
         </div>
       </NavbarContent>
 

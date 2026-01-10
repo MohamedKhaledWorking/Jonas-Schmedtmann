@@ -6,6 +6,13 @@ import { getGuests } from "../../services/guests.js";
 import TableSkeleton from "../../UI/Table/TableSkeleton.jsx";
 import { filterRows, paginateRows, sortRows } from "../../utils/tableUtils.js";
 import Pagination from "../../UI/Table/Pagination.jsx";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@heroui/react";
 
 const levelStyles = {
   gold: "bg-yellow-500/15 text-yellow-300 border border-yellow-500/30",
@@ -75,6 +82,8 @@ function ThSort({ col, sortDescriptor, onSort }) {
     </th>
   );
 }
+
+const rowsSize = [5, 10, 15, 25, 50, 100];
 
 export default function GuestTable() {
   const [filterValue, setFilterValue] = React.useState("");
@@ -191,13 +200,19 @@ export default function GuestTable() {
 
       case "actions":
         return (
-          <button
-            className="p-2 rounded-lg hover:bg-white/10 text-white/80"
-            onClick={() => console.log("actions for", user.id)}
-            title="Actions"
-          >
-            <EllipsisVertical size={18} />
-          </button>
+          <Dropdown backdrop="blur">
+            <DropdownTrigger>
+              <Button className="mainBtn">Open Menu</Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions" variant="faded">
+              <DropdownItem key="show">New file</DropdownItem>
+              <DropdownItem key="copy">Copy link</DropdownItem>
+              <DropdownItem key="edit">Edit file</DropdownItem>
+              <DropdownItem key="delete" className="text-danger" color="danger">
+                Delete file
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         );
 
       default:
@@ -232,19 +247,20 @@ export default function GuestTable() {
           <label className="flex items-center gap-2 text-white/60 text-sm">
             Rows per page:
             <select
-              className="bg-transparent border border-white/10 rounded-lg px-2 py-1 text-white outline-none"
+              className="bg-transparent border border-white/10 rounded-lg px-2 py-1 text-white outline-none w-20 mx-5 cursor-pointer py-2"
               value={rowsPerPage}
               onChange={(e) => setRowsPerPage(Number(e.target.value))}
             >
-              <option className="text-black" value="5">
-                5
-              </option>
-              <option className="text-black" value="10">
-                10
-              </option>
-              <option className="text-black" value="15">
-                15
-              </option>
+              {rowsSize.map((size) => {
+                return (
+                  <option
+                    className="cursor-pointer bg-secBgc text-textMainClr"
+                    value={size}
+                  >
+                    {size}
+                  </option>
+                );
+              })}
             </select>
           </label>
         </div>

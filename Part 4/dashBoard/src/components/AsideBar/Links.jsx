@@ -3,10 +3,7 @@ import {
   Contact,
   DoorOpen,
   Hotel,
-  icons,
-  LampFloor,
   LayoutDashboard,
-  TicketsPlane,
   UserStar,
 } from "lucide-react";
 import React from "react";

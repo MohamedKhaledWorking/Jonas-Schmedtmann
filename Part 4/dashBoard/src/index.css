@@ -26,7 +26,7 @@
   hover:text-red-700 duration-300 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-red-700;
 }
 .sideBarLink {
-  @apply flex items-center  my-7 py-3 rounded-lg  text-lg bg-themeClr/5 border border-themeClr hover:bg-themeClr hover:ring-2 ring-offset-5 ring-offset-mainBgc ring-themeClr duration-500;
+  @apply flex items-center  my-3 py-3 rounded-lg text-lg bg-themeClr/8 border border-themeClr/50 hover:bg-themeClr hover:ring-2 ring-offset-3 ring-offset-mainBgc ring-themeClr duration-500 capitalize;
 }
 /* HeroUI DatePicker - force transparent (no hover/focus bg) */
 .dp-transparent [data-slot="input-wrapper"],

@@ -1,4 +1,5 @@
 import React from "react";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 export default function Pagination({
   columnsLength = 6,
@@ -16,7 +17,7 @@ export default function Pagination({
               onClick={() => onChange(page - 1)}
               disabled={page <= 1}
             >
-              Prev
+              <MoveLeft size={15} />
             </button>
 
             <div className="text-white/80 text-sm mx-5">
@@ -28,7 +29,7 @@ export default function Pagination({
               onClick={() => onChange(page + 1)}
               disabled={page >= totalPages}
             >
-              Next
+              <MoveRight size={15} />
             </button>
           </div>
         </td>

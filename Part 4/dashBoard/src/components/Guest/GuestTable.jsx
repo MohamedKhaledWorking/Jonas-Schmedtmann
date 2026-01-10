@@ -13,6 +13,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@heroui/react";
+import GuestTableRowActions from "./GuestTableRowActions.jsx";
 
 const levelStyles = {
   gold: "bg-yellow-500/15 text-yellow-300 border border-yellow-500/30",
@@ -199,21 +200,7 @@ export default function GuestTable() {
         return <span className="text-white/90">{user.total_spent ?? 0} $</span>;
 
       case "actions":
-        return (
-          <Dropdown backdrop="blur">
-            <DropdownTrigger>
-              <Button className="mainBtn">Open Menu</Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions" variant="faded">
-              <DropdownItem key="show">New file</DropdownItem>
-              <DropdownItem key="copy">Copy link</DropdownItem>
-              <DropdownItem key="edit">Edit file</DropdownItem>
-              <DropdownItem key="delete" className="text-danger" color="danger">
-                Delete file
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        );
+        return <GuestTableRowActions guestId={user?.id} />;
 
       default:
         return (

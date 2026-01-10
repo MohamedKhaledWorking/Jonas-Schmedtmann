@@ -19,11 +19,15 @@
 
 .mainBtn {
   @apply px-6 py-3.5 bg-themeClr text-white rounded-xl cursor-pointer capitalize flex items-center space-x-4 hover:bg-transparent border border-themeClr
-  hover:text-themeClr duration-300 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-themeClr;
+  hover:text-themeClr duration-500 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-themeClr;
 }
 .mainDeleteBtn {
   @apply px-6 py-3.5 bg-red-700 text-white rounded-xl cursor-pointer capitalize flex items-center space-x-4 hover:bg-transparent border border-red-700
-  hover:text-red-700 duration-300 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-red-700;
+  hover:text-red-700 duration-500 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-red-700;
+}
+.mainEditBtn {
+  @apply px-6 py-3.5 bg-amber-500 text-white rounded-xl cursor-pointer capitalize flex items-center space-x-4 hover:bg-transparent border border-amber-500
+  hover:text-amber-500 duration-500 hover:ring-1 hover:ring-offset-6 ring-offset-mainBgc ring-amber-500;
 }
 .sideBarLink {
   @apply flex items-center  my-3 py-3 rounded-lg text-lg bg-themeClr/8 border border-themeClr/50 hover:bg-themeClr hover:ring-2 ring-offset-3 ring-offset-mainBgc ring-themeClr duration-500 capitalize;

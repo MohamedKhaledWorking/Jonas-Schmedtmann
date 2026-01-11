@@ -7,3 +7,10 @@ export async function getGuests() {
   }
   return guests;
 }
+
+export async function deleteUser(id) {
+  const { error } = await supabase.from("guests").delete().eq("id", id);
+  if (error) {
+    throw new Error("Something went wrong on deleting guest" + error);
+  }
+}

@@ -200,7 +200,7 @@ export default function GuestTable() {
         return <span className="text-white/90">{user.total_spent ?? 0} $</span>;
 
       case "actions":
-        return <GuestTableRowActions guestId={user?.id} />;
+        return <GuestTableRowActions guest={user} />;
 
       default:
         return (
@@ -234,7 +234,7 @@ export default function GuestTable() {
           <label className="flex items-center gap-2 text-white/60 text-sm">
             Rows per page:
             <select
-              className="bg-transparent border border-white/10 rounded-lg px-2 py-1 text-white outline-none w-20 mx-5 cursor-pointer py-2"
+              className="bg-transparent border border-white/10 rounded-lg px-2 text-white outline-none w-20 mx-5 cursor-pointer py-2"
               value={rowsPerPage}
               onChange={(e) => setRowsPerPage(Number(e.target.value))}
             >

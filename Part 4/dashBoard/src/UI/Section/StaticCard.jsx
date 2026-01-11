@@ -1,11 +1,10 @@
-import { Users } from "lucide-react";
 import React from "react";
 
 export default function StaticCard({
   title = "",
   value = 0,
   icon = "",
-  width = "w-1/4",
+  width = "w-full md:w-1/2 lg:w-1/4 ",
 }) {
   return (
     <>

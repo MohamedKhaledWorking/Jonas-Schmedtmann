@@ -1,5 +1,5 @@
 import {
-    CalendarDays,
+  CalendarDays,
   Contact,
   DoorOpen,
   Hotel,
@@ -32,7 +32,7 @@ export default function SideLinks() {
     {
       name: "booking",
       to: "/about",
-      icon:<CalendarDays />,
+      icon: <CalendarDays />,
     },
     {
       name: "hotel",
@@ -51,11 +51,11 @@ export default function SideLinks() {
     >
       {sideLinks?.map((link) => {
         return (
-          <Link
-            to={link?.to}
-            className={`sideBarLink`}
-          >
-            <span className={showSidebar ? "mx-5" : "mx-auto"}> {link?.icon}</span>
+          <Link key={link?.name} to={link?.to} className={`sideBarLink`}>
+            <span className={showSidebar ? "mx-5" : "mx-auto"}>
+              {" "}
+              {link?.icon}
+            </span>
             <span className={showSidebar ? "ms-4" : "hidden"}>
               {link?.name}
             </span>

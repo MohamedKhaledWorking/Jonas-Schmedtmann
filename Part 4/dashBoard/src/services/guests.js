@@ -8,6 +8,21 @@ export async function getGuests() {
   return guests;
 }
 
+export async function getUserById(id) {
+  if (!id) {
+    return;
+  }
+  const { data: guest, error } = await supabase
+    .from("guests")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) {
+    throw new Error("Something went wrong on deleting guest" + error);
+  }
+  return guest;
+}
+
 export async function deleteUser(id) {
   const { error } = await supabase.from("guests").delete().eq("id", id);
   if (error) {

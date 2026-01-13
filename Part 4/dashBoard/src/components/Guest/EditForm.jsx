@@ -106,8 +106,8 @@ export default function EditForm() {
           required
         />
       </div>
-      <button className="w-full mainBtn h-15 flex justify-center ">
-        Create Guest
+      <button className="w-full mainEditBtn h-15 flex justify-center ">
+        Edit Guest
       </button>
     </form>
   );

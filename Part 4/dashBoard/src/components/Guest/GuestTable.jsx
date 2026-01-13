@@ -1,19 +1,14 @@
 import React from "react";
-import { EllipsisVertical, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
 import { getGuests } from "../../services/guests.js";
 import TableSkeleton from "../../UI/Table/TableSkeleton.jsx";
 import { filterRows, paginateRows, sortRows } from "../../utils/tableUtils.js";
 import Pagination from "../../UI/Table/Pagination.jsx";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/react";
 import GuestTableRowActions from "./GuestTableRowActions.jsx";
+import GuestDetails from "./GuestDetails.jsx";
+import { useDisclosure } from "@heroui/react";
 
 const levelStyles = {
   gold: "bg-yellow-500/15 text-yellow-300 border border-yellow-500/30",
@@ -144,18 +139,29 @@ export default function GuestTable() {
     });
   };
 
+  // guest details
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedGuestId, setSelectedGuestId] = React.useState(null);
+  function openGuest(id) {
+    setSelectedGuestId(id);
+    onOpen();
+  }
+
   const renderCell = (user, columnKey) => {
     switch (columnKey) {
       case "guest":
         return (
-          <div className="flex items-center gap-3">
+          <div
+            className="flex items-center gap-3 cursor-pointer "
+            role="button"
+            onClick={() => openGuest(user?.id)}
+          >
             <div className="h-9 w-9 rounded-full bg-white/10 overflow-hidden flex items-center justify-center text-white/70 text-sm">
               {user?.avatar_url ? (
-                // you said images later - keep it simple
                 <img
                   className="h-full w-full object-cover"
                   src={user.avatar_url}
-                  alt=""
+                  alt="user image"
                 />
               ) : (
                 user?.full_name?.[0]?.toUpperCase() ?? "?"
@@ -173,7 +179,7 @@ export default function GuestTable() {
           <div className="flex flex-col">
             <div className="text-white/90 text-sm">{user.phone ?? "-"}</div>
             <a
-              className="text-sky-300 text-sm hover:underline"
+              className="text-sky-300 text-sm hover:underline w-fit"
               href={`mailto:${user.email ?? ""}`}
             >
               {user.email ?? "-"}
@@ -211,7 +217,6 @@ export default function GuestTable() {
 
   return (
     <div className="w-full">
-      {/* Top */}
       <div className="flex flex-col gap-4 mb-4">
         <div className="relative w-full">
           <Search
@@ -241,6 +246,7 @@ export default function GuestTable() {
               {rowsSize.map((size) => {
                 return (
                   <option
+                    key={size}
                     className="cursor-pointer bg-secBgc text-textMainClr"
                     value={size}
                   >
@@ -253,7 +259,6 @@ export default function GuestTable() {
         </div>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto rounded-2xl border border-white/10">
         <table className="min-w-full">
           <thead>
@@ -271,7 +276,6 @@ export default function GuestTable() {
 
           <tbody className="bg-[#0f1720]">
             {isLoading ? (
-              // ✅ spinner/skeleton ONLY in tbody
               <TableSkeleton colsCount={columns.length} rows={rowsPerPage} />
             ) : pageItems.length === 0 ? (
               <tr>
@@ -306,6 +310,14 @@ export default function GuestTable() {
           />
         </table>
       </div>
+      {isOpen && (
+        <GuestDetails
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          guestId={selectedGuestId}
+        />
+      )}
     </div>
   );
 }
+

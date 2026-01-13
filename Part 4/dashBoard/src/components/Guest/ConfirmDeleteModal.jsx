@@ -35,7 +35,7 @@ export default function ConfirmDeleteModal({ name, id }) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-3 mt-5">
+      <div className="flex flex-wrap gap-3 ">
         <Button
           className="capitalize mainDeleteBtn w-20  flex items-center justify-center "
           onPress={handleOpen}

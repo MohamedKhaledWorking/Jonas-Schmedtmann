@@ -27,9 +27,10 @@ export default function Statics() {
   ];
   return (
     <div className="flex flex-wrap space-y-4 my-5">
-      {statics.map((state) => {
+      {statics?.map((state) => {
         return (
           <StaticCard
+            key={state.title}
             title={state.title}
             value={state.value}
             icon={state.icon}

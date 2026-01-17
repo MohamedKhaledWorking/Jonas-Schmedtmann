@@ -6,7 +6,10 @@
   "testLibrary": "None",
   "component": {
     "default": {
-      "path": "src/Components",
+      "customTemplates": {
+        "component": "./Template/TemplateName.jsx"
+      },
+      "path": "src/Ui",
       "withStyle": false,
       "withTest": false,
       "withStory": false,

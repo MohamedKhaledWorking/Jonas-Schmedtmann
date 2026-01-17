@@ -35,6 +35,10 @@ export default function GuestTableHead() {
       title: "Budget",
     },
     {
+      id: 10,
+      title: "level",
+    },
+    {
       id: 9,
       title: "Action",
     },
@@ -51,12 +55,6 @@ export default function GuestTableHead() {
             {head.title}
           </th>
         ))}
-        <th
-          scope="col"
-          className="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold  capitalize"
-        >
-          User ID
-        </th>
       </tr>
     </thead>
   );

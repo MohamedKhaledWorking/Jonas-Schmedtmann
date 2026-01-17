@@ -44,13 +44,13 @@ export default function GuestTableHead() {
     },
   ];
   return (
-    <thead>
+    <thead className="">
       <tr className="bg-secBgc">
         {THead.map((head) => (
           <th
             key={head.id}
             scope="col"
-            className="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold  capitalize"
+            className="p-5 whitespace-nowrap text-sm leading-6 font-semibold  capitalize text-center "
           >
             {head.title}
           </th>

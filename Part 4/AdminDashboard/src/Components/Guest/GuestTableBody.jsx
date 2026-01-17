@@ -1,12 +1,26 @@
 import { SquarePen, Trash2 } from "lucide-react";
 import React from "react";
+import ConfirmDelete from "../../Ui/ConfirmDelete.jsx";
+import { Button, useDisclosure } from "@heroui/react";
+import EditModal from "./EditModal.jsx";
 
 export default function GuestTableBody({ guests }) {
+  const deleteModal = useDisclosure();
+  const editModal = useDisclosure();
+
+  function onDelete() {
+    deleteModal.onOpen();
+  }
+
+  function onEdit() {
+    editModal.onOpen();
+  }
+
   return (
     <tbody className="divide-y divide-lightBorder bg-mainBgc ">
       {guests?.map((guest) => {
         return (
-          <tr key={guest?.id} className="hover:bg-secBgc duration-200">
+          <tr key={guest?.id} className="hover:bg-secBgc duration-200  text-center ">
             <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium  ">
               {guest?.id}
             </td>
@@ -42,13 +56,23 @@ export default function GuestTableBody({ guests }) {
             <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium ">
               {guest?.vip_level ?? "guest"}
             </td>
-            <td className="flex p-5 items-center gap-2">
-              <button className="p-2  rounded-full bg-secBgc group transition-all duration-300 hover:bg-amber-400 flex item-center cursor-pointer">
+            <td className="flex p-5 items-center gap-2  justify-center">
+              <Button
+                onPress={() => onEdit()}
+                className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-amber-400 flex item-center cursor-pointer text-amber-500 hover:text-white"
+              >
                 <SquarePen />
-              </button>
-              <button className="p-2 rounded-full bg-secBgc group transition-all duration-300 hover:bg-red-600 flex item-center cursor-pointer">
+              </Button>
+              <Button
+                onPress={() => onDelete()}
+                className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-red-600 flex item-center cursor-pointer text-rose-500 hover:text-white"
+                onOpen={deleteModal.onOpen}
+              >
                 <Trash2 />
-              </button>
+              </Button>
+
+              <EditModal isOpen={editModal.isOpen} onClose={editModal.onClose} />
+              <ConfirmDelete isOpen={deleteModal.isOpen} onClose={deleteModal.onClose} />
             </td>
           </tr>
         );

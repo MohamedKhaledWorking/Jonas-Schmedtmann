@@ -13,12 +13,10 @@ export default function TableEmptyBody({
       <tr>
         <td colSpan={colSpan} className="p-12">
           <div className="flex flex-col items-center justify-center text-center gap-4">
-            {/* Icon */}
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secBgc text-gray-400">
               <Users size={22} />
             </div>
 
-            {/* Text */}
             <div>
               <h3 className="text-sm font-semibold">
                 {title}
@@ -28,7 +26,6 @@ export default function TableEmptyBody({
               </p>
             </div>
 
-            {/* Optional Action */}
             {actionLabel && onAction && (
               <button
                 onClick={onAction}

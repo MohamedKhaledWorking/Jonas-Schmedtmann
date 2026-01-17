@@ -38,6 +38,7 @@ export default function GuestTable() {
               )}
             </table>
             <GuestTablePagination />
+
           </div>
         </div>
       </div>

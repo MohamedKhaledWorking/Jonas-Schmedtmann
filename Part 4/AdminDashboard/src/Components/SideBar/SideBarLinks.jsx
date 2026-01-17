@@ -1,5 +1,5 @@
 import { BedDouble, ContactRound, Hotel, LayoutDashboard, Settings } from "lucide-react";
-import SideBarLink from "../SideBarLink/SideBarLink.jsx";
+import SideBarLink from "./SideBarLink.jsx";
 
 export default function SideBarLinks() {
   const links = [

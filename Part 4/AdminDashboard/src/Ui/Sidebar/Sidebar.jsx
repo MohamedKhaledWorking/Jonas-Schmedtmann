@@ -1,5 +1,5 @@
-import SideBarLinks from "../../Components/SideBar/SideBarLinks/SideBarLinks.jsx";
-import SideBarLogo from "../../Components/SideBar/SideBarLogo/SideBarLogo.jsx";
+import SideBarLinks from "../../Components/SideBar/SideBarLinks.jsx";
+import SideBarLogo from "../../Components/SideBar/SideBarLogo.jsx";
 
 export default function Sidebar() {
   return (

@@ -1,4 +1,4 @@
-export default function SectionHeader({ head, desc, icon }) {
+export default function SectionHeader({ head, desc, children }) {
   return (
     <>
       <div className="flex justify-between flex-col text-center md:flex-row md:text-left">
@@ -7,9 +7,7 @@ export default function SectionHeader({ head, desc, icon }) {
           <p className="text-textSecClr my-3">{desc}</p>
         </div>
         <div>
-          <button className="mainBtn px-4 py-3.5 flex justify-center w-full mt-2">
-            {icon} Add Guest
-          </button>
+          {children}
         </div>
       </div>
     </>

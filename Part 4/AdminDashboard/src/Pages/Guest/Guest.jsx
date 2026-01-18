@@ -3,8 +3,16 @@ import SectionHeader from "../../Ui/Section/SectionHeader.jsx";
 import Statistics from "../../Ui/Section/Statistics.jsx";
 import { BadgeDollarSign, BedSingle, ScanEye, UserStar } from "lucide-react";
 import GuestTable from "../../Components/Guest/GuestTable.jsx";
+import { Button, useDisclosure } from "@heroui/react";
+import AddGuestModal from "../../Components/Guest/AddGuestModal.jsx";
+import GuestDetails from "../../Components/Guest/GuestDetails.jsx";
 
 export default function Guest() {
+  const AddModal = useDisclosure();
+  function onAddingGuest() {
+    AddModal.onOpen();
+  }
+
   const statistics = [
     {
       title: "Total Gusts",
@@ -32,11 +40,20 @@ export default function Guest() {
       <SectionHeader
         head={"guest"}
         desc={"Manage guest profiles and preferences"}
-        icon={<FilePlusCorner className="mr-2" />}
-      />
+      >
+        <button
+          className="mainBtn px-6 py-4 flex justify-center w-full "
+          onClick={onAddingGuest}
+        >
+          <FilePlusCorner className="mr-2" /> Add Guest
+        </button>
+        <AddGuestModal isOpen={AddModal.isOpen} onClose={AddModal.onClose} />
+      </SectionHeader>
+
+      <GuestDetails />
 
       <Statistics statistics={statistics} />
-      
+
       <GuestTable />
     </>
   );

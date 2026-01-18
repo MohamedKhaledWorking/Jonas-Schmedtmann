@@ -3,10 +3,12 @@ import React from "react";
 import ConfirmDelete from "../../Ui/ConfirmDelete.jsx";
 import { Button, useDisclosure } from "@heroui/react";
 import EditModal from "./EditModal.jsx";
+import GuestDetails from "./GuestDetails.jsx";
 
 export default function GuestTableBody({ guests }) {
   const deleteModal = useDisclosure();
   const editModal = useDisclosure();
+  const DetailsModal = useDisclosure();
 
   function onDelete() {
     deleteModal.onOpen();
@@ -16,15 +18,22 @@ export default function GuestTableBody({ guests }) {
     editModal.onOpen();
   }
 
+  function onShowDetails() {
+    DetailsModal.onOpen();
+  }
+
   return (
     <tbody className="divide-y divide-lightBorder bg-mainBgc ">
       {guests?.map((guest) => {
         return (
-          <tr key={guest?.id} className="hover:bg-secBgc duration-200  text-center ">
+          <tr
+            key={guest?.id}
+            className="hover:bg-secBgc duration-200  text-center "
+          >
             <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium  ">
               {guest?.id}
             </td>
-            <td className=" px-5 py-3">
+            <td className=" px-5 py-3 cursor-pointer" onClick={onShowDetails}>
               <div className="w-48 flex items-center gap-3">
                 <img src={guest?.avatar_url} alt={guest?.full_name + "image"} />
                 <div className="data">
@@ -71,8 +80,18 @@ export default function GuestTableBody({ guests }) {
                 <Trash2 />
               </Button>
 
-              <EditModal isOpen={editModal.isOpen} onClose={editModal.onClose} />
-              <ConfirmDelete isOpen={deleteModal.isOpen} onClose={deleteModal.onClose} />
+              <EditModal
+                isOpen={editModal.isOpen}
+                onClose={editModal.onClose}
+              />
+              <ConfirmDelete
+                isOpen={deleteModal.isOpen}
+                onClose={deleteModal.onClose}
+              />
+              <GuestDetails
+                isOpen={DetailsModal.isOpen}
+                onOpenChange={DetailsModal.onOpenChange}
+              />
             </td>
           </tr>
         );

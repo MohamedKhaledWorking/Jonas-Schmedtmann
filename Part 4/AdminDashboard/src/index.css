@@ -9,7 +9,8 @@
   --color-textClr: #f5f5f5;
   --color-textSecClr: #92adc9;
   --color-theme: #137fec;
-  --color-rose: oklch(58.6% 0.253 17.585);
+  --color-rose: #ec003f;
+  --color-warning: #ffba00;
   --color-lightBorder: #233648;
 }
 
@@ -18,4 +19,7 @@
 }
 .dangerBtn {
   @apply bg-rose text-white rounded-xl duration-400 hover:ring-2 ring-offset-6 ring-rose ring-offset-mainBgc capitalize cursor-pointer;
+}
+.warningBtn {
+  @apply bg-warning text-white rounded-xl duration-400 hover:ring-2 ring-offset-6 ring-warning ring-offset-mainBgc capitalize cursor-pointer;
 }

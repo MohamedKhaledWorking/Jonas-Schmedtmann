@@ -1,58 +1,133 @@
+import { ImageUp } from "lucide-react";
 import React from "react";
 
 export default function GuestEditForm() {
   return (
-    <div className="flex flex-col gap-5">
-      <div className="relative">
-        <label className="flex  items-center mb-2 text-gray-600 text-xs font-medium">
-          Email{" "}
-          <svg
-            width={7}
-            height={7}
-            className="ml-1"
-            viewBox="0 0 7 7"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+    <form>
+      <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+          <label for="Full_name" class="block mb-2.5 text-sm  ">
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="Full_name"
+            class="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder="mohamed"
+            required
+          />
+        </div>
+        <div>
+          <label for="company" class="block mb-2.5 text-sm  ">
+            Company
+          </label>
+          <input
+            type="text"
+            id="company"
+            class="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder="tailAir"
+            required
+          />
+        </div>
+        <div>
+          <label for="phone" class="block mb-2.5 text-sm  ">
+            Phone number
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            class="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder="123-45-678"
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+            required
+          />
+        </div>
+        <div>
+          <label for="email" class="block mb-2.5 text-sm  ">
+            Email address
+          </label>
+          <input
+            type="email"
+            id="email"
+            class="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder="john.doe@company.com"
+            required
+          />
+        </div>
+        <div>
+          <label for="stays" class="block mb-2.5 text-sm  ">
+            Stays Days
+          </label>
+          <input
+            type="number"
+            id="stays"
+            class="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder="2"
+            required
+          />
+        </div>
+        <div>
+          <label for="budget" class="block mb-2.5 text-sm  ">
+            Budget
+          </label>
+          <input
+            type="number"
+            id="budget"
+            class="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder=""
+            required
+          />
+        </div>
+        <div>
+          <label for="country" class="block mb-2.5 text-sm  ">
+            Select Guest Country
+          </label>
+          <select
+            id="country"
+            class="block w-full px-3 py-2.5 border border-lightBorder  text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
           >
-            <path
-              d="M3.11222 6.04545L3.20668 3.94744L1.43679 5.08594L0.894886 4.14134L2.77415 3.18182L0.894886 2.2223L1.43679 1.2777L3.20668 2.41619L3.11222 0.318182H4.19105L4.09659 2.41619L5.86648 1.2777L6.40838 2.2223L4.52912 3.18182L6.40838 4.14134L5.86648 5.08594L4.09659 3.94744L4.19105 6.04545H3.11222Z"
-              fill="#EF4444"
-            />
-          </svg>
-        </label>
-        <input
-          type="text"
-          id="default-search"
-          className="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none leading-relaxed"
-          placeholder="name@pagedone.com"
-          required
-        />
-      </div>
-      <div className="relative">
-        <label className="flex  items-center mb-2 text-gray-600 text-xs font-medium">
-          Email{" "}
-          <svg
-            width={7}
-            height={7}
-            className="ml-1"
-            viewBox="0 0 7 7"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            <option selected>Choose a Country</option>
+            <option value="egypt">Egypt</option>
+            <option value="sudan">sudan</option>
+            <option value="morocco">morocco</option>
+            <option value="tunisia">tunisia</option>
+            <option value="algeria">algeria</option>
+            <option value="libya">libya</option>
+          </select>
+        </div>
+        <div>
+          <label for="level" class="block mb-2.5 text-sm  ">
+            Select Guest Level
+          </label>
+          <select
+            id="level"
+            class="block w-full px-3 py-2.5 border  border-lightBorder text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
           >
-            <path
-              d="M3.11222 6.04545L3.20668 3.94744L1.43679 5.08594L0.894886 4.14134L2.77415 3.18182L0.894886 2.2223L1.43679 1.2777L3.20668 2.41619L3.11222 0.318182H4.19105L4.09659 2.41619L5.86648 1.2777L6.40838 2.2223L4.52912 3.18182L6.40838 4.14134L5.86648 5.08594L4.09659 3.94744L4.19105 6.04545H3.11222Z"
-              fill="#EF4444"
-            />
-          </svg>
-        </label>
-        <input
-          type="text"
-          id="default-search"
-          className="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none leading-relaxed"
-          placeholder="name@pagedone.com"
-          required
-        />
+            <option selected>Choose a level</option>
+            <option value="guest">Guest</option>
+            <option value="regular">Regular</option>
+            <option value="premium">Premium</option>
+            <option value="vip">VIP</option>
+            <option value="premium">premium</option>
+          </select>
+        </div>
       </div>
-    </div>
+      <div class="flex items-center justify-center w-full">
+        <label
+          for="dropzone-file"
+          class="flex flex-col items-center justify-center w-full border border-lightBorder border-dashed  rounded focus:rounded-xl duration-400 cursor-pointer"
+        >
+          <div class="flex flex-col items-center justify-center text-body pt-5 pb-6">
+            <ImageUp className="w-8 h-8 mb-4" />
+            <p class="mb-2 text-sm">
+              <span class="font-semibold">Click to upload</span> or drag and
+              drop
+            </p>
+            <p class="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+          </div>
+          <input id="dropzone-file" type="file" class="hidden" />
+        </label>
+      </div>
+    </form>
   );
 }

@@ -146,7 +146,7 @@ export default function GuestDetails( { isOpen,  onOpenChange }) {
                 </div>
               </DrawerHeader>
               <DrawerBody className="pt-16">
-                <div className="flex w-full justify-center items-center pt-4">
+                <div className="flex w-full justify-center items-center pt-4 bg-amber-400">
                   <Image
                     isBlurred
                     isZoomed

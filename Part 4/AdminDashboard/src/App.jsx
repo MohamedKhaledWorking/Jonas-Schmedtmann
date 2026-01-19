@@ -1,7 +1,7 @@
-import { HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AppLayout from "./Ui/AppLayout/AppLayout.jsx";
 import Guest from "./Pages/Guest/Guest.jsx";
@@ -28,8 +28,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <HeroUIProvider>
+      <ToastProvider placement="top-center" toastOffset={50}/>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools  />
+        <ReactQueryDevtools />
         <RouterProvider router={router}></RouterProvider>
       </QueryClientProvider>
     </HeroUIProvider>

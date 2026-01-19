@@ -13,7 +13,7 @@ export default function AppLayout() {
             showSidebar
               ? "md:block md:w-1/4 md:h-full lg:w-3/20 lg:h-screen"
               : "lg:w-1/25"
-          } z-999`}
+          } z-41`}
         >
           <Sidebar />
         </div>

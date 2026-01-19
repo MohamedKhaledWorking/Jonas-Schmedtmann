@@ -7,7 +7,12 @@ import {
   Button,
 } from "@heroui/react";
 
-export default function ConfirmDelete({ isOpen, onClose }) {
+export default function ConfirmDelete({
+  isOpen,
+  onClose,
+  mutate,
+  selectedGuest,
+}) {
   return (
     <>
       <Modal
@@ -39,7 +44,15 @@ export default function ConfirmDelete({ isOpen, onClose }) {
                 >
                   Close
                 </button>
-                <button className="dangerBtn py-3.5 w-full" onClick={onClose}>
+                <button
+                  className="dangerBtn py-3.5 w-full"
+                  onClick={() =>
+                    mutate({
+                      id: selectedGuest?.id,
+                      name: selectedGuest?.full_name,
+                    })
+                  }
+                >
                   Delete
                 </button>
               </ModalFooter>

@@ -6,7 +6,7 @@ import {
   ModalFooter,
   Button,
 } from "@heroui/react";
-import GuestEditForm from "./GuestEditForm.jsx";
+import GuestEditForm from "./EditGuestForm.jsx";
 
 export default function EditModal({ isOpen, onClose }) {
   return (

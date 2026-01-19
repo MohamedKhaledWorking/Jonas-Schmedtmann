@@ -2,7 +2,7 @@ import { SquarePen, Trash2 } from "lucide-react";
 import React from "react";
 import ConfirmDelete from "../../Ui/Modals/ConfirmDelete.jsx";
 import { Button, useDisclosure } from "@heroui/react";
-import EditModal from "./EditModal.jsx";
+import EditModal from "./EditGuestModal.jsx";
 import GuestDetails from "./GuestDetails.jsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteGuests } from "../../Services/guest.js";
@@ -28,7 +28,9 @@ export default function GuestTableBody({ guests }) {
   const mutation = useMutation({
     mutationFn: ({ id }) => deleteGuests(id),
     onSuccess: (_, { name }) => {
-      queryClient.invalidateQueries(["guests"]);
+      queryClient.invalidateQueries({
+        queryKey: ["guests"],
+      });
       deleteModal.onClose();
       toast({
         title: "Guest deleted successfully",

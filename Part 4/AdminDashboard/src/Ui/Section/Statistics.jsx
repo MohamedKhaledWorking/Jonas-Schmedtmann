@@ -6,13 +6,13 @@ export default function Statistics({
     <div className="flex flex-wrap">
       {statistics.map((stat) => {
         return (
-          <div className={className} key={stat.id}>
+          <div className={className} key={stat?.title}>
             <div className="border border-lightBorder bg-secBgc rounded-3xl p-7">
               <div className="flex justify-between">
-                <p className="text-textSecClr"> {stat.title}</p>
-                <p>{stat.icon}</p>
+                <p className="text-textSecClr"> {stat?.title}</p>
+                <p>{stat?.icon}</p>
               </div>
-              <p className="mt-3 text-4xl font-bold">{stat.value}</p>
+              <p className="mt-3 text-4xl font-bold">{stat?.value}</p>
             </div>
           </div>
         );

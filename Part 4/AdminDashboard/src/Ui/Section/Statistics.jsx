@@ -6,7 +6,7 @@ export default function Statistics({
     <div className="flex flex-wrap">
       {statistics.map((stat) => {
         return (
-          <div className={className}>
+          <div className={className} key={stat.id}>
             <div className="border border-lightBorder bg-secBgc rounded-3xl p-7">
               <div className="flex justify-between">
                 <p className="text-textSecClr"> {stat.title}</p>

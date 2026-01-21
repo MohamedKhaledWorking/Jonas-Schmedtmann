@@ -24,17 +24,11 @@ export default function AddGuestModal({ isOpen, onClose }) {
                 Add New Guest
               </ModalHeader>
               <ModalBody className="my-5">
-                <AddGuestForm />
+                <AddGuestForm onClose={onClose} />
               </ModalBody>
               <ModalFooter className="space-x-3">
-                <button  className="w-full dangerBtn py-3.5" onClick={onClose}>
+                <button className="w-full dangerBtn py-3.5" onClick={onClose}>
                   Close
-                </button>
-                <button
-                  className="mainBtn w-full py-3.5"
-                  onClick={onClose}
-                >
-                  Create
                 </button>
               </ModalFooter>
             </>

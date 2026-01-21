@@ -9,6 +9,7 @@ export async function getGuests() {
 
   return guests;
 }
+
 export async function deleteGuests(id) {
   const { error } = await supabase.from("guests").delete().eq("id", id);
 
@@ -17,4 +18,17 @@ export async function deleteGuests(id) {
   }
 
   console.log("deleted" + id);
+}
+
+export async function createGuests(newGuest) {
+  const { data, error } = await supabase
+    .from("guests")
+    .insert([newGuest])
+    .select();
+
+  if (error) {
+    throw new Error(
+      `something went wrong on create a new guest: ${error.message}`
+    );
+  }
 }

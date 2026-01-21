@@ -3,7 +3,7 @@ import { addToast } from "@heroui/react";
 export default function Toast({
   title = "",
   description = "",
-  theme = "rose",
+  theme = "theme",
 }) {
   return addToast({
     title,

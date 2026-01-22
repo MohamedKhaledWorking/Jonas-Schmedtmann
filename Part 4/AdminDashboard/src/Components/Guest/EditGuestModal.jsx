@@ -21,12 +21,9 @@ export default function EditModal({ isOpen, onClose }) {
               <ModalBody>
                 <GuestEditForm />
               </ModalBody>
-              <ModalFooter className="space-x-3">
+              <ModalFooter >
                 <button onClick={onClose} className="w-full dangerBtn py-3.5">
                   Close
-                </button>
-                <button color="primary" className="w-full warningBtn py-3.5" onClick={onClose}>
-                  Edit
                 </button>
               </ModalFooter>
             </>

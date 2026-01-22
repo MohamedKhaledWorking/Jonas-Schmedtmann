@@ -8,10 +8,16 @@ import {
 } from "@heroui/react";
 import GuestEditForm from "./EditGuestForm.jsx";
 
-export default function EditModal({ isOpen, onClose }) {
+export default function EditModal({ isOpen, onClose, selectedGuest }) {
   return (
     <>
-      <Modal backdrop={"blur"} isOpen={isOpen} onClose={onClose} className="bg-secBgc text-textClr" size="4xl">
+      <Modal
+        backdrop={"blur"}
+        isOpen={isOpen}
+        onClose={onClose}
+        className="bg-secBgc text-textClr"
+        size="4xl"
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -19,9 +25,9 @@ export default function EditModal({ isOpen, onClose }) {
                 Edit Guest
               </ModalHeader>
               <ModalBody>
-                <GuestEditForm />
+                <GuestEditForm selectedGuest={selectedGuest} />
               </ModalBody>
-              <ModalFooter >
+              <ModalFooter>
                 <button onClick={onClose} className="w-full dangerBtn py-3.5">
                   Close
                 </button>

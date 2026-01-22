@@ -3,10 +3,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import GuestInput from "./GuestInput.jsx";
 
-export default function GuestEditForm() {
-  const { register, handleSubmit, formState } = useForm();
+export default function GuestEditForm({ selectedGuest }) {
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: selectedGuest,
+  });
   const { errors } = formState;
-  console.log(errors);
 
   function onSubmit(data) {
     console.log(data);
@@ -71,7 +72,6 @@ export default function GuestEditForm() {
             {...register("total_stays", {
               min: { value: 1, message: "min length is 1" },
             })}
-            defaultValue={1}
           />
         </GuestInput>
         <GuestInput id="total_spent" text="spent" errors={errors}>
@@ -83,7 +83,6 @@ export default function GuestEditForm() {
             {...register("total_spent", {
               min: { value: 1, message: "min length is 1" },
             })}
-            defaultValue={1}
           />
         </GuestInput>
         <div>
@@ -93,7 +92,11 @@ export default function GuestEditForm() {
           <select
             id="country"
             className="block w-full px-3 py-2.5 border border-lightBorder  text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
+            {...register("country")}
           >
+            <option value={selectedGuest?.country}>
+              {selectedGuest?.country}
+            </option>
             <option value="egypt">Egypt</option>
             <option value="sudan">sudan</option>
             <option value="morocco">morocco</option>
@@ -109,8 +112,13 @@ export default function GuestEditForm() {
           <select
             id="level"
             className="block w-full px-3 py-2.5 border  border-lightBorder text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
+            {...register("vip_level")}
           >
-            <option value="guest">Guest</option>
+            <option value={selectedGuest?.vip_level ?? "guest"}>
+              {selectedGuest?.vip_level ?? "guest"}
+            </option>
+
+            <option value="guest">guest</option>
             <option value="regular">Regular</option>
             <option value="premium">Premium</option>
             <option value="vip">VIP</option>
@@ -136,6 +144,7 @@ export default function GuestEditForm() {
             type="file"
             className="hidden"
             accept="image/*"
+            {...register("avatar_url")}
           />
         </label>
       </div>

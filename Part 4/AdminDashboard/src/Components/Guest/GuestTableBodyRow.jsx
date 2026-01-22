@@ -2,8 +2,13 @@ import { Button } from "@heroui/react";
 import { SquarePen, Trash2 } from "lucide-react";
 import React from "react";
 
-export default function GuestTableBodyRow({guest,deleteModal,setSelectedGuest,editModal,DetailsModal}) {
-
+export default function GuestTableBodyRow({
+  guest,
+  deleteModal,
+  setSelectedGuest,
+  editModal,
+  DetailsModal,
+}) {
   function onDelete() {
     deleteModal.onOpen();
   }
@@ -13,7 +18,7 @@ export default function GuestTableBodyRow({guest,deleteModal,setSelectedGuest,ed
   function onShowDetails() {
     DetailsModal.onOpen();
   }
-  
+
   return (
     <tr key={guest?.id} className="hover:bg-secBgc duration-200  text-center ">
       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium  ">
@@ -57,7 +62,10 @@ export default function GuestTableBodyRow({guest,deleteModal,setSelectedGuest,ed
       </td>
       <td className="flex p-5 items-center gap-2  justify-center">
         <Button
-          onPress={() => onEdit()}
+          onPress={() => {
+            onEdit();
+            setSelectedGuest(guest);
+          }}
           className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-amber-400 flex item-center cursor-pointer text-amber-500 hover:text-white"
         >
           <SquarePen />

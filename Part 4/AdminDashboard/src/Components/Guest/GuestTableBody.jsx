@@ -54,8 +54,12 @@ export default function GuestTableBody({ guests }) {
           );
         })}
       </tbody>
-      
-      <EditModal isOpen={editModal.isOpen} onClose={editModal.onClose} />
+
+      <EditModal
+        isOpen={editModal.isOpen}
+        onClose={editModal.onClose}
+        selectedGuest={selectedGuest}
+      />
       <ConfirmDelete
         isOpen={deleteModal.isOpen}
         onClose={deleteModal.onClose}

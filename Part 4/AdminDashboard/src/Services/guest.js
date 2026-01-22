@@ -1,4 +1,4 @@
-import supabase from "./supabase.js";
+import supabase, { supabaseUrl } from "./supabase.js";
 
 export async function getGuests() {
   let { data: guests, error } = await supabase.from("guests").select("*");
@@ -16,19 +16,36 @@ export async function deleteGuests(id) {
   if (error) {
     throw new Error(`something went wrong on fetching menu: ${error.message}`);
   }
-
-  console.log("deleted" + id);
 }
 
 export async function createGuests(newGuest) {
-  const { data, error } = await supabase
+  const file = newGuest.avatar_url?.[0];
+  if (!file) {
+    throw new Error("Avatar is required");
+  }
+
+  const baseUrl = supabaseUrl + "/storage/v1/object/public/Guests/";
+  const fileName = `${Date.now()}-${file?.name}`.replaceAll("/", "");
+  const avatar_url = baseUrl + fileName;
+
+  const { error } = await supabase
     .from("guests")
-    .insert([newGuest])
+    .insert([{ ...newGuest, avatar_url }])
     .select();
 
   if (error) {
     throw new Error(
       `something went wrong on create a new guest: ${error.message}`
+    );
+  }
+
+  const { error: avatarError } = await supabase.storage
+    .from("Guests")
+    .update(fileName, file);
+
+  if (avatarError) {
+    throw new Error(
+      `something went wrong on create a new guest: ${avatarError.message}`
     );
   }
 }

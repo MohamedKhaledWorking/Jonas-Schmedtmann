@@ -1,12 +1,15 @@
 import { ImageUp } from "lucide-react";
-import DangerAlert from "../../Ui/Alert/Alert.jsx";
 import { useForm } from "react-hook-form";
 import { createGuests } from "../../Services/guest.js";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Toast from "../../Ui/Toast/Toast.jsx";
+import InputLabel from "../../Ui/Form/InputLabel.jsx";
+import GuestInput from "./GuestInput.jsx";
 
 export default function AddGuestForm({ onClose }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
+
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: createGuests,
@@ -22,99 +25,102 @@ export default function AddGuestForm({ onClose }) {
       Toast({ title: "Something went wrong", description: `${err.message}` });
     },
   });
-
   function onSubmit(newGuest) {
+    // console.log(newGuest.image[0]);
+    // console.log(newGuest);
     mutate(newGuest);
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
-        <div>
-          <label htmlFor="Full_name" className="block mb-2.5 text-sm  ">
-            Full Name
-          </label>
+        <GuestInput id="full_name" text="Full Name" errors={errors}>
           <input
             type="text"
-            id="Full_name"
-            {...register("full_name")}
+            id="full_name"
+            {...register("full_name", {
+              required: "full name is required",
+              minLength: {
+                value: 3,
+                message: "full name must be at least 3 characters",
+              },
+              maxLength: {
+                value: 70,
+                message: "full name must be at most 70 characters",
+              },
+            })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="mohamed"
           />
-          <DangerAlert />
-        </div>
-
-        <div>
-          <label htmlFor="company" className="block mb-2.5 text-sm  ">
-            Company
-          </label>
+        </GuestInput>
+        <GuestInput id="company" text="Company" errors={errors}>
           <input
             type="text"
             id="company"
-            // {...register("company")}
+            // {...register("company", {
+            //   required: "company is required",
+            // })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="tailAir"
           />
-        </div>
-        <div>
-          <label htmlFor="phone" className="block mb-2.5 text-sm  ">
-            Phone number
-          </label>
+        </GuestInput>
+        <GuestInput id="phone" text="Phone" errors={errors}>
           <input
             type="tel"
             id="phone"
-            {...register("phone")}
+            {...register("phone", {
+              required: "phone is required",
+              pattern: {
+                value: /^01[0125]\d{8}$/,
+                message: "Invalid Egyptian mobile number (e.g. 01012345678)",
+              },
+            })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="123-45-678"
           />
-        </div>
-        <div>
-          <label htmlFor="email" className="block mb-2.5 text-sm  ">
-            Email address
-          </label>
+        </GuestInput>
+        <GuestInput id="email" text="email" errors={errors}>
           <input
             type="email"
             id="email"
-            {...register("email")}
+            {...register("email", { required: "email is required" })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="john.doe@company.com"
           />
-        </div>
-        <div>
-          <label htmlFor="stays" className="block mb-2.5 text-sm  ">
-            Stays Days
-          </label>
+        </GuestInput>
+        <GuestInput id="total_stays" text="stays days" errors={errors}>
           <input
             type="number"
-            id="stays"
-            {...register("total_stays")}
+            id="total_stays"
+            {...register("total_stays", {
+              required: "stays is required",
+              min: { value: 1, message: "stays must be at least 1 day" },
+            })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="2"
+            defaultValue={5}
           />
-        </div>
-        <div>
-          <label htmlFor="budget" className="block mb-2.5 text-sm  ">
-            Budget
-          </label>
+        </GuestInput>
+        <GuestInput id="budget" text="budget" errors={errors}>
           <input
             type="number"
             id="budget"
-            {...register("total_spent")}
+            // {...register("budget", {
+            //   required: "budget is required",
+            //   min: { value: 1, message: "budget must be at least 1 dollar" },
+            // })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
-            placeholder=""
+            placeholder="2"
+            defaultValue={100}
           />
-        </div>
+        </GuestInput>
         <div>
-          <label htmlFor="country" className="block mb-2.5 text-sm  ">
-            Select Guest Country
-          </label>
+          <InputLabel id="country" text=" Select Guest Country" />
           <select
             id="country"
             {...register("country")}
             className="block w-full px-3 py-2.5 border border-lightBorder  text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
           >
-            <option value="egypt" selected>
-              Egypt
-            </option>
+            <option value="egypt">Egypt</option>
             <option value="sudan">sudan</option>
             <option value="morocco">morocco</option>
             <option value="tunisia">tunisia</option>
@@ -123,17 +129,13 @@ export default function AddGuestForm({ onClose }) {
           </select>
         </div>
         <div>
-          <label htmlFor="level" className="block mb-2.5 text-sm  ">
-            Select Guest Level
-          </label>
+          <InputLabel id="level" text=" Select Guest Level" />
           <select
             id="level"
             {...register("vip_level")}
             className="block w-full px-3 py-2.5 border  border-lightBorder text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
           >
-            <option value="guest" selected>
-              Guest
-            </option>
+            <option value="guest">Guest</option>
             <option value="regular">Regular</option>
             <option value="premium">Premium</option>
             <option value="vip">VIP</option>
@@ -154,10 +156,15 @@ export default function AddGuestForm({ onClose }) {
             </p>
             <p className="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
           </div>
-          <input id="dropzone-file" type="file" className="hidden" />
+          <input
+            id="dropzone-file"
+            type="file"
+            className="hidden"
+            {...register("avatar_url")}
+          />
         </label>
       </div>
-      <button className="mainBtn w-full py-3.5">Create</button>
+      <button className="mainBtn w-full py-3.5 mt-7">Create</button>
     </form>
   );
 }

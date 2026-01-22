@@ -23,10 +23,10 @@ export default function AddGuestModal({ isOpen, onClose }) {
               <ModalHeader className="flex flex-col gap-1 text-center font-bold text-theme text-3xl">
                 Add New Guest
               </ModalHeader>
-              <ModalBody className="my-5">
+              <ModalBody className="mt-5">
                 <AddGuestForm onClose={onClose} />
               </ModalBody>
-              <ModalFooter className="space-x-3">
+              <ModalFooter >
                 <button className="w-full dangerBtn py-3.5" onClick={onClose}>
                   Close
                 </button>

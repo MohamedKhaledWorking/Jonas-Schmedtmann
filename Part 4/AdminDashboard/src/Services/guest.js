@@ -50,6 +50,19 @@ export async function createGuests(newGuest) {
   }
 }
 
+export async function duplicateGuest(newGuest) {
+  const { error } = await supabase
+    .from("guests")
+    .insert([newGuest])
+    .select();
+
+  if (error) {
+    throw new Error(
+      `something went wrong on create a new guest: ${error.message}`
+    );
+  }
+}
+
 export async function updateGuest(newData) {
   const hasAvatar = newData?.avatar_url?.startsWith?.(supabaseUrl);
   const baseUrl = supabaseUrl + "/storage/v1/object/public/Guests/";

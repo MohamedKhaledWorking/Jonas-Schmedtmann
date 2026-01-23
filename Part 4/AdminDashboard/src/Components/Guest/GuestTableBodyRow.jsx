@@ -1,5 +1,5 @@
 import { Button } from "@heroui/react";
-import { SquarePen, Trash2 } from "lucide-react";
+import { CopyPlus, SquarePen, Trash2 } from "lucide-react";
 import React from "react";
 
 export default function GuestTableBodyRow({
@@ -8,6 +8,7 @@ export default function GuestTableBodyRow({
   setSelectedGuest,
   editModal,
   DetailsModal,
+  DuplicateModal,
 }) {
   function onDelete() {
     deleteModal.onOpen();
@@ -17,6 +18,9 @@ export default function GuestTableBodyRow({
   }
   function onShowDetails() {
     DetailsModal.onOpen();
+  }
+  function onDuplicate() {
+    DuplicateModal.onOpen();
   }
 
   return (
@@ -76,9 +80,19 @@ export default function GuestTableBodyRow({
             onDelete();
           }}
           className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-red-600 flex item-center cursor-pointer text-rose-500 hover:text-white"
-          onOpen={deleteModal.onOpen}
+          // onOpen={deleteModal.onOpen}
         >
           <Trash2 />
+        </Button>
+        <Button
+          onPress={() => {
+            setSelectedGuest(guest);
+            onDuplicate();
+          }}
+          className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-theme flex item-center cursor-pointer text-theme hover:text-white"
+          // onOpen={DuplicateModal.onOpen}
+        >
+          <CopyPlus />
         </Button>
       </td>
     </tr>

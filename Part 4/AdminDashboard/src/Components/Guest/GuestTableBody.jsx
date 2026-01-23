@@ -5,6 +5,8 @@ import EditModal from "./EditGuestModal.jsx";
 import GuestDetails from "./GuestDetails.jsx";
 import GuestTableBodyRow from "./GuestTableBodyRow.jsx";
 import { useDeleteGuest } from "../../Hooks/Guest/useDeleteGuest.js";
+import ConfirmDuplicate from "../../Ui/Modals/ConfirmDuplicate.jsx";
+import { useDuplicateGuest } from "../../Hooks/Guest/useDuplicateGuest.js";
 
 export default function GuestTableBody({ guests }) {
   const [selectedGuest, setSelectedGuest] = React.useState(null);
@@ -12,8 +14,10 @@ export default function GuestTableBody({ guests }) {
   const deleteModal = useDisclosure();
   const editModal = useDisclosure();
   const DetailsModal = useDisclosure();
+  const DuplicateModal = useDisclosure();
 
-  const {mutation} = useDeleteGuest();
+  const { mutation } = useDeleteGuest();
+  const { mutate } = useDuplicateGuest();
 
   return (
     <>
@@ -26,6 +30,7 @@ export default function GuestTableBody({ guests }) {
               editModal={editModal}
               deleteModal={deleteModal}
               DetailsModal={DetailsModal}
+              DuplicateModal={DuplicateModal}
               setSelectedGuest={setSelectedGuest}
             />
           );
@@ -46,6 +51,12 @@ export default function GuestTableBody({ guests }) {
       <GuestDetails
         isOpen={DetailsModal.isOpen}
         onOpenChange={DetailsModal.onOpenChange}
+      />
+      <ConfirmDuplicate
+        isOpen={DuplicateModal.isOpen}
+        onClose={DuplicateModal.onClose}
+        selectedGuest={selectedGuest}
+        mutate={mutate}
       />
     </>
   );

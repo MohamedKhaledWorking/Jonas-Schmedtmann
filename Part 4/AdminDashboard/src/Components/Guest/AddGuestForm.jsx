@@ -1,35 +1,22 @@
 import { ImageUp } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { createGuests } from "../../Services/guest.js";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Toast from "../../Ui/Toast/Toast.jsx";
+
 import InputLabel from "../../Ui/Form/InputLabel.jsx";
 import GuestInput from "./GuestInput.jsx";
+
+import { useCreateGuest } from "../../Hooks/Guest/useCreateGuest.js";
 
 export default function AddGuestForm({ onClose }) {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
-
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: createGuests,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["guests"] });
-      Toast({
-        title: "Guest added successfullY",
-        description: "Guest added successfullY",
-      });
-      onClose();
-    },
-    onError: (err) => {
-      Toast({ title: "Something went wrong", description: `${err.message}` });
-    },
-  });
+  
+  const { mutate } = useCreateGuest();
   function onSubmit(newGuest) {
-    // console.log(newGuest.image[0]);
-    // console.log(newGuest);
-    mutate(newGuest);
+    mutate(newGuest, {
+      onSuccess: () => onClose(),
+    });
   }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 mb-6 md:grid-cols-2">

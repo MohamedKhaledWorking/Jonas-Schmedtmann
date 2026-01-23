@@ -5,6 +5,7 @@ import GuestInput from "./GuestInput.jsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateGuest } from "../../Services/guest.js";
 import Toast from "../../Ui/Toast/Toast.jsx";
+import { useEditGuest } from "../../Hooks/Guest/useEditGuest.js";
 
 export default function GuestEditForm({ selectedGuest, onClose }) {
   const { register, handleSubmit, formState } = useForm({
@@ -12,26 +13,14 @@ export default function GuestEditForm({ selectedGuest, onClose }) {
   });
   const { errors } = formState;
 
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: updateGuest,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["guests"] });
-      Toast({
-        title: "Guest updated successfullY",
-        description: "Guest updated successfullY",
-      });
-      onClose();
-    },
-    onError: (err) => {
-      Toast({ title: "Something went wrong", description: `${err.message}` });
-    },
-  });
+  const { mutate } = useEditGuest();
 
   function onSubmit(data) {
-    mutate(data);
-    // console.log(data);
+    mutate(data, {
+      onSuccess: () => onClose(),
+    });
   }
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 mb-6 md:grid-cols-2">

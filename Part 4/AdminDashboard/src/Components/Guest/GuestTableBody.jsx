@@ -3,10 +3,8 @@ import ConfirmDelete from "../../Ui/Modals/ConfirmDelete.jsx";
 import { useDisclosure } from "@heroui/react";
 import EditModal from "./EditGuestModal.jsx";
 import GuestDetails from "./GuestDetails.jsx";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteGuests } from "../../Services/guest.js";
-import toast from "../../Ui/Toast/Toast.jsx";
 import GuestTableBodyRow from "./GuestTableBodyRow.jsx";
+import { useDeleteGuest } from "../../Hooks/Guest/useDeleteGuest.js";
 
 export default function GuestTableBody({ guests }) {
   const [selectedGuest, setSelectedGuest] = React.useState(null);
@@ -15,28 +13,7 @@ export default function GuestTableBody({ guests }) {
   const editModal = useDisclosure();
   const DetailsModal = useDisclosure();
 
-  const queryClient = useQueryClient();
-  const mutation = useMutation({
-    mutationFn: ({ id }) => deleteGuests(id),
-    onSuccess: (_, { name }) => {
-      queryClient.invalidateQueries({
-        queryKey: ["guests"],
-      });
-      deleteModal.onClose();
-      toast({
-        title: "Guest deleted successfully",
-        description: `${name} deleted successfully`,
-        theme: "theme",
-      });
-    },
-    onError: (err) => {
-      toast({
-        title: "Something went wrong on deleting guest",
-        description: `${err.message}`,
-        theme: "rose",
-      });
-    },
-  });
+  const {mutation} = useDeleteGuest();
 
   return (
     <>
@@ -59,7 +36,6 @@ export default function GuestTableBody({ guests }) {
         isOpen={editModal.isOpen}
         onClose={editModal.onClose}
         selectedGuest={selectedGuest}
-        
       />
       <ConfirmDelete
         isOpen={deleteModal.isOpen}

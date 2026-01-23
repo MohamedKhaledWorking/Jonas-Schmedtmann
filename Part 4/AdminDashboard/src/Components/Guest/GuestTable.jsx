@@ -1,23 +1,16 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 
 import GuestTableHead from "./GuestTableHead.jsx";
 import GuestTableBody from "./GuestTableBody.jsx";
-import { getGuests } from "../../Services/guest.js";
 import GuestTablePagination from "./GuestTablePagination.jsx";
 import GuestTableSkeleton from "./GuestTableSkeleton.jsx";
 import TableErrorBody from "../../Ui/Table/TableErrorBody.jsx";
 import TableEmptyBody from "../../Ui/Table/TableErrorBody.jsx";
 
+import { useGuests } from "../../Hooks/Guest/useGuests.js";
+
 export default function GuestTable() {
-  const {
-    data: guests,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["guests"],
-    queryFn: getGuests,
-  });
+  const { guests, isLoading, error } = useGuests();
 
   return (
     <div className="flex flex-col mt-8 ">
@@ -38,7 +31,6 @@ export default function GuestTable() {
               )}
             </table>
             <GuestTablePagination />
-
           </div>
         </div>
       </div>

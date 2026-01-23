@@ -4,7 +4,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Button,
 } from "@heroui/react";
 
 export default function ConfirmDelete({
@@ -47,10 +46,13 @@ export default function ConfirmDelete({
                 <button
                   className="dangerBtn py-3.5 w-full"
                   onClick={() =>
-                    mutate({
-                      id: selectedGuest?.id,
-                      name: selectedGuest?.full_name,
-                    })
+                    mutate(
+                      {
+                        id: selectedGuest?.id,
+                        name: selectedGuest?.full_name,
+                      },
+                      onClose()
+                    )
                   }
                 >
                   Delete

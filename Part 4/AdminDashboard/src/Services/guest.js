@@ -49,3 +49,40 @@ export async function createGuests(newGuest) {
     );
   }
 }
+
+export async function updateGuest(newData) {
+  const hasAvatar = newData?.avatar_url?.startsWith?.(supabaseUrl);
+  const baseUrl = supabaseUrl + "/storage/v1/object/public/Guests/";
+  const fileName = `${Date.now()}-${newData.avatar_url?.[0].name}`.replaceAll(
+    "/",
+    ""
+  );
+  const avatar_url = hasAvatar ? newData.avatar_url : baseUrl + fileName;
+
+  if (!hasAvatar) {
+    const file = newData.avatar_url?.[0];
+    if (!file) {
+      throw new Error("Avatar is required");
+    }
+
+    const { error: avatarError } = await supabase.storage
+      .from("Guests")
+      .update(fileName, file);
+
+    if (avatarError) {
+      throw new Error(
+        `something went wrong on create a new guest: ${avatarError.message}`
+      );
+    }
+  }
+
+  const { error } = await supabase
+    .from("guests")
+    .update({ ...newData, avatar_url })
+    .eq("id", newData.id)
+    .select();
+
+  if (error) {
+    throw new Error(`something went wrong on update guest: ${error.message}`);
+  }
+}

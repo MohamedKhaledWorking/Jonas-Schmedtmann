@@ -59,6 +59,7 @@ export default function GuestTableBody({ guests }) {
         isOpen={editModal.isOpen}
         onClose={editModal.onClose}
         selectedGuest={selectedGuest}
+        
       />
       <ConfirmDelete
         isOpen={deleteModal.isOpen}

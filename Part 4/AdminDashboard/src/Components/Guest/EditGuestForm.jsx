@@ -2,15 +2,35 @@ import { ImageUp } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import GuestInput from "./GuestInput.jsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateGuest } from "../../Services/guest.js";
+import Toast from "../../Ui/Toast/Toast.jsx";
 
-export default function GuestEditForm({ selectedGuest }) {
+export default function GuestEditForm({ selectedGuest, onClose }) {
   const { register, handleSubmit, formState } = useForm({
     defaultValues: selectedGuest,
   });
   const { errors } = formState;
 
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: updateGuest,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["guests"] });
+      Toast({
+        title: "Guest updated successfullY",
+        description: "Guest updated successfullY",
+      });
+      onClose();
+    },
+    onError: (err) => {
+      Toast({ title: "Something went wrong", description: `${err.message}` });
+    },
+  });
+
   function onSubmit(data) {
-    console.log(data);
+    mutate(data);
+    // console.log(data);
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

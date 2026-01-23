@@ -25,7 +25,7 @@ export default function EditModal({ isOpen, onClose, selectedGuest }) {
                 Edit Guest
               </ModalHeader>
               <ModalBody>
-                <GuestEditForm selectedGuest={selectedGuest} />
+                <GuestEditForm selectedGuest={selectedGuest} onClose={onClose} />
               </ModalBody>
               <ModalFooter>
                 <button onClick={onClose} className="w-full dangerBtn py-3.5">

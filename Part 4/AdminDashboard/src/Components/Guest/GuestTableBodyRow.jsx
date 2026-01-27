@@ -17,6 +17,7 @@ export default function GuestTableBodyRow({
     editModal.onOpen();
   }
   function onShowDetails() {
+    setSelectedGuest(guest);
     DetailsModal.onOpen();
   }
   function onDuplicate() {
@@ -24,7 +25,10 @@ export default function GuestTableBodyRow({
   }
 
   return (
-    <tr key={guest?.id} className="hover:bg-secBgc duration-200  text-center ">
+    <tr
+      key={guest?.id}
+      className="hover:bg-secBgc duration-200  text-center capitalize"
+    >
       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium  ">
         {guest?.id}
       </td>
@@ -53,16 +57,28 @@ export default function GuestTableBodyRow({
         {guest?.country}
       </td>
       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium ">
-        {guest?.total_stays}
+        {guest?.stay_duration}
       </td>
       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium ">
         {guest?.created_at}
       </td>
       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium ">
-        ${guest?.total_spent}
+        ${guest?.spent_money}
       </td>
-      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium ">
-        {guest?.vip_level ?? "guest"}
+      <td className={`p-5 whitespace-nowrap text-sm leading-6 font-medium  `}>
+        <span
+          className={`px-4 py-1  rounded-full  text-xs ${
+            guest?.level == "gold"
+              ? "text-amber-300 bg-amber-500/30"
+              : guest?.level == "platinum"
+              ? "text-indigo-400 bg-indigo-600/20"
+              : guest?.level == "silver"
+              ? "text-gray-400 bg-gray-300/30"
+              : "text-orange-500 bg-orange-500/20"
+          }`}
+        >
+          {guest?.level ?? "guest"}
+        </span>
       </td>
       <td className="flex p-5 items-center gap-2  justify-center">
         <Button
@@ -80,7 +96,6 @@ export default function GuestTableBodyRow({
             onDelete();
           }}
           className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-red-600 flex item-center cursor-pointer text-rose-500 hover:text-white"
-          // onOpen={deleteModal.onOpen}
         >
           <Trash2 />
         </Button>
@@ -90,7 +105,6 @@ export default function GuestTableBodyRow({
             onDuplicate();
           }}
           className="rounded-full bg-secBgc group transition-all duration-500 hover:bg-theme flex item-center cursor-pointer text-theme hover:text-white"
-          // onOpen={DuplicateModal.onOpen}
         >
           <CopyPlus />
         </Button>

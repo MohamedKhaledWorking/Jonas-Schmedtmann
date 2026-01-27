@@ -32,7 +32,7 @@ export default function GuestTableHead() {
     },
     {
       id: 8,
-      title: "Budget",
+      title: "spent",
     },
     {
       id: 10,

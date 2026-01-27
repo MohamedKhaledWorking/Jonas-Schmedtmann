@@ -1,7 +1,16 @@
 import supabase, { supabaseUrl } from "./supabase.js";
 
 export async function getGuests() {
-  let { data: guests, error } = await supabase.from("guests").select("*");
+  let { data: guests, error } = await supabase.from("guests").select(`
+    *,
+    bookings:bookings (
+      *,
+      room:rooms (
+        id, name_or_number, image,
+        hotel:hotels ( id, name, city, stars, image )
+      )
+    )
+  `);
 
   if (error) {
     throw new Error(`something went wrong on fetching menu: ${error.message}`);
@@ -51,10 +60,7 @@ export async function createGuests(newGuest) {
 }
 
 export async function duplicateGuest(newGuest) {
-  const { error } = await supabase
-    .from("guests")
-    .insert([newGuest])
-    .select();
+  const { error } = await supabase.from("guests").insert([newGuest]).select();
 
   if (error) {
     throw new Error(

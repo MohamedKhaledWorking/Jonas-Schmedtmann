@@ -51,6 +51,7 @@ export default function GuestTableBody({ guests }) {
       <GuestDetails
         isOpen={DetailsModal.isOpen}
         onOpenChange={DetailsModal.onOpenChange}
+        selectedGuest={selectedGuest}
       />
       <ConfirmDuplicate
         isOpen={DuplicateModal.isOpen}

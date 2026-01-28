@@ -6,7 +6,7 @@ export async function getGuests() {
     bookings:bookings (
       *,
       room:rooms (
-        id, name_or_number, image,
+        id, name, image,
         hotel:hotels ( id, name, city, stars, image )
       )
     )

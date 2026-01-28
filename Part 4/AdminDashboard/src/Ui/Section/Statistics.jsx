@@ -4,7 +4,7 @@ export default function Statistics({
 }) {
   return (
     <div className="flex flex-wrap">
-      {statistics.map((stat) => {
+      {statistics?.map((stat) => {
         return (
           <div className={className} key={stat?.title}>
             <div className="border border-lightBorder bg-secBgc rounded-3xl p-7">

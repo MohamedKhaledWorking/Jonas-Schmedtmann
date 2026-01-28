@@ -23,7 +23,7 @@ export default function GuestDetailsHistory() {
               </div>
             </div>
             <p className="my-1.5 ">
-              {booking?.room?.name_or_number} / {booking?.room?.hotel?.name} /{" "}
+              {booking?.room?.name} / {booking?.room?.hotel?.name} /{" "}
               {booking?.room?.hotel?.city}
             </p>
             <p className="text-textSecClr my-1.5 text-xs">

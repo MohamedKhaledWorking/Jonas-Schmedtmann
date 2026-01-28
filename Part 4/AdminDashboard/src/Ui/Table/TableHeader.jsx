@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function GuestTableHead() {
+export default function TableHeader() {
   const THead = [
     {
       id: 1,

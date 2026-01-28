@@ -19,8 +19,8 @@ export default function SideBarLinks() {
       icon: <Hotel />,
     },
     {
-      name: "rooms",
-      path: "/rooms",
+      name: "cabins",
+      path: "/cabins",
       icon: <BedDouble />,
     },
     {

@@ -15,6 +15,7 @@ export default function GuestTableBody({ guests }) {
 
   const { mutate } = useDuplicateGuest();
 
+
   return (
     <>
       <tbody className="divide-y divide-lightBorder bg-mainBgc ">

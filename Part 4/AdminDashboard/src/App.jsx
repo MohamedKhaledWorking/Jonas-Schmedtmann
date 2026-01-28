@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import AppLayout from "./Ui/AppLayout/AppLayout.jsx";
 import Guest from "./Pages/Guest/Guest.jsx";
 import Home from "./Pages/Home/Home.jsx";
+import Cabins from "./Pages/Cabins/Cabins.jsx";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         path: "/guest",
         element: <Guest />,
       },
+      {
+        path: "/cabins",
+        element: <Cabins />,
+      },
     ],
   },
 ]);
@@ -28,7 +33,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <HeroUIProvider>
-      <ToastProvider placement="top-center" toastOffset={50}/>
+      <ToastProvider placement="top-center" toastOffset={50} />
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <RouterProvider router={router}></RouterProvider>

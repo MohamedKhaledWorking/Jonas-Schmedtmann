@@ -6,6 +6,7 @@ import GuestTable from "../../Components/Guest/GuestTable.jsx";
 import { useDisclosure } from "@heroui/react";
 import AddGuestModal from "../../Components/Guest/AddGuestModal.jsx";
 import GuestDetails from "../../Components/Guest/GuestDetails.jsx";
+import SelectedContextProvider from "../../Context/SelectedGuestContext.jsx";
 
 export default function Guest() {
   const AddModal = useDisclosure();
@@ -37,24 +38,26 @@ export default function Guest() {
   ];
   return (
     <>
-      <SectionHeader
-        head={"guest"}
-        desc={"Manage guest profiles and preferences"}
-      >
-        <button
-          className="mainBtn px-6 py-4 flex justify-center w-full "
-          onClick={onAddingGuest}
+      <SelectedContextProvider>
+        <SectionHeader
+          head={"guest"}
+          desc={"Manage guest profiles and preferences"}
         >
-          <FilePlusCorner className="mr-2" /> Add Guest
-        </button>
-        <AddGuestModal isOpen={AddModal.isOpen} onClose={AddModal.onClose} />
-      </SectionHeader>
+          <button
+            className="mainBtn px-6 py-4 flex justify-center w-full "
+            onClick={onAddingGuest}
+          >
+            <FilePlusCorner className="mr-2" /> Add Guest
+          </button>
+          <AddGuestModal isOpen={AddModal.isOpen} onClose={AddModal.onClose} />
+        </SectionHeader>
 
-      <GuestDetails />
+        <GuestDetails />
 
-      <Statistics statistics={statistics} />
+        <Statistics statistics={statistics} />
 
-      <GuestTable />
+        <GuestTable />
+      </SelectedContextProvider>
     </>
   );
 }

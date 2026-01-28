@@ -5,13 +5,13 @@ import {
   ModalBody,
   ModalFooter,
 } from "@heroui/react";
+import { useSelectedGuest } from "../../Context/SelectedGuestContext.jsx";
+import { useDeleteGuest } from "../../Hooks/Guest/useDeleteGuest.js";
 
-export default function ConfirmDelete({
-  isOpen,
-  onClose,
-  mutate,
-  selectedGuest,
-}) {
+export default function ConfirmDelete({ isOpen, onClose }) {
+  const { selectedGuest } = useSelectedGuest();
+  const { mutation } = useDeleteGuest();
+
   return (
     <>
       <Modal
@@ -29,7 +29,9 @@ export default function ConfirmDelete({
               <ModalBody>
                 <p className="bg-mainBgc text-white font-bold text-xl my-1 p-4 rounded-lg capitalize">
                   you are deleting{" "}
-                  <span className="text-theme capitalize">mohamed khaled</span>
+                  <span className="text-theme capitalize">
+                    {selectedGuest?.full_name}
+                  </span>
                 </p>
                 <p className="bg-rose-500/15 p-4 rounded-lg text-rose-500 text-sm ">
                   once you delete this, you will not be able to recover it !!
@@ -45,15 +47,7 @@ export default function ConfirmDelete({
                 </button>
                 <button
                   className="dangerBtn py-3.5 w-full"
-                  onClick={() =>
-                    mutate(
-                      {
-                        id: selectedGuest?.id,
-                        name: selectedGuest?.full_name,
-                      },
-                      onClose()
-                    )
-                  }
+                  onClick={() => mutation.mutate(selectedGuest?.id, onClose())}
                 >
                   Delete
                 </button>

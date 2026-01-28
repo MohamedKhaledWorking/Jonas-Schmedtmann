@@ -2,15 +2,27 @@ import { ImageUp } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import GuestInput from "./GuestInput.jsx";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateGuest } from "../../Services/guest.js";
-import Toast from "../../Ui/Toast/Toast.jsx";
 import { useEditGuest } from "../../Hooks/Guest/useEditGuest.js";
+import { useSelectedGuest } from "../../Context/SelectedGuestContext.jsx";
 
-export default function GuestEditForm({ selectedGuest, onClose }) {
+export default function GuestEditForm({ onClose }) {
+  const { selectedGuest } = useSelectedGuest();
+
   const { register, handleSubmit, formState } = useForm({
-    defaultValues: selectedGuest,
+    defaultValues: {
+      full_name: selectedGuest?.full_name,
+      email: selectedGuest?.email,
+      phone: selectedGuest?.phone,
+      address: selectedGuest?.address,
+      country: selectedGuest?.country,
+      level: selectedGuest?.level,
+      stay_duration: selectedGuest?.stay_duration,
+      spent_money: selectedGuest?.spent_money,
+      avatar_url: selectedGuest?.avatar_url,
+      id: selectedGuest?.id,
+    },
   });
+
   const { errors } = formState;
 
   const { mutate } = useEditGuest();
@@ -20,7 +32,7 @@ export default function GuestEditForm({ selectedGuest, onClose }) {
       onSuccess: () => onClose(),
     });
   }
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -33,28 +45,6 @@ export default function GuestEditForm({ selectedGuest, onClose }) {
             {...register("full_name", {
               minLength: { value: 4, message: "min length is 4" },
               maxLength: { value: 20, message: "max length is 20" },
-            })}
-          />
-        </GuestInput>
-        <GuestInput id="company" text="company Name" errors={errors}>
-          <input
-            type="text"
-            id="company"
-            className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
-            placeholder="tailAir"
-          />
-        </GuestInput>
-        <GuestInput id="phone" text="phone number" errors={errors}>
-          <input
-            type="tel"
-            id="phone"
-            className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
-            placeholder="123-45-678"
-            {...register("phone", {
-              pattern: {
-                value: /^01[0125]\d{8}$/,
-                message: "Invalid Egyptian mobile number (e.g. 01012345678)",
-              },
             })}
           />
         </GuestInput>
@@ -72,24 +62,48 @@ export default function GuestEditForm({ selectedGuest, onClose }) {
             })}
           />
         </GuestInput>
-        <GuestInput id="total_stays" text="stays" errors={errors}>
+        <GuestInput id="phone" text="phone number" errors={errors}>
           <input
-            type="number"
-            id="total_stays"
+            type="tel"
+            id="phone"
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="123-45-678"
-            {...register("total_stays", {
+            {...register("phone", {
+              pattern: {
+                value: /^01[0125]\d{8}$/,
+                message: "Invalid Egyptian mobile number (e.g. 01012345678)",
+              },
+            })}
+          />
+        </GuestInput>
+        <GuestInput id="address" text="address" errors={errors}>
+          <input
+            type="text"
+            id="address"
+            className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            {...register("address", {
+              minLength: { value: 3, message: "min length is 3" },
+            })}
+          />
+        </GuestInput>
+        <GuestInput id="stay_duration" text="stays" errors={errors}>
+          <input
+            type="number"
+            id="stay_duration"
+            className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
+            placeholder="123-45-678"
+            {...register("stay_duration", {
               min: { value: 1, message: "min length is 1" },
             })}
           />
         </GuestInput>
-        <GuestInput id="total_spent" text="spent" errors={errors}>
+        <GuestInput id="spent_money" text="spent" errors={errors}>
           <input
             type="number"
-            id="total_spent"
+            id="spent_money"
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder=""
-            {...register("total_spent", {
+            {...register("spent_money", {
               min: { value: 1, message: "min length is 1" },
             })}
           />
@@ -121,10 +135,10 @@ export default function GuestEditForm({ selectedGuest, onClose }) {
           <select
             id="level"
             className="block w-full px-3 py-2.5 border  border-lightBorder text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
-            {...register("vip_level")}
+            {...register("level")}
           >
-            <option value={selectedGuest?.vip_level ?? "guest"}>
-              {selectedGuest?.vip_level ?? "guest"}
+            <option value={selectedGuest?.level ?? "guest"}>
+              {selectedGuest?.level ?? "guest"}
             </option>
 
             <option value="guest">guest</option>
@@ -132,6 +146,7 @@ export default function GuestEditForm({ selectedGuest, onClose }) {
             <option value="premium">Premium</option>
             <option value="vip">VIP</option>
             <option value="premium">premium</option>
+            <option value="silver">silver</option>
           </select>
         </div>
       </div>

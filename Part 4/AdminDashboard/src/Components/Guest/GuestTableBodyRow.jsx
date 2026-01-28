@@ -1,15 +1,16 @@
 import { Button } from "@heroui/react";
 import { CopyPlus, SquarePen, Trash2 } from "lucide-react";
 import React from "react";
+import { useSelectedGuest } from "../../Context/SelectedGuestContext.jsx";
 
 export default function GuestTableBodyRow({
   guest,
   deleteModal,
-  setSelectedGuest,
   editModal,
   DetailsModal,
   DuplicateModal,
 }) {
+  const { setSelectedGuest } = useSelectedGuest();
   function onDelete() {
     deleteModal.onOpen();
   }

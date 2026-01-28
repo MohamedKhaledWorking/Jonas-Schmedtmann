@@ -5,20 +5,22 @@ import {
   ModalBody,
   ModalFooter,
 } from "@heroui/react";
+import { useSelectedGuest } from "../../Context/SelectedGuestContext.jsx";
 
-export default function ConfirmDuplicate({
-  isOpen,
-  onClose,
-  mutate,
-  selectedGuest,
-}) {
+export default function ConfirmDuplicate({ isOpen, onClose, mutate }) {
+  const { selectedGuest } = useSelectedGuest();
+
   function handleDuplicate() {
     const newGuest = {
-      ...selectedGuest,
-      id: Date.now(),
-      email: `duplicate_${selectedGuest.full_name}` + selectedGuest.email,
-      phone: Math.random() * 10000000000,
-      full_name: selectedGuest.full_name + " Copy",
+      email: selectedGuest?.email,
+      phone: selectedGuest?.phone,
+      address: selectedGuest?.address,
+      avatar_url: selectedGuest?.avatar_url,
+      country: selectedGuest?.country,
+      level: selectedGuest?.level,
+      stay_duration: selectedGuest?.stay_duration,
+      spent_money: selectedGuest?.spent_money,
+      full_name: selectedGuest?.full_name + " Copy",
     };
     mutate(newGuest, {
       onSuccess: () => onClose(),
@@ -40,8 +42,10 @@ export default function ConfirmDuplicate({
               </ModalHeader>
               <ModalBody>
                 <p className="bg-mainBgc text-white font-bold text-xl my-1 p-4 rounded-lg capitalize">
-                  you are duplicating
-                  <span className="text-theme capitalize"> mohamed khaled</span>
+                  you are duplicating{" "}
+                  <span className="text-theme capitalize">
+                    {selectedGuest?.full_name}
+                  </span>
                 </p>
                 <p className="bg-theme/15 p-4 rounded-lg text-theme text-sm ">
                   you are about to duplicate this guest !!

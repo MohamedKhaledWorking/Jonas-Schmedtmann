@@ -39,15 +39,13 @@ export default function AddGuestForm({ onClose }) {
             placeholder="mohamed"
           />
         </GuestInput>
-        <GuestInput id="company" text="Company" errors={errors}>
+        <GuestInput id="email" text="email" errors={errors}>
           <input
-            type="text"
-            id="company"
-            // {...register("company", {
-            //   required: "company is required",
-            // })}
+            type="email"
+            id="email"
+            {...register("email", { required: "email is required" })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
-            placeholder="tailAir"
+            placeholder="john.doe@company.com"
           />
         </GuestInput>
         <GuestInput id="phone" text="Phone" errors={errors}>
@@ -65,36 +63,36 @@ export default function AddGuestForm({ onClose }) {
             placeholder="123-45-678"
           />
         </GuestInput>
-        <GuestInput id="email" text="email" errors={errors}>
+        <GuestInput id="address" text="address" errors={errors}>
           <input
-            type="email"
-            id="email"
-            {...register("email", { required: "email is required" })}
+            type="text"
+            id="address"
+            {...register("address", { required: "address is required" })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
-            placeholder="john.doe@company.com"
+            placeholder="st.1223 "
           />
         </GuestInput>
-        <GuestInput id="total_stays" text="stays days" errors={errors}>
+        <GuestInput id="stay_duration" text="stays days" errors={errors}>
           <input
             type="number"
-            id="total_stays"
-            {...register("total_stays", {
+            id="stay_duration"
+            {...register("stay_duration", {
               required: "stays is required",
               min: { value: 1, message: "stays must be at least 1 day" },
             })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="2"
-            defaultValue={5}
+            defaultValue={3}
           />
         </GuestInput>
-        <GuestInput id="budget" text="budget" errors={errors}>
+        <GuestInput id="spent_money" text="spent_money" errors={errors}>
           <input
             type="number"
-            id="budget"
-            // {...register("budget", {
-            //   required: "budget is required",
-            //   min: { value: 1, message: "budget must be at least 1 dollar" },
-            // })}
+            id="spent_money"
+            {...register("spent_money", {
+              required: "budget is required",
+              min: { value: 1, message: "budget must be at least 1 dollar" },
+            })}
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="2"
             defaultValue={100}
@@ -119,7 +117,7 @@ export default function AddGuestForm({ onClose }) {
           <InputLabel id="level" text=" Select Guest Level" />
           <select
             id="level"
-            {...register("vip_level")}
+            {...register("level")}
             className="block w-full px-3 py-2.5 border  border-lightBorder text-sm rounded focus:rounded-xl duration-400  shadow-xs bg-secBgc"
           >
             <option value="guest">Guest</option>

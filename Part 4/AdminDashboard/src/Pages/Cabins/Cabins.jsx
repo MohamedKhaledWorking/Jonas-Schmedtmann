@@ -9,6 +9,9 @@ import {
 } from "lucide-react";
 import Statistics from "../../Ui/Section/Statistics.jsx";
 import CabinList from "../../Components/Cabins/CabinList.jsx";
+import { useDisclosure } from "@heroui/react";
+import AddModal from "../../Ui/Modals/AddModal.jsx";
+import AddCabinForm from "../../Components/Cabins/AddCabinForm.jsx";
 
 export default function Cabins() {
   const statistics = [
@@ -33,13 +36,28 @@ export default function Cabins() {
       icon: <CircleDashed className="text-amber-500" />,
     },
   ];
-  
+
+  const addModal = useDisclosure();
+  function handleOpenAddModal() {
+    addModal.onOpen();
+  }
+
   return (
     <div className=" ">
       <SectionHeader head={"cabins"} desc={"manage your cabins"}>
-        <button className="mainBtn px-6 py-4 flex justify-center w-full ">
+        <button
+          className="mainBtn px-6 py-4 flex justify-center w-full"
+          onClick={handleOpenAddModal}
+        >
           <BedSingle className="mr-2" /> Add new cabin
         </button>
+        <AddModal
+          isOpen={addModal.isOpen}
+          onClose={addModal.onClose}
+          title="add new Cabin"
+        >
+          <AddCabinForm />
+        </AddModal>
       </SectionHeader>
       <Statistics statistics={statistics} />
       <CabinList />

@@ -1,4 +1,5 @@
 import {
+  AirVent,
   BedDouble,
   BedSingle,
   Beer,
@@ -8,7 +9,6 @@ import {
 import React from "react";
 
 export default function Cabin({ cabin }) {
-  console.log("ASDf");
   return (
     <div className="pe-4  w-full md:w-1/2 lg:w-1/4">
       <div className="border border-lightBorder pb-8 rounded-4xl overflow-hidden group">
@@ -16,7 +16,7 @@ export default function Cabin({ cabin }) {
           <div className="absolute bg-linear-to-b from-transparent to-black/60 inset-0 z-1"></div>
           <div className="h-72 overflow-hidden">
             <img
-              src= {cabin?.image}
+              src={cabin?.image}
               alt={`${cabin?.name} image`}
               className="w-full object-cover h-full group-hover:scale-125 duration-500 "
             />
@@ -54,19 +54,21 @@ export default function Cabin({ cabin }) {
           </div>
           <div className="flex justify-between flex-col lg:flex-row space-y-5 lg:space-y-0 items-center mt-5">
             <div className="flex line-clamp-1 space-x-5">
-              {cabin?.features?.ac && <MonitorCheck className="w-6 h-6" />}
+              {cabin?.features?.ac && <AirVent className="w-6 h-6" />}
               {cabin?.features?.tv && <MonitorCheck className="w-6 h-6" />}
               {cabin?.features?.wifi && <HouseWifi className="w-6 h-6" />}
               {cabin?.features?.minibar && <Beer className="w-6 h-6" />}
-              {cabin?.features?.beds.map((bed) => {
+              {cabin?.features?.beds?.map((bed) => {
                 return bed.type == "king" ? (
-                  <BedDouble className="w-6 h-6" />
+                  <BedDouble className="w-6 h-6" key={"king"} />
                 ) : (
-                  <BedSingle className="w-6 h-6" />
+                  <BedSingle className="w-6 h-6" key={"single"} />
                 );
               })}
             </div>
-            <button className="mainBtn  px-8 py-2 w-full lg:w-fit">manage</button>
+            <button className="mainBtn  px-8 py-2 w-full lg:w-fit">
+              manage
+            </button>
           </div>
         </div>
       </div>

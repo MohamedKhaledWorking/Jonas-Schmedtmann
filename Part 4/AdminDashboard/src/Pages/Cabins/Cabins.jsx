@@ -8,7 +8,7 @@ import {
   CircleDashed,
 } from "lucide-react";
 import Statistics from "../../Ui/Section/Statistics.jsx";
-import Cabin from "../../Components/Cabins/Cabin.jsx";
+import CabinList from "../../Components/Cabins/CabinList.jsx";
 
 export default function Cabins() {
   const statistics = [
@@ -33,15 +33,16 @@ export default function Cabins() {
       icon: <CircleDashed className="text-amber-500" />,
     },
   ];
+  
   return (
-    <div>
+    <div className=" ">
       <SectionHeader head={"cabins"} desc={"manage your cabins"}>
         <button className="mainBtn px-6 py-4 flex justify-center w-full ">
           <BedSingle className="mr-2" /> Add new cabin
         </button>
       </SectionHeader>
       <Statistics statistics={statistics} />
-      <Cabin />
+      <CabinList />
     </div>
   );
 }

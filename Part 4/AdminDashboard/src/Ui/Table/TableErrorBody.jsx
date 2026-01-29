@@ -1,9 +1,9 @@
 import React from "react";
-import { Users } from "lucide-react";
+import { ServerCrash} from "lucide-react";
 
-export default function TableEmptyBody({
+export default function TableErrorBody({
   colSpan = 10,
-  title = "No guests found",
+  title = "it seems we have something wrong ",
   description = "Guests will appear here once they are added.",
   actionLabel,
   onAction,
@@ -14,16 +14,12 @@ export default function TableEmptyBody({
         <td colSpan={colSpan} className="p-12">
           <div className="flex flex-col items-center justify-center text-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secBgc text-gray-400">
-              <Users size={22} />
+              <ServerCrash size={22} />
             </div>
 
             <div>
-              <h3 className="text-sm font-semibold">
-                {title}
-              </h3>
-              <p className="mt-1 text-xs text-gray-400">
-                {description}
-              </p>
+              <h3 className="text-lg font-semibold ">{title}</h3>
+              <p className="mt-1 text-xs text-gray-400">{description}</p>
             </div>
 
             {actionLabel && onAction && (

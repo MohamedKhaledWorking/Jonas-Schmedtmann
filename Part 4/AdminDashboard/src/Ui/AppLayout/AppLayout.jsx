@@ -19,7 +19,7 @@ export default function AppLayout() {
         </div>
         <div className="w-full">
           <NavBar onToggleSidebar={setShowSidebar} />
-          <div className="px-10 py-10 ">
+          <div className="px-2 md:px-10 py-10 ">
             <Outlet />
           </div>
         </div>

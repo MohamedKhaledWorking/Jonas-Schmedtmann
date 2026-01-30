@@ -10,7 +10,7 @@ import React from "react";
 
 export default function Cabin({ cabin }) {
   return (
-    <div className="pe-4  w-full md:w-1/2 lg:w-1/4">
+    <div className="pe-4  w-full md:w-1/2 lg:w-1/4 xl:w-1/5">
       <div className="border border-lightBorder pb-8 rounded-4xl overflow-hidden group">
         <div className=" relative bg-linear-0 from-transparent to-black/60 border-b border-lightBorder">
           <div className="absolute bg-linear-to-b from-transparent to-black/60 inset-0 z-1"></div>
@@ -36,7 +36,6 @@ export default function Cabin({ cabin }) {
           </span>
           <div className="absolute bottom-5 left-5 z-2">
             <p className="text-base ">
-              {" "}
               floor number {cabin?.location?.floor} - wing{" "}
               {cabin?.location?.wing}{" "}
             </p>

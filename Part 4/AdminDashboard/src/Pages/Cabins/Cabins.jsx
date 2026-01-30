@@ -56,7 +56,7 @@ export default function Cabins() {
           onClose={addModal.onClose}
           title="add new Cabin"
         >
-          <AddCabinForm />
+          <AddCabinForm onClose={addModal.onClose} />
         </AddModal>
       </SectionHeader>
       <Statistics statistics={statistics} />

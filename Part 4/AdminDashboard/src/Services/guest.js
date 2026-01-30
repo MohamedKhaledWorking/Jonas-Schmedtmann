@@ -26,6 +26,7 @@ export async function deleteGuests(id) {
     throw new Error(`something went wrong on fetching menu: ${error.message}`);
   }
 }
+
 export async function createGuests(newGuest) {
   const file = newGuest.avatar_url?.[0];
   if (!file) {

@@ -2,14 +2,20 @@ import { Images, ImageUp } from "lucide-react";
 import Input from "../../Ui/Form/Input.jsx";
 import useHotels from "../../Hooks/Cabin/useHotels.js";
 import { useForm } from "react-hook-form";
+import useAddCabin from "../../Hooks/Cabin/useAddCabin.js";
 
-export default function AddCabinForm() {
+export default function AddCabinForm({ onClose }) {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const { hotels } = useHotels();
+  const { mutate } = useAddCabin();
 
   function handleSubmitForm(data) {
-    console.log(data);
+    mutate(data, {
+      onSuccess: () => {
+        onClose();
+      },
+    });
   }
   return (
     <form onSubmit={handleSubmit(handleSubmitForm)}>
@@ -21,6 +27,7 @@ export default function AddCabinForm() {
             className="border border-lightBorder py-3 px-4  text-sm rounded focus:rounded-xl duration-400  block w-full shadow-xs"
             placeholder="room 123"
             {...register("name", { required: "cabin name is required" })}
+            defaultValue={"room 123"}
           />
         </Input>
         <Input id="hotel_id" text=" Select Hotel name" errors={errors}>
@@ -39,24 +46,24 @@ export default function AddCabinForm() {
             })}
           </select>
         </Input>
-        <Input id="price" text="price" errors={errors}>
+        <Input id="price_per_night" text="price" errors={errors}>
           <div>
-            <div class="flex items-center rounded-md pl-3 border border-lightBorder">
-              <div class="shrink-0 text-base text-gray-400 select-none sm:text-sm/6">
+            <div className="flex items-center rounded-md pl-3 border border-lightBorder">
+              <div className="shrink-0 text-base text-gray-400 select-none sm:text-sm/6">
                 $
               </div>
               <input
-                id="price"
+                id="price_per_night"
                 defaultValue="55"
-                class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
-                {...register("price", {
+                className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
+                {...register("price_per_night", {
                   required: "price is required",
                 })}
               />
-              <div class="grid shrink-0 grid-cols-1 ">
+              <div className="grid shrink-0 grid-cols-1 ">
                 <select
                   id="currency"
-                  class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-gray-800 py-1.5 pr-7 pl-3 text-base text-gray-400  sm:text-sm/6"
+                  className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-gray-800 py-1.5 pr-7 pl-3 text-base text-gray-400  sm:text-sm/6"
                   {...register("currency", {
                     required: "currency  is required",
                   })}
@@ -70,12 +77,12 @@ export default function AddCabinForm() {
                   fill="currentColor"
                   data-slot="icon"
                   aria-hidden="true"
-                  class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-400 sm:size-4"
+                  className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-400 sm:size-4"
                 >
                   <path
                     d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
+                    clipRule="evenodd"
+                    fillRule="evenodd"
                   />
                 </svg>
               </div>
@@ -194,9 +201,7 @@ export default function AddCabinForm() {
             type="checkbox"
             id="flex"
             className="mr-2 w-3.5 h-3.5 accent-theme"
-            {...register("rate_plans.isFlex", {
-              required: "cabin floor is required",
-            })}
+            {...register("rate_plans.isFlex")}
           />
           <label htmlFor="flex" className="capitalize  text-lg">
             flex
@@ -207,9 +212,7 @@ export default function AddCabinForm() {
             type="checkbox"
             id="advanced"
             className="mr-2 w-3.5 h-3.5 accent-theme"
-            {...register("rate_plans.isAdvanced", {
-              required: "cabin floor is required",
-            })}
+            {...register("rate_plans.isAdvanced")}
           />
           <label htmlFor="advanced" className="capitalize  text-lg">
             advanced
@@ -220,9 +223,7 @@ export default function AddCabinForm() {
             type="checkbox"
             id="romantic"
             className="mr-2 w-3.5 h-3.5 accent-theme"
-            {...register("rate_plans.isRomantic", {
-              required: "cabin floor is required",
-            })}
+            {...register("rate_plans.isRomantic")}
           />
           <label htmlFor="romantic" className="capitalize  text-lg">
             romantic
@@ -329,7 +330,7 @@ export default function AddCabinForm() {
             type="file"
             className="hidden"
             accept="image/*"
-            {...register("image", { required: "cabin image is required" })}
+            {...register("image")}
           />
         </label>
       </div>
@@ -352,7 +353,7 @@ export default function AddCabinForm() {
             className="hidden"
             accept="image/*"
             multiple
-            {...register("images", { required: "cabin images is required" })}
+            {...register("images")}
           />
         </label>
       </div>

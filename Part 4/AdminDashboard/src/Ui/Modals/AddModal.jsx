@@ -12,18 +12,17 @@ export default function AddModal({
   onClose,
   title = "Modal Title",
   children,
-  handleAdd,
 }) {
   return (
     <>
-      <Modal backdrop={"blur"} isOpen={isOpen} onClose={onClose} size="4xl">
-        <ModalContent className="bg-mainBgc text-textClr py-5" >
+      <Modal backdrop={"blur"} isOpen={isOpen} onClose={onClose} size="5xl">
+        <ModalContent className="bg-mainBgc text-textClr py-5">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 capitalize text-center text-2xl text-theme font-bold">
                 {title}
               </ModalHeader>
-              <ModalBody className="">{children}</ModalBody>
+              <ModalBody onClose={onClose}>{children}</ModalBody>
               <ModalFooter className="gap-5">
                 <button
                   onClick={onClose}

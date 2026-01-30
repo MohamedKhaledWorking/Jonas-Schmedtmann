@@ -7,8 +7,16 @@ import {
   MonitorCheck,
 } from "lucide-react";
 import React from "react";
+import { useSelectedCabin } from "../../Context/SelectedCabinContext.jsx";
 
-export default function Cabin({ cabin }) {
+export default function Cabin({ cabin, handleOpenDrawer }) {
+  const { setSelectedCabin } = useSelectedCabin();
+
+  function onSelectCabin() {
+    handleOpenDrawer();
+    setSelectedCabin(cabin);
+  }
+
   return (
     <div className="pe-4  w-full md:w-1/2 lg:w-1/4 xl:w-1/5">
       <div className="border border-lightBorder pb-8 rounded-4xl overflow-hidden group">
@@ -65,7 +73,10 @@ export default function Cabin({ cabin }) {
                 );
               })}
             </div>
-            <button className="mainBtn  px-8 py-2 w-full lg:w-fit">
+            <button
+              className="mainBtn  px-8 py-2 w-full lg:w-fit"
+              onClick={onSelectCabin}
+            >
               manage
             </button>
           </div>

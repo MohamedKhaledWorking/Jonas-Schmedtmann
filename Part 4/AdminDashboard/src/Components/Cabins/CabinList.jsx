@@ -5,7 +5,7 @@ import Cabin from "./Cabin.jsx";
 import { ErrorCard } from "../../Ui/Card/ErrorCard.jsx";
 import { EmptyCard } from "../../Ui/Card/EmptyCard.jsx";
 
-export default function CabinList() {
+export default function CabinList({ handleOpenDrawer }) {
   const { cabins, isLoading, error } = useCabin();
   return (
     <div className="mt-8 flex  flex-wrap space-y-10">
@@ -24,7 +24,13 @@ export default function CabinList() {
         </div>
       ) : (
         cabins?.map((cabin) => {
-          return <Cabin key={cabin.id} cabin={cabin} />;
+          return (
+            <Cabin
+              key={cabin.id}
+              cabin={cabin}
+              handleOpenDrawer={handleOpenDrawer}
+            />
+          );
         })
       )}
     </div>

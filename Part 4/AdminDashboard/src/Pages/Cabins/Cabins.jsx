@@ -12,6 +12,9 @@ import CabinList from "../../Components/Cabins/CabinList.jsx";
 import { useDisclosure } from "@heroui/react";
 import AddModal from "../../Ui/Modals/AddModal.jsx";
 import AddCabinForm from "../../Components/Cabins/AddCabinForm.jsx";
+import DetailsDrawer from "../../Ui/Modals/DetailsDrawer.jsx";
+import SelectedCabinContextProvider from "../../Context/SelectedCabinContext.jsx";
+import CabinDetails from "../../Components/Cabins/CabinDetails.jsx";
 
 export default function Cabins() {
   const statistics = [
@@ -38,12 +41,16 @@ export default function Cabins() {
   ];
 
   const addModal = useDisclosure();
+  const detailsDrawer = useDisclosure();
   function handleOpenAddModal() {
     addModal.onOpen();
   }
+  function handleOpenDrawer() {
+    detailsDrawer.onOpen();
+  }
 
   return (
-    <div className=" ">
+    <>
       <SectionHeader head={"cabins"} desc={"manage your cabins"}>
         <button
           className="mainBtn px-6 py-4 flex justify-center w-full"
@@ -59,8 +66,19 @@ export default function Cabins() {
           <AddCabinForm onClose={addModal.onClose} />
         </AddModal>
       </SectionHeader>
+
       <Statistics statistics={statistics} />
-      <CabinList />
-    </div>
+
+      <SelectedCabinContextProvider>
+        <CabinList handleOpenDrawer={handleOpenDrawer} />
+
+        <DetailsDrawer
+          isOpen={detailsDrawer.isOpen}
+          onOpenChange={detailsDrawer.onOpenChange}
+        >
+          <CabinDetails />
+        </DetailsDrawer>
+      </SelectedCabinContextProvider>
+    </>
   );
 }

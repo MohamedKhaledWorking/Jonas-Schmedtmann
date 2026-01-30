@@ -16,7 +16,7 @@ export default function GuestDetails({ isOpen, onOpenChange }) {
         hideCloseButton
         backdrop="blur"
         classNames={{
-          base: "sm:data-[placement=right]:m-2 sm:data-[placement=left]:m-2  rounded-medium bg-mainBgc text-textClr",
+          base: "bg-mainBgc text-textClr",
         }}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -24,7 +24,7 @@ export default function GuestDetails({ isOpen, onOpenChange }) {
         <DrawerContent>
           {(onClose) => (
             <>
-              <DrawerBody className="pt-16">
+              <DrawerBody className="pt-16 ">
                 <GuestDetailsImage />
                 <div className="flex flex-col gap-2 py-4">
                   <h1 className="text-2xl font-bold leading-7 text-center mb-5">

@@ -3,7 +3,7 @@ import React from "react";
 export default function FilterCabinBox({ cabins, filterByEquality }) {
   return (
     <>
-      <div className="absolute border border-lightBorder p-5 w-[350px]  rounded-2xl bg-secBgc top-15 right-0 z-30">
+      <div className="absolute border border-lightBorder p-5 w-87.5  rounded-2xl bg-secBgc top-15 right-0 z-30">
         <div className="flex items-center justify-between">
           <p className="font-bold text-lg">filter cabins</p>
           <button>close</button>

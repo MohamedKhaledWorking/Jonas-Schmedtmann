@@ -13,6 +13,9 @@
   --color-warning: #ffba00;
   --color-lightBorder: #233648;
 }
+button {
+  text-transform: capitalize;
+}
 
 .mainBtn {
   @apply bg-theme text-white rounded-xl duration-400 hover:ring-2 ring-offset-6 ring-theme ring-offset-mainBgc capitalize cursor-pointer;

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelectedCabin } from "../../Context/SelectedCabinContext.jsx";
+import { Wifi, AirVent, Beer, Tv, BedDouble, BedSingle } from "lucide-react";
 
 export default function CabinDetailsAmenities() {
   const { selectedCabin } = useSelectedCabin();

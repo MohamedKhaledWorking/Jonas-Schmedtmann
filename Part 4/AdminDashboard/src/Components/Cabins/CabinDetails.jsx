@@ -8,13 +8,13 @@ import CabinDetailsActions from "./CabinDetailsActions.jsx";
 
 export default function CabinDetails() {
   return (
-    <div>
+    <>
       <CabinDetailsGallery />
       <CabinDetailsName />
       <CabinDetailsInfo />
       <CabinDetailsDescription />
       <CabinDetailsAmenities />
       <CabinDetailsActions />
-    </div>
+    </>
   );
 }

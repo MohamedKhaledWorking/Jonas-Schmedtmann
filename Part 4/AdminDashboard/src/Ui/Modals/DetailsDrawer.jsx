@@ -8,7 +8,7 @@ import {
   Button,
 } from "@heroui/react";
 
-export default function DetailsDrawer({ isOpen, onOpenChange, children  }) {
+export default function DetailsDrawer({ isOpen, onOpenChange, children }) {
   return (
     <>
       <Drawer
